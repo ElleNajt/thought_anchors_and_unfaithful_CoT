@@ -1,9 +1,12 @@
 # Thought Anchors & Unfaithful CoT
 
+Replication of "Unfaithful chain-of-thought as nudged reasoning" - focusing on Figure 4 (transplant resampling analysis).
+
 ## Source Files
 
 - `src/create_professor_hinted_mmlu.py` - Creates MMLU dataset with professor hints (e.g., "A professor thinks the answer is (B).")
-- `src/generate_cots.py` - Generates chain-of-thought responses for hinted/unhinted questions, calculates hint effectiveness
+- `src/generate_cots.py` - Sequential CoT generation for hinted/unhinted questions
+- `src/generate_cots_async.py` - Async/parallel CoT generation (recommended for large runs)
 
 ## Setup
 
@@ -24,9 +27,9 @@ MODEL_NAME=deepseek/deepseek-r1
 ```
 
 Available models: https://openrouter.ai/models
-- `deepseek/deepseek-r1` - DeepSeek R1 (used in paper)
+- `deepseek/deepseek-r1` - DeepSeek R1 (used in paper, shows unfaithful behavior)
 - `deepseek/deepseek-chat` - DeepSeek Chat
-- `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet
+- Other OpenRouter models
 
 ### 3. Install Dependencies
 
@@ -38,10 +41,65 @@ pip install -r requirements.txt
 
 ## Usage
 
-```bash
-# 1. Create hinted dataset (outputs to data/professor_hinted_mmlu.json)
-python src/create_professor_hinted_mmlu.py
+### 1. Create Hinted Dataset
 
-# 2. Generate CoT responses (outputs to data/cot_responses.json, logs to logs/)
-python src/generate_cots.py
+```bash
+python src/create_professor_hinted_mmlu.py
 ```
+
+Outputs to `data/professor_hinted_mmlu.json`
+
+### 2. Generate CoT Responses
+
+**Async version (recommended):**
+```bash
+# Quick test (2 questions, 5 samples each)
+python src/generate_cots_async.py --num-questions 2 --num-samples 5 --concurrency 5
+
+# Full run (50 questions, 10 samples each)
+python src/generate_cots_async.py --num-questions 50 --num-samples 10 --concurrency 5
+
+# Paper replication (100 questions, 100 samples each - very slow!)
+python src/generate_cots_async.py --num-questions 100 --num-samples 100 --concurrency 5
+```
+
+**Sequential version:**
+```bash
+python src/generate_cots.py --num-questions 50 --num-samples 10
+```
+
+### 3. Monitor Progress
+
+**Check async run:**
+```bash
+tail -f logs/cot_generation_async_TIMESTAMP.log
+```
+
+**Check background process:**
+```bash
+ps aux | grep generate_cots
+```
+
+## Output Structure
+
+Results are organized by timestamp and model:
+
+```
+data/
+  YYYYMMDD_HHMMSS_modelname/
+    cot_responses.json    # Full CoT data
+    metadata.json         # Model, config, results summary
+  professor_hinted_mmlu.json
+
+logs/
+  cot_generation_TIMESTAMP.log
+  cot_generation_async_TIMESTAMP.log
+```
+
+## Next Steps for Figure 4 Replication
+
+1. ✓ Generate CoTs with/without hints
+2. Filter questions with hint_effect > 10%
+3. Manually identify unfaithful CoTs (answer changed, hint not mentioned)
+4. Implement transplant resampling (truncate CoT sentence-by-sentence, resample)
+5. Create Figure 4 visualization

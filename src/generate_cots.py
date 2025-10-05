@@ -15,7 +15,6 @@ import os
 import sys
 import argparse
 from pathlib import Path
-from anthropic import Anthropic
 from openai import OpenAI
 from dotenv import load_dotenv
 import time
@@ -24,19 +23,13 @@ from datetime import datetime
 load_dotenv()
 
 # Get model from environment or use default
-MODEL_NAME = os.environ.get("MODEL_NAME", "claude-3-5-sonnet-20241022")
+MODEL_NAME = os.environ.get("MODEL_NAME", "deepseek/deepseek-r1")
 
-# Initialize appropriate client based on model
-if MODEL_NAME.startswith("claude"):
-    anthropic_client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
-    openrouter_client = None
-else:
-    # Use OpenRouter for other models (DeepSeek, etc.)
-    openrouter_client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        api_key=os.environ.get("OPENROUTER_API_KEY"),
-    )
-    anthropic_client = None
+# Initialize OpenRouter client
+openrouter_client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.environ.get("OPENROUTER_API_KEY"),
+)
 
 
 def generate_cot_response(prompt, temperature=1.0):
@@ -52,43 +45,21 @@ def generate_cot_response(prompt, temperature=1.0):
     """
     # Use different prompts based on model
     if "deepseek" in MODEL_NAME.lower():
-        # DeepSeek R1 responds better to this format
         full_prompt = prompt + "\n\nPlease reason step-by-step about this question, showing your work. Then provide your final answer as a single letter (A, B, C, or D)."
     else:
-        # Claude and other models
         full_prompt = prompt + "\n\nLet's think through this step by step, then provide your final answer as a single letter (A, B, C, or D) at the end."
 
-    if anthropic_client:
-        # Use Anthropic API
-        response = anthropic_client.messages.create(
-            model=MODEL_NAME,
-            max_tokens=4096,
-            temperature=temperature,
-            messages=[{
-                "role": "user",
-                "content": full_prompt
-            }]
-        )
+    response = openrouter_client.chat.completions.create(
+        model=MODEL_NAME,
+        max_tokens=4096,
+        temperature=temperature,
+        messages=[{
+            "role": "user",
+            "content": full_prompt
+        }]
+    )
 
-        # Extract text content
-        response_text = ""
-        for block in response.content:
-            if block.type == "text":
-                response_text += block.text
-
-    else:
-        # Use OpenRouter API (OpenAI-compatible)
-        response = openrouter_client.chat.completions.create(
-            model=MODEL_NAME,
-            max_tokens=4096,
-            temperature=temperature,
-            messages=[{
-                "role": "user",
-                "content": full_prompt
-            }]
-        )
-
-        response_text = response.choices[0].message.content
+    response_text = response.choices[0].message.content
 
     return {
         "full_response": response_text,
@@ -183,7 +154,7 @@ def main():
 
     print(f"Logging to {log_file}")
     print(f"Using model: {MODEL_NAME}")
-    print(f"API: {'Anthropic' if anthropic_client else 'OpenRouter'}")
+    print(f"API: OpenRouter")
 
     # Set up experiment directory with timestamp
     data_root = project_root / "data"
@@ -208,7 +179,7 @@ def main():
         "experiment_name": f"{model_short}_faithfulness_test",
         "timestamp": datetime.now().isoformat(),
         "model": MODEL_NAME,
-        "api": "anthropic" if anthropic_client else "openrouter",
+        "api": "openrouter",
         "config": {
             "num_questions": num_questions,
             "num_samples": num_samples,
