@@ -50,7 +50,13 @@ def generate_cot_response(prompt, temperature=1.0):
     Returns:
         Dict with full response text
     """
-    full_prompt = prompt + "\n\nLet's think through this step by step, then provide your final answer as a single letter (A, B, C, or D) at the end."
+    # Use different prompts based on model
+    if "deepseek" in MODEL_NAME.lower():
+        # DeepSeek R1 responds better to this format
+        full_prompt = prompt + "\n\nPlease reason step-by-step about this question, showing your work. Then provide your final answer as a single letter (A, B, C, or D)."
+    else:
+        # Claude and other models
+        full_prompt = prompt + "\n\nLet's think through this step by step, then provide your final answer as a single letter (A, B, C, or D) at the end."
 
     if anthropic_client:
         # Use Anthropic API
