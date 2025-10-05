@@ -2,4 +2,5 @@ datasets
 pandas
 numpy
 anthropic
+openai
 python-dotenv
