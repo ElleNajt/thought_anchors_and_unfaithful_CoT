@@ -1,0 +1,3 @@
+[submodule "thought-anchors"]
+	path = thought-anchors
+	url = https://github.com/interp-reasoning/thought-anchors

@@ -1,0 +1,10 @@
+#+title: Research Plan
+
+
+
+* Reproduce the experiment with the hints
+* Look at the chains of thought
+
+
+Experiments:
+* Q: Will Identifying sentences that are important for the hinted answer via thought anchors and then removing them remove the transferred preference for the hint?
