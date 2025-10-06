@@ -464,14 +464,12 @@ def main():
     target_n = max(1, min(args.num_problems, n_total))
     rng = np.random.default_rng(args.seed)
 
-    # If user explicitly wants single problem behavior, honor --problem-idx
+    # Always randomize to find valid problems that meet baseline threshold
+    # We'll keep trying until we find target_n valid problems or exhaust all candidates
     candidate_order = list(range(n_total))
-    if target_n == 1 and args.num_problems == 1:
-        indices_planned = [max(0, min(args.problem_idx, n_total - 1))]
-        print(f"\nSelecting single problem by index: {indices_planned[0]}")
-    else:
-        indices_planned = rng.permutation(candidate_order).tolist()
-        print(f"\nRandom candidate order (seed={args.seed}): {indices_planned}")
+    indices_planned = rng.permutation(candidate_order).tolist()
+    print(f"\nRandomly sampling problems (seed={args.seed}) to find {target_n} with baseline >= {args.min_baseline:.3f}")
+    print(f"Candidate order: {indices_planned[:10]}{'...' if len(indices_planned) > 10 else ''}")
 
     valid_indices: List[int] = []
     baseline_cache: Dict[int, Tuple[float, List[str]]] = {}
