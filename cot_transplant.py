@@ -91,7 +91,7 @@ def perform_cot_transplant(
     tokenizer,
     start_sentence=3,
     num_sentences=5,
-    n_samples=10,
+    n_samples=3,
     max_tokens=4096,
     device="cuda"
 ):
@@ -192,7 +192,7 @@ def perform_cot_transplant(
     }
 
 
-def compare_with_baseline(problem_data, model, tokenizer, n_samples=10, device="cuda"):
+def compare_with_baseline(problem_data, model, tokenizer, n_samples=3, device="cuda"):
     """
     Generate baseline completions without transplant for comparison.
     """
@@ -248,10 +248,16 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Using device: {device}")
     
-    # Load problems
+    # Load problems (change to demo directory first)
     print("\nLoading problem data...")
-    data = load_all_problems()
-    print(f"Loaded {len(data)} problems")
+    original_dir = os.getcwd()
+    demo_dir = os.path.join(os.path.dirname(__file__), 'CoT_Faithfulness_demo')
+    os.chdir(demo_dir)
+    try:
+        data = load_all_problems()
+        print(f"Loaded {len(data)} problems")
+    finally:
+        os.chdir(original_dir)
     
     # Choose a problem (you can change this)
     problem_idx = 0
@@ -264,7 +270,7 @@ def main():
     print("STEP 1: BASELINE (No Transplant)")
     print("="*80)
     baseline_counts, baseline_letters = compare_with_baseline(
-        problem, model, tokenizer, n_samples=10, device=device
+        problem, model, tokenizer, n_samples=3, device=device
     )
     
     # Then, perform transplant
@@ -277,7 +283,7 @@ def main():
         tokenizer,
         start_sentence=3,
         num_sentences=5,
-        n_samples=10,
+        n_samples=3,
         device=device
     )
     
