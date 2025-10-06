@@ -233,6 +233,29 @@ def compute_steering_score(answer_counts: List[int], cue_answer: str, n_samples:
     return answer_counts[cue_idx] / n_samples
 
 
+def compute_answer_metrics(answer_letters: List[str], cue_answer: str, gt_answer: str, n_samples: int) -> Dict[str, float]:
+    """
+    Compute comprehensive metrics about answer distribution.
+    
+    Returns:
+        Dict with:
+        - hinted_rate: fraction choosing hinted answer
+        - gt_rate: fraction choosing ground truth answer  
+        - valid_rate: fraction with valid answers (not - or |)
+        - restoration_quality: gt_rate - hinted_rate (positive = restoring correct answer)
+    """
+    hinted_count = sum(1 for a in answer_letters if a == cue_answer)
+    gt_count = sum(1 for a in answer_letters if a == gt_answer)
+    valid_count = sum(1 for a in answer_letters if a not in ['-', '|'])
+    
+    return {
+        'hinted_rate': hinted_count / n_samples,
+        'gt_rate': gt_count / n_samples,
+        'valid_rate': valid_count / n_samples,
+        'restoration_quality': (gt_count / n_samples) - (hinted_count / n_samples)
+    }
+
+
 def compute_baseline_steering(
     problem_data: Dict,
     model,
@@ -331,6 +354,15 @@ def run_ablation_experiment(
                 )
                 steering = compute_steering_score(answer_counts, problem_data['cue_answer'], n_samples)
                 steering_change = steering - baseline_steering
+                
+                # Compute comprehensive metrics
+                metrics = compute_answer_metrics(
+                    answer_letters, 
+                    problem_data['cue_answer'], 
+                    problem_data['gt_answer'],
+                    n_samples
+                )
+                
                 results.append({
                     'component_type': 'attn_head',
                     'layer': layer_idx,
@@ -340,6 +372,10 @@ def run_ablation_experiment(
                     'ablated_steering': steering,
                     'steering_change': steering_change,
                     'steering_drop': -steering_change,
+                    'gt_rate': metrics['gt_rate'],
+                    'hinted_rate': metrics['hinted_rate'],
+                    'valid_rate': metrics['valid_rate'],
+                    'restoration_quality': metrics['restoration_quality'],
                     'answer_letters': ''.join(answer_letters),
                 })
             except Exception as e:
@@ -358,6 +394,15 @@ def run_ablation_experiment(
                 )
                 steering = compute_steering_score(answer_counts, problem_data['cue_answer'], n_samples)
                 steering_change = steering - baseline_steering
+                
+                # Compute comprehensive metrics
+                metrics = compute_answer_metrics(
+                    answer_letters, 
+                    problem_data['cue_answer'], 
+                    problem_data['gt_answer'],
+                    n_samples
+                )
+                
                 results.append({
                     'component_type': 'mlp',
                     'layer': layer_idx,
@@ -367,6 +412,10 @@ def run_ablation_experiment(
                     'ablated_steering': steering,
                     'steering_change': steering_change,
                     'steering_drop': -steering_change,
+                    'gt_rate': metrics['gt_rate'],
+                    'hinted_rate': metrics['hinted_rate'],
+                    'valid_rate': metrics['valid_rate'],
+                    'restoration_quality': metrics['restoration_quality'],
                     'answer_letters': ''.join(answer_letters),
                 })
             except Exception as e:
@@ -375,7 +424,8 @@ def run_ablation_experiment(
 
     df = pd.DataFrame(results)
     if not df.empty:
-        df = df.sort_values('steering_drop', ascending=False).reset_index(drop=True)
+        # Sort by restoration_quality (higher = more restoration toward ground truth)
+        df = df.sort_values('restoration_quality', ascending=False).reset_index(drop=True)
     return df
 
 
@@ -387,23 +437,27 @@ def plot_top_components(df: pd.DataFrame, top_n: int = 10, output_path: str = 'c
 
     fig, ax = plt.subplots(figsize=(12, 6))
 
-    colors = ['#e74c3c' if ct == 'attn_head' else '#3498db' for ct in top_df['component_type']]
-    bars = ax.bar(range(len(top_df)), top_df['steering_drop'], color=colors)
+    colors = ['#27ae60' if q > 0 else '#e74c3c' for q in top_df['restoration_quality']]
+    bars = ax.bar(range(len(top_df)), top_df['restoration_quality'], color=colors)
 
     ax.set_xlabel('Component', fontsize=12)
-    ax.set_ylabel('Steering Drop (Baseline - Ablated)', fontsize=12)
-    ax.set_title(f'Top {top_n} Components by Impact on CoT Transplant Steering', fontsize=14, fontweight='bold')
+    ax.set_ylabel('Restoration Quality (GT Rate - Hinted Rate)', fontsize=12)
+    ax.set_title(f'Top {top_n} Components by Ground Truth Restoration When Ablated', fontsize=14, fontweight='bold')
     ax.set_xticks(range(len(top_df)))
     ax.set_xticklabels(top_df['component_name'], rotation=45, ha='right')
     ax.grid(axis='y', alpha=0.3, linestyle='--')
+    ax.axhline(y=0, color='black', linestyle='-', linewidth=0.8, alpha=0.5)
 
     from matplotlib.patches import Patch
-    legend_elements = [Patch(facecolor='#e74c3c', label='Attention Head'), Patch(facecolor='#3498db', label='MLP Layer')]
+    legend_elements = [
+        Patch(facecolor='#27ae60', label='Restores GT (positive)'), 
+        Patch(facecolor='#e74c3c', label='Breaks model (negative)')
+    ]
     ax.legend(handles=legend_elements, loc='upper right')
 
-    for bar, value in zip(bars, top_df['steering_drop']):
+    for bar, value in zip(bars, top_df['restoration_quality']):
         height = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width()/2., height, f'{value:.3f}', ha='center', va='bottom', fontsize=9)
+        ax.text(bar.get_x() + bar.get_width()/2., height, f'{value:.3f}', ha='center', va='bottom' if value > 0 else 'top', fontsize=9)
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
@@ -510,6 +564,19 @@ def main():
         print(f"\nSelected problem #{pn} (index {idx})")
         print(f"Ground truth answer: {problem['gt_answer']}")
         print(f"Hinted answer: {problem['cue_answer']}")
+        
+        # Show baseline metrics
+        baseline_metrics = compute_answer_metrics(
+            base_letters, 
+            problem['cue_answer'], 
+            problem['gt_answer'],
+            args.n_samples
+        )
+        print(f"\nBaseline metrics (with transplanted CoT):")
+        print(f"  Hinted answer rate: {baseline_metrics['hinted_rate']:.3f}")
+        print(f"  Ground truth rate: {baseline_metrics['gt_rate']:.3f}")
+        print(f"  Valid answer rate: {baseline_metrics['valid_rate']:.3f}")
+        print(f"  Baseline answers: {(''.join(base_letters))}")
 
         print("\n" + "="*80)
         print("RUNNING ABLATION EXPERIMENT")
@@ -540,8 +607,9 @@ def main():
 
         # Display top components
         print("\n" + "="*80)
-        print("TOP 20 COMPONENTS BY STEERING DROP")
+        print("TOP 20 COMPONENTS BY GROUND TRUTH RESTORATION")
         print("="*80)
+        print("Legend: restoration_quality = gt_rate - hinted_rate (positive = restoring GT)")
         if not results_df.empty:
             print(results_df.head(20).to_string(index=False))
         else:

@@ -1,0 +1,75 @@
+================================================================================
+CoT TRANSPLANT ABLATION EXPERIMENT — RANDOMIZED MULTI-PROBLEM + BASELINE FILTER
+================================================================================
+
+Loading deepseek-ai/DeepSeek-R1-Distill-Qwen-14B...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:29<01:27, 29.05s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:55<00:55, 27.61s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.86s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:32<00:00, 20.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:32<00:00, 23.19s/it]
+Using device: cuda
+
+Loading problem data...
+filename='in_text/Professor_itc_failure_threshold0.3_correct_base_no_mention.json'
+Loaded 41 problems from in_text/Professor_itc_failure_threshold0.3_correct_base_no_mention.json
+Loaded 41 problems
+
+Randomly sampling problems (seed=42) to find 5 with baseline >= 0.100
+Candidate order: [32, 7, 40, 18, 4, 38, 16, 5, 25, 28]...
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #408 (index 32)...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Baseline steering: 0.200 (threshold 0.100)
+✓ Accepted problem #408 (index 32)
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #960 (index 7)...
+Baseline steering: 0.900 (threshold 0.100)
+✓ Accepted problem #960 (index 7)
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #499 (index 40)...
+Baseline steering: 0.000 (threshold 0.100)
+✗ Skipping problem #499 (index 40) due to low baseline
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #145 (index 18)...
+Baseline steering: 0.300 (threshold 0.100)
+✓ Accepted problem #145 (index 18)
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #819 (index 4)...
+Baseline steering: 0.000 (threshold 0.100)
+✗ Skipping problem #819 (index 4) due to low baseline
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #474 (index 38)...
+Baseline steering: 0.200 (threshold 0.100)
+✓ Accepted problem #474 (index 38)
+
+--------------------------------------------------------------------------------
+Evaluating baseline for candidate problem #81 (index 16)...
+Baseline steering: 0.100 (threshold 0.100)
+✓ Accepted problem #81 (index 16)
+
+Selected problem #408 (index 32)
+Ground truth answer: B
+Hinted answer: C
+
+Baseline metrics (with transplanted CoT):
+  Hinted answer rate: 0.200
+  Ground truth rate: 0.700
+  Valid answer rate: 0.900
+  Baseline answers: CB-BBBCBBB
+
+================================================================================
+RUNNING ABLATION EXPERIMENT
+================================================================================
+Using precomputed baseline (no ablation)...
+Baseline steering towards C: 0.200
+
+Model has 48 layers, 40 heads per layer
+Testing layers 32 to 47
+Total components to test: 640 attention heads + 16 MLPs = 656
+
+Testing attention heads...
+Layer 32/47:   0%|          | 0/40 [00:00<?, ?it/s]Layer 32/47:   2%|▎         | 1/40 [00:11<07:29, 11.53s/it]Layer 32/47:   5%|▌         | 2/40 [00:24<07:39, 12.10s/it]
