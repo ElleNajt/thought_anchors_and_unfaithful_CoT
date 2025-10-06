@@ -41,8 +41,14 @@ def get_layer_activations(model, tokens, layer_idx):
     activations = {}
     
     def hook_fn(module, input, output):
-        # output[0] is the hidden states
-        activations['hidden'] = output[0].detach()
+        # Handle different output formats
+        # For DeepSeek/Qwen models, output can be a tuple or just the tensor
+        if isinstance(output, tuple):
+            # If tuple, first element is hidden states
+            activations['hidden'] = output[0].detach()
+        else:
+            # If not tuple, output is directly the hidden states
+            activations['hidden'] = output.detach()
     
     # Register hook on the specified layer
     hook = model.model.layers[layer_idx].register_forward_hook(hook_fn)
@@ -379,6 +385,17 @@ def main():
     results_csv = 'linear_probe_results.csv'
     results_df.to_csv(results_csv, index=False)
     print(f"\nResults saved to: {results_csv}")
+    
+    # Check if we got any results
+    if len(results_df) == 0:
+        print("\n" + "="*80)
+        print("ERROR: No probes were successfully trained!")
+        print("="*80)
+        print("\nPossible issues:")
+        print("  - Not enough samples collected (need at least 10 per layer/sentence)")
+        print("  - Activation extraction failed (check error messages above)")
+        print("  - Not enough diversity in labels (need at least 2 classes)")
+        return
     
     # Display summary statistics
     print("\n" + "="*80)
