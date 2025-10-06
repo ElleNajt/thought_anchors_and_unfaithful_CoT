@@ -239,8 +239,16 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
             if len(X) < 10 or len(np.unique(y)) < 2:
                 continue
             
+            # Check if we can do stratified split (need at least 2 samples per class)
+            unique_classes, class_counts = np.unique(y, return_counts=True)
+            min_class_count = class_counts.min()
+            
+            # Skip if any class has only 1 sample (can't stratify)
+            if min_class_count < 2:
+                continue
+            
             try:
-                # Split train/test
+                # Split train/test with stratification
                 X_train, X_test, y_train, y_test = train_test_split(
                     X, y, test_size=test_size, random_state=random_state, stratify=y
                 )
@@ -253,8 +261,7 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
                 # Train logistic regression probe
                 probe = LogisticRegression(
                     max_iter=1000,
-                    random_state=random_state,
-                    multi_class='multinomial'
+                    random_state=random_state
                 )
                 probe.fit(X_train_scaled, y_train)
                 
