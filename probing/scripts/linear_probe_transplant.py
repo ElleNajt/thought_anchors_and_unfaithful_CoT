@@ -10,8 +10,10 @@ that was used to generate it, even when the hint is never shown?
 """
 
 import os
+import subprocess
 import sys
 from collections import defaultdict
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -695,14 +697,31 @@ def main():
     NUM_SENTENCES = 100  # Use large number to get entire CoT
     # How many sentences to transplant
 
-    # Output directories
-    RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results")
+    # Get git hash and timestamp for output directory
+    try:
+        git_hash = (
+            subprocess.check_output(
+                ["git", "rev-parse", "--short", "HEAD"], cwd=os.path.dirname(__file__)
+            )
+            .decode("utf-8")
+            .strip()
+        )
+    except:
+        git_hash = "unknown"
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_id = f"{git_hash}_{timestamp}"
+
+    # Output directories with timestamped subdirectory
+    RESULTS_DIR = os.path.join(os.path.dirname(__file__), "results", run_id)
     DATA_DIR = os.path.join(RESULTS_DIR, "data")
     FIG_DIR = os.path.join(RESULTS_DIR, "figures")
 
     # Create directories if they don't exist
     os.makedirs(DATA_DIR, exist_ok=True)
     os.makedirs(FIG_DIR, exist_ok=True)
+
+    print(f"\nResults will be saved to: {RESULTS_DIR}")
 
     # Load model
     print("\nLoading model...")

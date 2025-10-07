@@ -1,6 +1,6 @@
 # Ignore generated results
-results/data/*.csv
-results/figures/*.png
+results/data/
+results/figures/
 
 # But keep the directory structure
 !results/data/.gitkeep
