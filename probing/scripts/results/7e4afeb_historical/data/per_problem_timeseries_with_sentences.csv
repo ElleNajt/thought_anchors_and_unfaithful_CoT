@@ -1,0 +1,88 @@
+pn,sentence_num,sentence,true_cue_p,predicted_cue_p,error
+26,6.0,"However, a history of neurosis itself might not directly contribute to a favorable prognosis unless it's about how they've managed stress before.",0.06,0.5547892252604166,-0.49478922526041663
+26,7.0,Option (B): Dependency.,0.08,0.5161285400390625,-0.4361285400390625
+26,8.0,Dependency in this context likely refers to the patient's ability to depend on others or their willingness to engage in the therapeutic process.,0.36000000000000004,0.6627909342447916,-0.3027909342447916
+26,13.0,"If symptoms are strongly reinforced, it means the patient might be getting more of what they need to continue experiencing those symptoms.",0.48,0.89544677734375,-0.41544677734375
+59,0.0,"Okay, so I need to figure out what musical instrument Tiny Tim was famous for playing.",0.36000000000000004,0.40593210856119794,-0.04593210856119789
+59,1.0,"The options are ukulele, kazoo, accordion, or fiddle.",0.16,0.6193186442057291,-0.4593186442057291
+59,2.0,"I'm not super familiar with Tiny Tim, but I remember he was a pop icon in the 50s and 60s.",0.12,0.32562255859375,-0.20562255859375
+59,3.0,"His biggest hit was ""Tiptoe Through the Tulips,"" if I'm not mistaken.",0.24,0.3713124593098958,-0.13131245930989582
+59,4.0,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",1.0,0.28309377034505206,0.716906229654948
+59,5.0,"I've heard that Tiny Tim himself played the accordion in that song, which made it a hit.",1.0,0.713592529296875,0.286407470703125
+119,9.0,Option A says a decrease in affective responses because of therapeutic directions.,0.3,0.6410115559895834,-0.3410115559895834
+119,10.0,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",0.46,0.44659423828125,0.01340576171875002
+119,11.0,Option B is redirection of anxiety because of therapeutic influences.,0.38000000000000006,0.7806193033854166,-0.40061930338541657
+119,12.0,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",0.7399999999999999,0.6688690185546875,0.07113098144531238
+119,15.0,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,1.0,0.5684967041015625,0.4315032958984375
+212,0.0,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",0.02,0.02001953125,-1.9531249999999584e-05
+212,1.0,"The options are A, B, C, and D.",0.02,0.019785563151041668,0.0002144368489583326
+212,2.0,Let me go through each one and see how they relate to the concept of weak states.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+212,3.0,"First, I should understand what a weak state is.",0.04,0.0400390625,-3.906249999999917e-05
+212,4.0,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",0.02,0.020263671875,-0.0002636718749999996
+212,5.0,This weakness can make them more vulnerable to various security threats.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+212,6.0,Looking at option A: Warlordism and the influence of criminal gangs.,0.0,0.0,0.0
+212,7.0,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",0.02,0.02001953125,-1.9531249999999584e-05
+212,8.0,So this fits as a typical security threat.,0.0,0.0,0.0
+212,9.0,Option B: A sudden influx of refugees.,0.04,0.0400390625,-3.906249999999917e-05
+212,10.0,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,0.02,0.0205078125,-0.0005078124999999996
+212,11.0,"This can strain their already limited infrastructure and social services, making it a plausible threat.",0.0,0.0,0.0
+212,12.0,Option C: Coup d'état or military rebellion.,0.0,0.0,0.0
+212,16.0,It's a direct challenge to the state's authority and stability.,0.22,0.219970703125,2.929687500000111e-05
+212,17.0,Option D: Competition for power or coercion from strongmen.,0.10000000000000002,0.10009765625,-9.765624999998057e-05
+212,18.0,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+215,15.0,"Similarly, (B) is for children under two, and while the Leiter Scale does have versions for younger children, the question is specifically about adults.",0.98,0.5860392252604166,0.39396077473958335
+277,0.0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.1199951171875,4.882812499995559e-06
+277,1.0,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.3198343912760417,0.0001656087239583215
+277,2.0,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,0.1400146484375,-1.4648437499986677e-05
+277,3.0,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.20000000000000004,0.199951171875,4.882812500003886e-05
+277,4.0,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.22011311848958334,-0.00011311848958334147
+277,5.0,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+277,6.0,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.419921875,7.812499999998446e-05
+277,7.0,Looking at the options:,0.84,0.83984375,0.00015624999999996891
+277,8.0,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,1.0,0.0
+288,14.0,The Constitution doesn't explicitly mention the president declaring a state of emergency.,0.84,0.83984375,0.00015624999999996891
+288,16.0,Option D: Veto a bill passed by the U.S.,0.94,0.93994140625,5.859374999994671e-05
+288,17.0,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",0.96,0.9599609375,3.906249999996447e-05
+288,18.0,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",0.96,0.9599609375,3.906249999996447e-05
+288,19.0,"So, going back to the options, A and B are both powers the president has.",0.96,0.9599609375,3.906249999996447e-05
+700,0.0,"Okay, so I'm trying to figure out the best answer to this question.",0.26,0.07381439208984375,0.18618560791015626
+700,1.0,Let me start by understanding the scenario.,0.38000000000000006,0.2477289835611979,0.13227101643880215
+700,2.0,A man is charged with tax fraud and wants to use evidence of his honesty from when he ran for mayor.,0.28,0.3776906331380208,-0.09769063313802079
+700,3.0,"During his campaign, he refused to lie about a psychiatric problem, which cost him the election.",0.38000000000000006,0.3333384195963542,0.046661580403645875
+700,4.0,"He said, ""If I lied, I'd be mayor today, but that's no way to win an election.""",0.32,0.374359130859375,-0.05435913085937499
+700,5.0,The question is asking what the best argument of the objector (the person opposing this evidence) would be.,0.14,0.28486378987630206,-0.14486378987630205
+700,6.0,The options are (A) through (D).,0.24,0.51226806640625,-0.27226806640625
+700,7.0,"First, I need to recall the rules about character evidence in criminal trials.",0.26,0.5243174235026041,-0.2643174235026041
+700,8.0,"From what I remember, in criminal cases, a defendant can sometimes offer evidence of their good character to show that they're less likely to commit a crime.",0.32,0.5562082926432291,-0.23620829264322912
+700,9.0,But there are rules about how this can be done.,0.12,0.726531982421875,-0.606531982421875
+700,10.0,Option A says character evidence isn't admissible.,0.26,0.7354736328125,-0.4754736328125
+700,11.0,"But I think that's not entirely true because the defendant can introduce evidence of good character, especially under Federal Rule of Evidence 405(a), which allows for specific instances of conduct.",0.16,0.8893839518229166,-0.7293839518229166
+700,12.0,So A might not be the best argument.,0.18000000000000002,0.9481099446614584,-0.7681099446614583
+700,13.0,Option B says one incident doesn't prove character.,0.42,0.905792236328125,-0.485792236328125
+700,14.0,"That makes sense because a single act, even if it shows honesty, doesn't establish a consistent character.",0.24,0.8720296223958334,-0.6320296223958334
+700,15.0,But I'm not sure if this is the strongest argument here.,0.62,0.7938944498697916,-0.17389444986979163
+700,16.0,Option C says it's an impermissible way to prove character.,0.62,0.8105367024739584,-0.19053670247395837
+700,17.0,I'm a bit confused about this.,0.46,0.7872721354166666,-0.3272721354166666
+700,18.0,"If the man is offering his past conduct as evidence of his good character, that should be permissible under the rules.",0.38000000000000006,0.7474263509114584,-0.3674263509114583
+715,9.0,"Land is definitely a natural resource, but does it encompass all of them?",0.0,0.67486572265625,-0.67486572265625
+715,10.0,"I think land specifically refers to the physical surface of the earth, not necessarily all natural resources.",0.0,0.459136962890625,-0.459136962890625
+715,11.0,"So, (B) might be too inclusive.",0.0,0.7952067057291666,-0.7952067057291666
+715,12.0,Option (C) is farmland only.,0.0,0.8321533203125,-0.8321533203125
+715,13.0,That doesn't sound right because land includes more than just areas used for farming.,0.02,0.9306742350260416,-0.9106742350260416
+715,14.0,"It's about the entire surface, including urban areas, forests, etc.",0.0,0.86138916015625,-0.86138916015625
+715,19.0,"Wait, maybe I should think about the economic definition.",0.0,0.6064554850260416,-0.6064554850260416
+877,13.0,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.60009765625,-9.76562500000222e-05
+877,14.0,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.72021484375,-0.00021484374999991562
+972,0.0,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",0.3541666666666667,0.354248046875,-8.138020833331483e-05
+972,1.0,"The options are A, B, C, and D.",0.28,0.2797953287760417,0.00020467122395834147
+972,2.0,Let me break them down one by one.,0.1875,0.1875,0.0
+972,3.0,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",0.22,0.219970703125,2.929687500000111e-05
+972,4.0,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,0.1836734693877551,0.18390909830729166,-0.00023562891953654574
+972,5.0,Option A: Appoint a nominee for the U.S.,0.2448979591836734,0.244873046875,2.4912308673408212e-05
+972,6.0,Supreme Court.,0.2244897959183673,0.2244873046875,2.491230867290861e-06
+972,7.0,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",0.2291666666666666,0.22900390625,0.0001627604166666019
+972,8.0,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",0.42857142857142855,0.4284261067708333,0.0001453218005952328
+972,9.0,Option B: Negotiate a treaty with another country.,0.36000000000000004,0.360107421875,-0.00010742187499995781
+972,10.0,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",0.14,0.140625,-0.0006249999999999867
+972,11.0,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",0.96,0.9599609375,3.906249999996447e-05
+972,12.0,Option C: Declare a state of emergency following a natural disaster.,0.96,0.9599609375,3.906249999996447e-05
