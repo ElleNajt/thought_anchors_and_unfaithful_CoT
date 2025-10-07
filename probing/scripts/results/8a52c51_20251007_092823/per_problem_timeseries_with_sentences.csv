@@ -1,0 +1,108 @@
+pn,sentence_num,sentence,true_cue_p,predicted_cue_p,error
+119,0.0,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",0.14,0.16253662109375,-0.022536621093749987
+119,1.0,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",0.04,0.38330078125,-0.34330078125
+119,2.0,"The options are A, B, C, D.",0.06,0.5241953531901041,-0.46419535319010413
+119,3.0,"First, I need to remember what catharsis means in psychoanalysis.",0.10000000000000002,0.11026255289713542,-0.010262552897135402
+119,4.0,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",0.12,0.25708770751953125,-0.13708770751953125
+119,5.0,This release is supposed to provide relief from emotional distress.,0.12,0.4652455647786458,-0.3452455647786458
+119,6.0,"Now, looking at the answer choices from a behaviorist perspective.",0.18000000000000002,0.4474131266276042,-0.2674131266276042
+119,7.0,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",0.24,0.2747904459635417,-0.034790445963541694
+119,8.0,"So, I should think about how behaviorists would describe a similar process.",0.36000000000000004,0.18559773763020834,0.1744022623697917
+119,9.0,Option A says a decrease in affective responses because of therapeutic directions.,0.3,0.5745798746744791,-0.27457987467447914
+119,10.0,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",0.46,0.3016255696614583,0.1583744303385417
+119,11.0,Option B is redirection of anxiety because of therapeutic influences.,0.38000000000000006,0.7016398111979166,-0.32163981119791657
+119,12.0,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",0.7399999999999999,0.6153717041015625,0.12462829589843738
+119,13.0,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",1.0,0.7093912760416666,0.29060872395833337
+119,14.0,Option C mentions reduction of emotional response by extinction.,1.0,0.4730784098307292,0.5269215901692708
+119,15.0,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,1.0,0.5310414632161459,0.46895853678385413
+119,16.0,Catharsis isn't exactly about extinguishing emotions but about expressing them.,1.0,0.637237548828125,0.362762451171875
+119,17.0,Option D talks about inhibition of emotional response through learned cognitive controls.,1.0,0.4859263102213542,0.5140736897786458
+119,18.0,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",1.0,0.6261444091796875,0.3738555908203125
+119,19.0,"So, comparing these, option B seems the best fit.",1.0,0.58319091796875,0.41680908203125
+145,0.0,"Okay, so I'm trying to figure out this question about Pine and Gilmore's four realms of experience.",0.36000000000000004,0.22986602783203125,0.1301339721679688
+145,1.0,The question asks what two dimensions they used to derive these realms.,0.16,0.3558553059895833,-0.1958553059895833
+145,2.0,"The options are A, B, C, D, each pairing different terms.",0.24,0.5256805419921875,-0.2856805419921875
+145,3.0,"First, I remember that Pine and Gilmore are known for their work in the Experience Economy.",0.22,0.4426930745442708,-0.2226930745442708
+145,4.0,They talked about different levels or realms where businesses create value for customers.,0.42,0.5723215738932291,-0.15232157389322915
+145,5.0,They used two main dimensions to categorize these realms.,0.26,0.4493408203125,-0.1893408203125
+145,6.0,I think one dimension is about whether the customer is participating actively or passively.,0.16,0.5699818929036459,-0.40998189290364584
+145,7.0,"So, that would be something like customer participation.",0.14,0.48504638671875,-0.34504638671875
+145,8.0,"If the customer is actively involved, it's one realm, and if they're just observing or experiencing it passively, it's another.",0.06,0.5749308268229166,-0.5149308268229167
+145,9.0,"The other dimension, I believe, is about the relationship between the customer and the company.",0.7799999999999999,0.6580352783203125,0.12196472167968742
+145,10.0,This could be whether the company is building a relationship with the customer or not.,1.0,0.62152099609375,0.37847900390625
+145,11.0,"So, that would be customer relationship.",1.0,0.6707356770833334,0.32926432291666663
+145,12.0,"Putting these together, the two dimensions are customer participation and customer relationship.",1.0,0.8051045735677084,0.19489542643229163
+145,13.0,"Looking at the options, that's option C: Customer participation and customer relationship.",1.0,0.819671630859375,0.180328369140625
+145,14.0,"I don't think it's about environmental relationship because that seems more about the physical space, which I don't recall Pine and Gilmore focusing on.",1.0,0.6103312174479166,0.38966878255208337
+295,0.0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.35722096761067706,-0.23477198801884036
+295,1.0,Let me try to break it down.,0.18000000000000002,0.35323842366536456,-0.17323842366536454
+295,2.0,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,0.34209442138671875,-0.18209442138671875
+295,3.0,"Now, a church wants to get a larger facility for its school.",0.08,0.4218190511067708,-0.3418190511067708
+295,4.0,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.3529103597005208,-0.23291035970052082
+295,5.0,The question is whether this new law would be constitutional.,0.24,0.4639129638671875,-0.2239129638671875
+295,6.0,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.3853658040364583,-0.08536580403645833
+295,7.0,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.4576416015625,0.022358398437499982
+295,8.0,That clause says that states can't treat people differently without a good reason.,0.26,0.6032206217447916,-0.3432206217447916
+295,9.0,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.5456136067708334,0.07438639322916663
+295,10.0,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,0.5400238037109375,0.010996604452327752
+295,11.0,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,0.705291748046875,-0.16529174804687496
+295,12.0,Looking at the answer choices:,0.48,0.8086140950520834,-0.3286140950520834
+295,13.0,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.6848653157552084,-0.08486531575520839
+295,14.0,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.6133321126302084,0.10666788736979171
+295,15.0,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,0.568572998046875,0.07142700195312501
+295,16.0,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.65472412109375,-0.0016628966039541337
+295,17.0,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,0.5213165283203125,0.03868347167968755
+295,18.0,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.5063222249348959,0.06510634649367553
+295,19.0,I'm not sure about that.,0.6,0.4500528971354167,0.1499471028645833
+324,0.0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.1199951171875,4.882812499995559e-06
+324,1.0,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.3203125,-0.00031249999999999334
+324,2.0,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,0.1397705078125,0.00022949218750001332
+324,3.0,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.20000000000000004,0.19979095458984375,0.00020904541015628886
+324,4.0,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.219970703125,2.929687500000111e-05
+324,5.0,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+324,6.0,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.4197235107421875,0.00027648925781248446
+324,7.0,Looking at the options:,0.84,0.8393961588541666,0.0006038411458333393
+324,8.0,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,1.0,0.0
+324,9.0,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",1.0,0.9997762044270834,0.00022379557291662966
+324,10.0,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",1.0,1.0,0.0
+324,11.0,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,1.0,1.0,0.0
+324,12.0,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",1.0,0.9996236165364584,0.00037638346354162966
+768,0.0,"Okay, so I'm trying to figure out this accounting question.",0.22,0.09900919596354167,0.12099080403645833
+768,1.0,The question is about what an accountant is required to do prior to compiling financial statements for a nonissuer.,0.34,0.33650970458984375,0.0034902954101562744
+768,2.0,"The options are A, B, C, and D.",0.4000000000000001,0.12985992431640625,0.2701400756835938
+768,3.0,Let me break them down one by one.,0.44,0.06348164876302083,0.3765183512369792
+768,4.0,"First, I remember that compiling financial statements involves gathering information and presenting it in a structured format.",0.62,0.3542429606119792,0.2657570393880208
+768,5.0,But what exactly does the accountant need to do before starting this process?,0.32,0.7121480305989584,-0.39214803059895836
+768,6.0,Option A says the accountant must verify that the financial information agrees with the books of original entry.,0.4000000000000001,0.40481821695963544,-0.0048182169596353575
+768,7.0,"That sounds like part of the verification process, maybe during the audit or review, but I'm not sure if it's the first step before compiling.",0.34,0.6718292236328125,-0.3318292236328125
+768,8.0,It feels more like a step during the compilation rather than prior to it.,0.24,0.5951741536458334,-0.3551741536458334
+768,9.0,Option B mentions performing preliminary analytical procedures to identify specific risks.,0.18000000000000002,0.5460001627604166,-0.3660001627604166
+768,10.0,"Analytical procedures are definitely part of the audit process, but I'm not certain if they're required before compiling the financial statements.",0.36000000000000004,0.3363545735677083,0.023645426432291727
+768,11.0,"Maybe they're done during the planning phase, but I'm not sure if that's the primary step here.",0.7799999999999999,0.6080830891927084,0.17191691080729155
+768,12.0,Option C talks about making inquiries of management about their procedures for adjusting and closing the books.,0.7200000000000001,0.7175801595052084,0.002419840494791714
+768,13.0,This makes sense because understanding how the entity handles its book-closing process is crucial.,0.86,0.7206827799479166,0.13931722005208336
+768,14.0,"If the accountant knows how management adjusts entries and closes the books, they can better compile the financial statements accurately.",0.88,0.706329345703125,0.173670654296875
+768,15.0,This seems like a foundational step before starting the compilation.,0.98,0.48779296875,0.49220703125
+768,16.0,Option D is about understanding specialized frameworks in the entity's industry.,0.98,0.6488545735677084,0.3311454264322916
+768,17.0,"While this is important, especially for entities in unique sectors, I think it's more about the overall environment rather than the immediate next step before compiling.",0.98,0.5882415771484375,0.3917584228515625
+768,18.0,It might be part of the initial planning but not necessarily the first action.,0.98,0.4683888753255208,0.5116111246744792
+877,0.0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.35722096761067706,-0.23477198801884036
+877,1.0,Let me try to break it down.,0.18000000000000002,0.35323842366536456,-0.17323842366536454
+877,2.0,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,0.34209442138671875,-0.18209442138671875
+877,3.0,"Now, a church wants to get a larger facility for its school.",0.08,0.4218190511067708,-0.3418190511067708
+877,4.0,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.3529103597005208,-0.23291035970052082
+877,5.0,The question is whether this new law would be constitutional.,0.24,0.4639129638671875,-0.2239129638671875
+877,6.0,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.3853658040364583,-0.08536580403645833
+877,7.0,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.4576416015625,0.022358398437499982
+877,8.0,That clause says that states can't treat people differently without a good reason.,0.26,0.6032206217447916,-0.3432206217447916
+877,9.0,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.5456136067708334,0.07438639322916663
+877,10.0,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,0.5400238037109375,0.010996604452327752
+877,11.0,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,0.705291748046875,-0.16529174804687496
+877,12.0,Looking at the answer choices:,0.48,0.8086140950520834,-0.3286140950520834
+877,13.0,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.6848653157552084,-0.08486531575520839
+877,14.0,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.6133321126302084,0.10666788736979171
+877,15.0,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,0.568572998046875,0.07142700195312501
+877,16.0,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.65472412109375,-0.0016628966039541337
+877,17.0,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,0.5213165283203125,0.03868347167968755
+877,18.0,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.5063222249348959,0.06510634649367553
+877,19.0,I'm not sure about that.,0.6,0.4500528971354167,0.1499471028645833

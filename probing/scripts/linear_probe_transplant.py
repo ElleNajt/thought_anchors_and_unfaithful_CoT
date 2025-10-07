@@ -287,9 +287,12 @@ def collect_activations_for_transplants(
     return data
 
 
-def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
+def train_probes_and_evaluate(data, test_size=0.2, random_state=42, loaded_split=None):
     """
     Train linear probes for each layer and sentence position, evaluate on test set.
+
+    Args:
+        loaded_split: Optional tuple of (train_pns_set, test_pns_set) to reuse an existing split
 
     Returns:
         results_df: DataFrame with columns: layer, sentence, train_acc, test_acc, n_samples
@@ -305,29 +308,34 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
     # CRITICAL FIX: Determine global train/test split at problem level FIRST
     # This prevents data leakage where a problem could be in train for some 
     # layer/sentence combos and test for others
-    print("Determining global train/test split at problem level...")
-    all_pns = set()
-    all_labels = {}
-    for layer_idx in data.keys():
-        for sent_num in data[layer_idx].keys():
-            for pn, label in zip(data[layer_idx][sent_num]["pns"], 
-                                data[layer_idx][sent_num]["labels"]):
-                all_pns.add(pn)
-                all_labels[pn] = label
     
-    all_pns = sorted(list(all_pns))
-    labels_for_split = np.array([all_labels[pn] for pn in all_pns])
-    
-    # Do stratified split at problem level
-    train_pns, test_pns = train_test_split(
-        all_pns, 
-        test_size=test_size, 
-        random_state=random_state,
-        stratify=labels_for_split
-    )
-    train_pns_set = set(train_pns)
-    test_pns_set = set(test_pns)
-    print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
+    if loaded_split is not None:
+        train_pns_set, test_pns_set = loaded_split
+        print(f"Using loaded split: {len(train_pns_set)} train problems, {len(test_pns_set)} test problems")
+    else:
+        print("Determining global train/test split at problem level...")
+        all_pns = set()
+        all_labels = {}
+        for layer_idx in data.keys():
+            for sent_num in data[layer_idx].keys():
+                for pn, label in zip(data[layer_idx][sent_num]["pns"], 
+                                    data[layer_idx][sent_num]["labels"]):
+                    all_pns.add(pn)
+                    all_labels[pn] = label
+        
+        all_pns = sorted(list(all_pns))
+        labels_for_split = np.array([all_labels[pn] for pn in all_pns])
+        
+        # Do stratified split at problem level
+        train_pns, test_pns = train_test_split(
+            all_pns, 
+            test_size=test_size, 
+            random_state=random_state,
+            stratify=labels_for_split
+        )
+        train_pns_set = set(train_pns)
+        test_pns_set = set(test_pns)
+        print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
 
     for layer_idx in tqdm(sorted(data.keys()), desc="Layers"):
         for sent_num in sorted(data[layer_idx].keys()):
@@ -453,9 +461,12 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
     return pd.DataFrame(results), pd.DataFrame(predictions), pd.DataFrame(splits)
 
 
-def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
+def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42, loaded_split=None):
     """
     Train linear regression probes to predict cue_p for each layer and sentence position.
+
+    Args:
+        loaded_split: Optional tuple of (train_pns_set, test_pns_set) to reuse an existing split
 
     Returns:
         results_df: DataFrame with columns: layer, sentence, train_mse, test_mse, train_r2, test_r2, n_samples
@@ -471,23 +482,28 @@ def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
     # CRITICAL FIX: Determine global train/test split at problem level FIRST
     # This prevents data leakage where a problem could be in train for some 
     # layer/sentence combos and test for others
-    print("Determining global train/test split at problem level...")
-    all_pns = set()
-    for layer_idx in range(len(data)):
-        for sent_num in data[layer_idx].keys():
-            all_pns.update(data[layer_idx][sent_num]["pns"])
     
-    all_pns = sorted(list(all_pns))
-    
-    # Do random split at problem level (no stratification needed for regression)
-    train_pns, test_pns = train_test_split(
-        all_pns, 
-        test_size=test_size, 
-        random_state=random_state
-    )
-    train_pns_set = set(train_pns)
-    test_pns_set = set(test_pns)
-    print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
+    if loaded_split is not None:
+        train_pns_set, test_pns_set = loaded_split
+        print(f"Using loaded split: {len(train_pns_set)} train problems, {len(test_pns_set)} test problems")
+    else:
+        print("Determining global train/test split at problem level...")
+        all_pns = set()
+        for layer_idx in range(len(data)):
+            for sent_num in data[layer_idx].keys():
+                all_pns.update(data[layer_idx][sent_num]["pns"])
+        
+        all_pns = sorted(list(all_pns))
+        
+        # Do random split at problem level (no stratification needed for regression)
+        train_pns, test_pns = train_test_split(
+            all_pns, 
+            test_size=test_size, 
+            random_state=random_state
+        )
+        train_pns_set = set(train_pns)
+        test_pns_set = set(test_pns)
+        print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
 
     # Iterate through all layer-sentence combinations
     for layer_idx in tqdm(range(len(data)), desc="Layers"):
@@ -753,6 +769,11 @@ def main():
     START_SENTENCE = 0  # Which sentence to start transplanting from
     NUM_SENTENCES = 100  # Use large number to get entire CoT
     # How many sentences to transplant
+    
+    # Optional: Load existing train/test split from a previous run
+    # Set to None to create a new split, or provide path to reuse an existing split
+    LOAD_SPLIT_FROM = "probing/scripts/results/7e4afeb_historical/data/linear_probe_transplant_regression_splits.csv"
+    # LOAD_SPLIT_FROM = None  # Uncomment to create new split
 
     # Get git hash and timestamp for output directory
     try:
@@ -822,11 +843,23 @@ def main():
         max_problems=MAX_PROBLEMS,
     )
 
+    # Load existing split if specified
+    loaded_split = None
+    if LOAD_SPLIT_FROM is not None:
+        print(f"\nLoading train/test split from: {LOAD_SPLIT_FROM}")
+        split_df = pd.read_csv(LOAD_SPLIT_FROM)
+        # Extract unique problem numbers for train and test
+        train_pns = set(split_df[split_df['split'] == 'train']['pn'].unique())
+        test_pns = set(split_df[split_df['split'] == 'test']['pn'].unique())
+        loaded_split = (train_pns, test_pns)
+        print(f"Loaded split: {len(train_pns)} train problems, {len(test_pns)} test problems")
+        print(f"Test problems: {sorted(test_pns)}")
+
     # Train classification probes and evaluate
     print("\n" + "=" * 80)
     print("CLASSIFICATION PROBES: Predicting Hint Answer")
     print("=" * 80)
-    results_df, predictions_df, splits_df = train_probes_and_evaluate(activation_data)
+    results_df, predictions_df, splits_df = train_probes_and_evaluate(activation_data, loaded_split=loaded_split)
 
     # Save classification results
     results_csv = os.path.join(DATA_DIR, "linear_probe_transplant_results.csv")
@@ -852,7 +885,7 @@ def main():
     print("REGRESSION PROBES: Predicting cue_p")
     print("=" * 80)
     regression_results_df, regression_predictions_df, regression_splits_df = (
-        train_regression_probes_and_evaluate(activation_data)
+        train_regression_probes_and_evaluate(activation_data, loaded_split=loaded_split)
     )
 
     # Save regression results
