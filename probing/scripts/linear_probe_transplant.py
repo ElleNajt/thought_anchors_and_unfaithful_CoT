@@ -570,7 +570,7 @@ def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
                         "test_mse": test_mse,
                         "train_r2": train_r2,
                         "test_r2": test_r2,
-                        "n_samples": len(X),
+                        "n_samples": len(activations),
                         "n_train": len(X_train),
                         "n_test": len(X_test),
                     }
@@ -833,9 +833,15 @@ def main():
     results_df.to_csv(results_csv, index=False)
     print(f"\nClassification results saved to: {results_csv}")
 
-    predictions_csv = os.path.join(DATA_DIR, "linear_probe_transplant_predictions.csv")
-    predictions_df.to_csv(predictions_csv, index=False)
-    print(f"Classification predictions saved to: {predictions_csv}")
+    # Save train and test predictions separately to avoid confusion
+    predictions_train_csv = os.path.join(DATA_DIR, "linear_probe_transplant_predictions_train.csv")
+    predictions_test_csv = os.path.join(DATA_DIR, "linear_probe_transplant_predictions_test.csv")
+    
+    predictions_df[predictions_df['split'] == 'train'].to_csv(predictions_train_csv, index=False)
+    predictions_df[predictions_df['split'] == 'test'].to_csv(predictions_test_csv, index=False)
+    
+    print(f"Classification predictions (train) saved to: {predictions_train_csv}")
+    print(f"Classification predictions (test) saved to: {predictions_test_csv}")
 
     splits_csv = os.path.join(DATA_DIR, "linear_probe_transplant_splits.csv")
     splits_df.to_csv(splits_csv, index=False)
@@ -856,11 +862,28 @@ def main():
     regression_results_df.to_csv(regression_results_csv, index=False)
     print(f"\nRegression results saved to: {regression_results_csv}")
 
-    regression_predictions_csv = os.path.join(
-        DATA_DIR, "linear_probe_transplant_regression_predictions.csv"
+    # Define file paths for regression predictions
+    regression_predictions_train_csv = os.path.join(
+        DATA_DIR, "linear_probe_transplant_regression_predictions_train.csv"
     )
-    regression_predictions_df.to_csv(regression_predictions_csv, index=False)
-    print(f"Regression predictions saved to: {regression_predictions_csv}")
+    regression_predictions_test_csv = os.path.join(
+        DATA_DIR, "linear_probe_transplant_regression_predictions_test.csv"
+    )
+    
+    # Check if we have any regression predictions before saving
+    if len(regression_predictions_df) > 0:
+        # Save train and test predictions separately to avoid confusion
+        regression_predictions_df[regression_predictions_df['split'] == 'train'].to_csv(
+            regression_predictions_train_csv, index=False
+        )
+        regression_predictions_df[regression_predictions_df['split'] == 'test'].to_csv(
+            regression_predictions_test_csv, index=False
+        )
+        
+        print(f"Regression predictions (train) saved to: {regression_predictions_train_csv}")
+        print(f"Regression predictions (test) saved to: {regression_predictions_test_csv}")
+    else:
+        print("WARNING: No regression predictions were generated!")
 
     regression_splits_csv = os.path.join(
         DATA_DIR, "linear_probe_transplant_regression_splits.csv"
@@ -916,6 +939,14 @@ def main():
     print("=" * 80)
     print("\nGenerated files:")
     print(f"  - {results_csv}")
+    print(f"  - {predictions_train_csv}")
+    print(f"  - {predictions_test_csv}")
+    print(f"  - {splits_csv}")
+    print(f"  - {regression_results_csv}")
+    if len(regression_predictions_df) > 0:
+        print(f"  - {regression_predictions_train_csv}")
+        print(f"  - {regression_predictions_test_csv}")
+    print(f"  - {regression_splits_csv}")
     print(f"  - {os.path.join(FIG_DIR, 'linear_probe_transplant_heatmap.png')}")
     print(f"  - {os.path.join(FIG_DIR, 'linear_probe_transplant_layers.png')}")
     print(f"  - {os.path.join(FIG_DIR, 'linear_probe_transplant_sentences.png')}")

@@ -12,14 +12,11 @@ if not run_dirs:
 latest_run = max(run_dirs, key=os.path.getmtime)
 print(f"Using results from: {latest_run}")
 
-# Load the regression predictions
-pred_df = pd.read_csv(os.path.join(latest_run, 'data', 'linear_probe_transplant_regression_predictions.csv'))
+# Load the regression predictions (test set only)
+test_df = pd.read_csv(os.path.join(latest_run, 'data', 'linear_probe_transplant_regression_predictions_test.csv'))
 
 # Load the faithfulness CSV to get sentence contents
 faith_df = pd.read_csv('CoT_Faithfulness_demo/faith_counterfactual_qwen-14b_demo.csv')
-
-# Filter to test set only
-test_df = pred_df[pred_df['split'] == 'test'].copy()
 
 # Get unique problems in test set
 test_problems = sorted(test_df['pn'].unique())
