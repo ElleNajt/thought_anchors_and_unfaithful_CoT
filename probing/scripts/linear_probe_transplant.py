@@ -770,10 +770,13 @@ def main():
     NUM_SENTENCES = 100  # Use large number to get entire CoT
     # How many sentences to transplant
     
+    # Optional: Specify custom test problems (set to None to load from file or auto-generate)
+    CUSTOM_TEST_PROBLEMS = [700, 119, 26, 59, 715]
+    
     # Optional: Load existing train/test split from a previous run
     # Set to None to create a new split, or provide path to reuse an existing split
-    LOAD_SPLIT_FROM = "probing/scripts/results/7e4afeb_historical/data/linear_probe_transplant_regression_splits.csv"
-    # LOAD_SPLIT_FROM = None  # Uncomment to create new split
+    # LOAD_SPLIT_FROM = "probing/scripts/results/7e4afeb_historical/data/linear_probe_transplant_regression_splits.csv"
+    LOAD_SPLIT_FROM = None  # Using custom test problems instead
 
     # Get git hash and timestamp for output directory
     try:
@@ -843,9 +846,18 @@ def main():
         max_problems=MAX_PROBLEMS,
     )
 
-    # Load existing split if specified
+    # Load existing split if specified, or use custom test problems
     loaded_split = None
-    if LOAD_SPLIT_FROM is not None:
+    if CUSTOM_TEST_PROBLEMS is not None:
+        print(f"\nUsing custom test problems: {CUSTOM_TEST_PROBLEMS}")
+        test_pns = set(CUSTOM_TEST_PROBLEMS)
+        # Get all available problem numbers from the data
+        all_pns = set(p['pn'] for p in data)
+        train_pns = all_pns - test_pns
+        loaded_split = (train_pns, test_pns)
+        print(f"Custom split: {len(train_pns)} train problems, {len(test_pns)} test problems")
+        print(f"Test problems: {sorted(test_pns)}")
+    elif LOAD_SPLIT_FROM is not None:
         print(f"\nLoading train/test split from: {LOAD_SPLIT_FROM}")
         split_df = pd.read_csv(LOAD_SPLIT_FROM)
         # Extract unique problem numbers for train and test
