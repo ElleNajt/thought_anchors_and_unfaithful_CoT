@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import torch
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
@@ -29,6 +30,21 @@ root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 demo_dir = os.path.join(root_dir, "CoT_Faithfulness_demo")
 sys.path.insert(0, demo_dir)
 from load_CoT import load_all_problems
+
+
+def load_cue_p_data(csv_path):
+    """
+    Load cue_p values from the faithfulness CSV file.
+
+    Returns:
+        dict: {(pn, sentence_num): cue_p_value}
+    """
+    df = pd.read_csv(csv_path)
+    cue_p_dict = {}
+    for _, row in df.iterrows():
+        key = (row["pn"], row["sentence_num"])
+        cue_p_dict[key] = row["cue_p"]
+    return cue_p_dict
 
 
 def extract_cot_sentences(cot_text, start_sentence=0, num_sentences=3):
@@ -166,6 +182,7 @@ def collect_activations_for_transplants(
     model,
     tokenizer,
     device,
+    cue_p_dict=None,
     start_sentence=3,
     num_sentences=5,
     max_problems=None,
@@ -174,6 +191,9 @@ def collect_activations_for_transplants(
     Collect activations from TRANSPLANTED prompts across all layers and sentence positions.
     Uses a single forward pass per problem to extract all layer activations.
 
+    Args:
+        cue_p_dict: Optional dict {(pn, sentence_num): cue_p_value} for regression targets
+
     Returns:
         dict with structure:
             {
@@ -181,7 +201,8 @@ def collect_activations_for_transplants(
                     sentence_num: {
                         'activations': list of activation vectors,
                         'labels': list of hint answers (0=A, 1=B, 2=C, 3=D),
-                        'pns': list of problem numbers
+                        'pns': list of problem numbers,
+                        'cue_ps': list of cue_p values (if cue_p_dict provided)
                     }
                 }
             }
@@ -189,9 +210,16 @@ def collect_activations_for_transplants(
     n_layers = model.config.num_hidden_layers
 
     # Initialize data structure
-    data = defaultdict(
-        lambda: defaultdict(lambda: {"activations": [], "labels": [], "pns": []})
-    )
+    if cue_p_dict is not None:
+        data = defaultdict(
+            lambda: defaultdict(
+                lambda: {"activations": [], "labels": [], "pns": [], "cue_ps": []}
+            )
+        )
+    else:
+        data = defaultdict(
+            lambda: defaultdict(lambda: {"activations": [], "labels": [], "pns": []})
+        )
 
     if max_problems:
         problems = problems[:max_problems]
@@ -240,6 +268,12 @@ def collect_activations_for_transplants(
                         data[layer_idx][sent_num]["labels"].append(label)
                         data[layer_idx][sent_num]["pns"].append(problem["pn"])
 
+                        # Add cue_p if available
+                        if cue_p_dict is not None:
+                            key = (problem["pn"], sent_num)
+                            cue_p_value = cue_p_dict.get(key, np.nan)
+                            data[layer_idx][sent_num]["cue_ps"].append(cue_p_value)
+
             # Clear the layer activations and CUDA cache after each problem
             del all_layer_acts
             torch.cuda.empty_cache()
@@ -256,9 +290,13 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
     Train linear probes for each layer and sentence position, evaluate on test set.
 
     Returns:
-        DataFrame with columns: layer, sentence, train_acc, test_acc, n_samples
+        results_df: DataFrame with columns: layer, sentence, train_acc, test_acc, n_samples
+        predictions_df: DataFrame with per-example predictions: layer, sentence, pn, true_label, predicted_label, correct, split
+        splits_df: DataFrame with train/test split info: layer, sentence, pn, split
     """
     results = []
+    predictions = []
+    splits = []
 
     print("\nTraining linear probes on transplanted examples...")
 
@@ -268,6 +306,7 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
 
             X = np.array(layer_sent_data["activations"])
             y = np.array(layer_sent_data["labels"])
+            pns = np.array(layer_sent_data["pns"])
 
             # Need at least 10 samples and at least 2 classes
             if len(X) < 10 or len(np.unique(y)) < 2:
@@ -283,9 +322,36 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
 
             try:
                 # Split train/test with stratification
-                X_train, X_test, y_train, y_test = train_test_split(
-                    X, y, test_size=test_size, random_state=random_state, stratify=y
+                X_train, X_test, y_train, y_test, pns_train, pns_test = (
+                    train_test_split(
+                        X,
+                        y,
+                        pns,
+                        test_size=test_size,
+                        random_state=random_state,
+                        stratify=y,
+                    )
                 )
+
+                # Store which problems are in train vs test for this layer/sentence
+                for pn in pns_train:
+                    splits.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "split": "train",
+                        }
+                    )
+                for pn in pns_test:
+                    splits.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "split": "test",
+                        }
+                    )
 
                 # Standardize features
                 scaler = StandardScaler()
@@ -295,6 +361,10 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
                 # Train logistic regression probe
                 probe = LogisticRegression(max_iter=1000, random_state=random_state)
                 probe.fit(X_train_scaled, y_train)
+
+                # Get predictions
+                y_train_pred = probe.predict(X_train_scaled)
+                y_test_pred = probe.predict(X_test_scaled)
 
                 # Evaluate
                 train_acc = probe.score(X_train_scaled, y_train)
@@ -312,13 +382,176 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
                     }
                 )
 
+                # Store per-example predictions for train set
+                for pn, true, pred in zip(pns_train, y_train, y_train_pred):
+                    predictions.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "true_label": int(true),
+                            "predicted_label": int(pred),
+                            "correct": int(true == pred),
+                            "split": "train",
+                        }
+                    )
+
+                # Store per-example predictions for test set
+                for pn, true, pred in zip(pns_test, y_test, y_test_pred):
+                    predictions.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "true_label": int(true),
+                            "predicted_label": int(pred),
+                            "correct": int(true == pred),
+                            "split": "test",
+                        }
+                    )
+
             except Exception as e:
                 print(
                     f"\nError training probe for layer {layer_idx}, sentence {sent_num}: {e}"
                 )
                 continue
 
-    return pd.DataFrame(results)
+    return pd.DataFrame(results), pd.DataFrame(predictions), pd.DataFrame(splits)
+
+
+def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
+    """
+    Train linear regression probes to predict cue_p for each layer and sentence position.
+
+    Returns:
+        results_df: DataFrame with columns: layer, sentence, train_mse, test_mse, train_r2, test_r2, n_samples
+        predictions_df: DataFrame with per-example predictions: layer, sentence, pn, true_cue_p, predicted_cue_p, split
+        splits_df: DataFrame with train/test split info: layer, sentence, pn, split
+    """
+    results = []
+    predictions = []
+    splits = []
+
+    print("\nTraining linear regression probes on transplanted examples...")
+
+    # Iterate through all layer-sentence combinations
+    for layer_idx in tqdm(range(len(data)), desc="Layers"):
+        for sent_num in sorted(data[layer_idx].keys()):
+            try:
+                # Get data for this layer and sentence
+                activations = np.array(data[layer_idx][sent_num]["activations"])
+                cue_ps = np.array(data[layer_idx][sent_num]["cue_ps"])
+                pns = data[layer_idx][sent_num]["pns"]
+
+                # Skip if not enough samples or if we have NaN values
+                valid_mask = ~np.isnan(cue_ps)
+                if valid_mask.sum() < 10:  # Need at least 10 valid samples
+                    continue
+
+                # Filter out NaN values
+                activations = activations[valid_mask]
+                cue_ps = cue_ps[valid_mask]
+                pns = [pn for pn, valid in zip(pns, valid_mask) if valid]
+
+                # Prepare data
+                X = activations
+                y = cue_ps
+
+                # Split into train/test sets
+                X_train, X_test, y_train, y_test, pns_train, pns_test = (
+                    train_test_split(
+                        X, y, pns, test_size=test_size, random_state=random_state
+                    )
+                )
+
+                # Store which problems are in train vs test for this layer/sentence
+                for pn in pns_train:
+                    splits.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "split": "train",
+                        }
+                    )
+                for pn in pns_test:
+                    splits.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "split": "test",
+                        }
+                    )
+
+                # Standardize features
+                scaler = StandardScaler()
+                X_train_scaled = scaler.fit_transform(X_train)
+                X_test_scaled = scaler.transform(X_test)
+
+                # Train linear regression probe
+                probe = LinearRegression()
+                probe.fit(X_train_scaled, y_train)
+
+                # Get predictions
+                y_train_pred = probe.predict(X_train_scaled)
+                y_test_pred = probe.predict(X_test_scaled)
+
+                # Evaluate
+                train_mse = mean_squared_error(y_train, y_train_pred)
+                test_mse = mean_squared_error(y_test, y_test_pred)
+                train_r2 = r2_score(y_train, y_train_pred)
+                test_r2 = r2_score(y_test, y_test_pred)
+
+                results.append(
+                    {
+                        "layer": layer_idx,
+                        "sentence": sent_num,
+                        "train_mse": train_mse,
+                        "test_mse": test_mse,
+                        "train_r2": train_r2,
+                        "test_r2": test_r2,
+                        "n_samples": len(X),
+                        "n_train": len(X_train),
+                        "n_test": len(X_test),
+                    }
+                )
+
+                # Store per-example predictions for train set
+                for pn, true, pred in zip(pns_train, y_train, y_train_pred):
+                    predictions.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "true_cue_p": float(true),
+                            "predicted_cue_p": float(pred),
+                            "error": float(abs(true - pred)),
+                            "split": "train",
+                        }
+                    )
+
+                # Store per-example predictions for test set
+                for pn, true, pred in zip(pns_test, y_test, y_test_pred):
+                    predictions.append(
+                        {
+                            "layer": layer_idx,
+                            "sentence": sent_num,
+                            "pn": pn,
+                            "true_cue_p": float(true),
+                            "predicted_cue_p": float(pred),
+                            "error": float(abs(true - pred)),
+                            "split": "test",
+                        }
+                    )
+
+            except Exception as e:
+                print(
+                    f"\nError training regression probe for layer {layer_idx}, sentence {sent_num}: {e}"
+                )
+                continue
+
+    return pd.DataFrame(results), pd.DataFrame(predictions), pd.DataFrame(splits)
 
 
 def plot_probe_results(results_df, save_path="linear_probe_transplant_heatmap.png"):
@@ -458,8 +691,8 @@ def main():
 
     # Configuration
     MAX_PROBLEMS = 30  # Use subset for faster analysis
-    START_SENTENCE = 3  # Which sentence to start transplanting from
-    NUM_SENTENCES = 5
+    START_SENTENCE = 0  # Which sentence to start transplanting from
+    NUM_SENTENCES = 100  # Use large number to get entire CoT
     # How many sentences to transplant
 
     # Output directories
@@ -492,6 +725,12 @@ def main():
     try:
         data = load_all_problems()
         print(f"Loaded {len(data)} problems")
+
+        # Load cue_p data for regression probes
+        cue_p_csv = "faith_counterfactual_qwen-14b_demo.csv"
+        print(f"\nLoading cue_p data from {cue_p_csv}...")
+        cue_p_dict = load_cue_p_data(cue_p_csv)
+        print(f"Loaded cue_p values for {len(cue_p_dict)} (problem, sentence) pairs")
     finally:
         os.chdir(original_dir)
 
@@ -501,18 +740,57 @@ def main():
         model,
         tokenizer,
         device,
+        cue_p_dict=cue_p_dict,
         start_sentence=START_SENTENCE,
         num_sentences=NUM_SENTENCES,
         max_problems=MAX_PROBLEMS,
     )
 
-    # Train probes and evaluate
-    results_df = train_probes_and_evaluate(activation_data)
+    # Train classification probes and evaluate
+    print("\n" + "=" * 80)
+    print("CLASSIFICATION PROBES: Predicting Hint Answer")
+    print("=" * 80)
+    results_df, predictions_df, splits_df = train_probes_and_evaluate(activation_data)
 
-    # Save results
+    # Save classification results
     results_csv = os.path.join(DATA_DIR, "linear_probe_transplant_results.csv")
     results_df.to_csv(results_csv, index=False)
-    print(f"\nResults saved to: {results_csv}")
+    print(f"\nClassification results saved to: {results_csv}")
+
+    predictions_csv = os.path.join(DATA_DIR, "linear_probe_transplant_predictions.csv")
+    predictions_df.to_csv(predictions_csv, index=False)
+    print(f"Classification predictions saved to: {predictions_csv}")
+
+    splits_csv = os.path.join(DATA_DIR, "linear_probe_transplant_splits.csv")
+    splits_df.to_csv(splits_csv, index=False)
+    print(f"Classification train/test splits saved to: {splits_csv}")
+
+    # Train regression probes for cue_p prediction
+    print("\n" + "=" * 80)
+    print("REGRESSION PROBES: Predicting cue_p")
+    print("=" * 80)
+    regression_results_df, regression_predictions_df, regression_splits_df = (
+        train_regression_probes_and_evaluate(activation_data)
+    )
+
+    # Save regression results
+    regression_results_csv = os.path.join(
+        DATA_DIR, "linear_probe_transplant_regression_results.csv"
+    )
+    regression_results_df.to_csv(regression_results_csv, index=False)
+    print(f"\nRegression results saved to: {regression_results_csv}")
+
+    regression_predictions_csv = os.path.join(
+        DATA_DIR, "linear_probe_transplant_regression_predictions.csv"
+    )
+    regression_predictions_df.to_csv(regression_predictions_csv, index=False)
+    print(f"Regression predictions saved to: {regression_predictions_csv}")
+
+    regression_splits_csv = os.path.join(
+        DATA_DIR, "linear_probe_transplant_regression_splits.csv"
+    )
+    regression_splits_df.to_csv(regression_splits_csv, index=False)
+    print(f"Regression train/test splits saved to: {regression_splits_csv}")
 
     # Check if we got any results
     if len(results_df) == 0:
