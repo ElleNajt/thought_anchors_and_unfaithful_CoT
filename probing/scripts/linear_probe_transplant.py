@@ -73,48 +73,60 @@ def build_transplanted_prompt(problem_data, start_sentence=3, num_sentences=5):
     return transplanted_prompt, num_sentences
 
 
-def get_all_layer_activations(model, tokens):
+def get_layer_activations_chunked(model, tokens, chunk_size=12):
     """
-    Get activations from all layers for given tokens in a single forward pass.
+    Get activations from all layers by processing them in chunks.
+    This balances efficiency (fewer forward passes than N) with memory constraints.
 
     Args:
         model: The language model
         tokens: Input token tensor
+        chunk_size: Number of layers to process per forward pass
 
     Returns:
         List of tensors, one per layer [batch, seq_len, hidden_dim]
     """
-    activations = {}
-    hooks = []
+    n_layers = model.config.num_hidden_layers
+    all_activations = [None] * n_layers
 
-    def make_hook_fn(layer_idx):
-        def hook_fn(module, input, output):
-            # Handle different output formats
-            if isinstance(output, tuple):
-                activations[layer_idx] = output[0].detach()
-            else:
-                activations[layer_idx] = output.detach()
+    # Process layers in chunks
+    for chunk_start in range(0, n_layers, chunk_size):
+        chunk_end = min(chunk_start + chunk_size, n_layers)
 
-        return hook_fn
+        activations = {}
+        hooks = []
 
-    # Register hooks on all layers
-    for layer_idx in range(model.config.num_hidden_layers):
-        hook = model.model.layers[layer_idx].register_forward_hook(
-            make_hook_fn(layer_idx)
-        )
-        hooks.append(hook)
+        def make_hook_fn(layer_idx):
+            def hook_fn(module, input, output):
+                # Handle different output formats
+                if isinstance(output, tuple):
+                    activations[layer_idx] = output[0].detach().cpu()
+                else:
+                    activations[layer_idx] = output.detach().cpu()
 
-    try:
-        with torch.no_grad():
-            model(tokens)
-        # Return activations in layer order
-        return [activations[i] for i in range(model.config.num_hidden_layers)]
-    finally:
-        # Clean up hooks
-        for hook in hooks:
-            hook.remove()
-        # Clear the activations dict to free references
-        activations.clear()
+            return hook_fn
+
+        # Register hooks only for this chunk of layers
+        for layer_idx in range(chunk_start, chunk_end):
+            hook = model.model.layers[layer_idx].register_forward_hook(
+                make_hook_fn(layer_idx)
+            )
+            hooks.append(hook)
+
+        try:
+            with torch.no_grad():
+                model(tokens)
+
+            # Store activations from this chunk
+            for layer_idx in range(chunk_start, chunk_end):
+                all_activations[layer_idx] = activations[layer_idx]
+        finally:
+            # Clean up hooks
+            for hook in hooks:
+                hook.remove()
+            activations.clear()
+
+    return all_activations
 
 
 def extract_sentence_positions_in_prompt(transplanted_prompt, question_only, tokenizer):
@@ -211,8 +223,8 @@ def collect_activations_for_transplants(
                 transplanted_prompt, problem["question"], tokenizer
             )
 
-            # Single forward pass to get all layer activations
-            all_layer_acts = get_all_layer_activations(model, tokens)
+            # Get all layer activations using chunked approach (48 layers / 12 per chunk = 4 forward passes)
+            all_layer_acts = get_layer_activations_chunked(model, tokens, chunk_size=12)
 
             # Extract activations for each layer and sentence position
             for layer_idx in range(n_layers):
@@ -222,7 +234,7 @@ def collect_activations_for_transplants(
                 for sent_num, token_pos in sentence_positions:
                     # Get activation at this position
                     if token_pos < layer_acts.shape[1]:
-                        act_vector = layer_acts[0, token_pos, :].cpu().numpy()
+                        act_vector = layer_acts[0, token_pos, :].numpy()
 
                         data[layer_idx][sent_num]["activations"].append(act_vector)
                         data[layer_idx][sent_num]["labels"].append(label)
