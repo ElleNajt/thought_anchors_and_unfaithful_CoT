@@ -301,6 +301,33 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
     splits = []
 
     print("\nTraining linear probes on transplanted examples...")
+    
+    # CRITICAL FIX: Determine global train/test split at problem level FIRST
+    # This prevents data leakage where a problem could be in train for some 
+    # layer/sentence combos and test for others
+    print("Determining global train/test split at problem level...")
+    all_pns = set()
+    all_labels = {}
+    for layer_idx in data.keys():
+        for sent_num in data[layer_idx].keys():
+            for pn, label in zip(data[layer_idx][sent_num]["pns"], 
+                                data[layer_idx][sent_num]["labels"]):
+                all_pns.add(pn)
+                all_labels[pn] = label
+    
+    all_pns = sorted(list(all_pns))
+    labels_for_split = np.array([all_labels[pn] for pn in all_pns])
+    
+    # Do stratified split at problem level
+    train_pns, test_pns = train_test_split(
+        all_pns, 
+        test_size=test_size, 
+        random_state=random_state,
+        stratify=labels_for_split
+    )
+    train_pns_set = set(train_pns)
+    test_pns_set = set(test_pns)
+    print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
 
     for layer_idx in tqdm(sorted(data.keys()), desc="Layers"):
         for sent_num in sorted(data[layer_idx].keys()):
@@ -323,17 +350,22 @@ def train_probes_and_evaluate(data, test_size=0.2, random_state=42):
                 continue
 
             try:
-                # Split train/test with stratification
-                X_train, X_test, y_train, y_test, pns_train, pns_test = (
-                    train_test_split(
-                        X,
-                        y,
-                        pns,
-                        test_size=test_size,
-                        random_state=random_state,
-                        stratify=y,
-                    )
-                )
+                # Use global train/test split instead of per-layer/sentence split
+                train_mask = np.array([pn in train_pns_set for pn in pns])
+                test_mask = np.array([pn in test_pns_set for pn in pns])
+                
+                X_train = X[train_mask]
+                X_test = X[test_mask]
+                y_train = y[train_mask]
+                y_test = y[test_mask]
+                pns_train = pns[train_mask]
+                pns_test = pns[test_mask]
+                
+                # Skip if either split is too small
+                if len(X_train) < 2 or len(X_test) < 2:
+                    continue
+                if len(np.unique(y_train)) < 2 or len(np.unique(y_test)) < 2:
+                    continue
 
                 # Store which problems are in train vs test for this layer/sentence
                 for pn in pns_train:
@@ -435,6 +467,27 @@ def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
     splits = []
 
     print("\nTraining linear regression probes on transplanted examples...")
+    
+    # CRITICAL FIX: Determine global train/test split at problem level FIRST
+    # This prevents data leakage where a problem could be in train for some 
+    # layer/sentence combos and test for others
+    print("Determining global train/test split at problem level...")
+    all_pns = set()
+    for layer_idx in range(len(data)):
+        for sent_num in data[layer_idx].keys():
+            all_pns.update(data[layer_idx][sent_num]["pns"])
+    
+    all_pns = sorted(list(all_pns))
+    
+    # Do random split at problem level (no stratification needed for regression)
+    train_pns, test_pns = train_test_split(
+        all_pns, 
+        test_size=test_size, 
+        random_state=random_state
+    )
+    train_pns_set = set(train_pns)
+    test_pns_set = set(test_pns)
+    print(f"Global split: {len(train_pns)} train problems, {len(test_pns)} test problems")
 
     # Iterate through all layer-sentence combinations
     for layer_idx in tqdm(range(len(data)), desc="Layers"):
@@ -443,7 +496,7 @@ def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
                 # Get data for this layer and sentence
                 activations = np.array(data[layer_idx][sent_num]["activations"])
                 cue_ps = np.array(data[layer_idx][sent_num]["cue_ps"])
-                pns = data[layer_idx][sent_num]["pns"]
+                pns = np.array(data[layer_idx][sent_num]["pns"])
 
                 # Skip if not enough samples or if we have NaN values
                 valid_mask = ~np.isnan(cue_ps)
@@ -453,18 +506,22 @@ def train_regression_probes_and_evaluate(data, test_size=0.2, random_state=42):
                 # Filter out NaN values
                 activations = activations[valid_mask]
                 cue_ps = cue_ps[valid_mask]
-                pns = [pn for pn, valid in zip(pns, valid_mask) if valid]
+                pns = pns[valid_mask]
 
-                # Prepare data
-                X = activations
-                y = cue_ps
-
-                # Split into train/test sets
-                X_train, X_test, y_train, y_test, pns_train, pns_test = (
-                    train_test_split(
-                        X, y, pns, test_size=test_size, random_state=random_state
-                    )
-                )
+                # Use global train/test split instead of per-layer/sentence split
+                train_mask = np.array([pn in train_pns_set for pn in pns])
+                test_mask = np.array([pn in test_pns_set for pn in pns])
+                
+                X_train = activations[train_mask]
+                X_test = activations[test_mask]
+                y_train = cue_ps[train_mask]
+                y_test = cue_ps[test_mask]
+                pns_train = pns[train_mask]
+                pns_test = pns[test_mask]
+                
+                # Skip if either split is too small
+                if len(X_train) < 2 or len(X_test) < 2:
+                    continue
 
                 # Store which problems are in train vs test for this layer/sentence
                 for pn in pns_train:
