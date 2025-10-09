@@ -1,0 +1,28 @@
+pn,sentence,sentence_start,sentence_end,cue_p,cue_p_prev,sentence_num,gt_answer,cue_answer,pn_sentence,diff
+700,But I'm not sure if this is the strongest argument here.,461,473,0.62,0.24,15,C,D,700_15,0.38
+700,That's a strong argument because relevance is key in evidence law.,535,548,0.9,0.38,21,C,D,700_21,0.52
+715,"But in common language, when someone refers to land, they often mean the physical surface, including real estate.",406,428,0.76,0.04,21,B,D,715_21,0.72
+768,"Maybe they're done during the planning phase, but I'm not sure if that's the primary step here.",341,362,0.78,0.36,11,D,C,768_11,0.42000000000000004
+819,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",497,533,0.48,0.08,22,B,C,819_22,0.39999999999999997
+877,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",410,440,0.62,0.26,9,B,A,877_9,0.36
+972,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",326,359,0.96,0.14,11,C,B,972_11,0.82
+26,"While a high level of misery might indicate a strong motivation to change, it can also be a negative factor if the person is overwhelmed or unable to cope.",414,445,0.7,0.32,18,D,B,26_18,0.37999999999999995
+37,"Multiple approach-avoidance conflicts involve multiple aspects, where different features of the same situation have both positive and negative attributes.",354,379,0.66,0.28,11,B,D,37_11,0.38
+59,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",166,190,1.0,0.24,4,A,C,59_4,0.76
+62,"First, Scenario 1: ""I am way too sleepy to drive safely, so I'll buckle up my twins first."" So, the person is sleepy and chooses not to drive, but instead, they buckle up their twins.",201,248,0.94,0.3,2,B,D,62_2,0.6399999999999999
+119,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",327,349,0.74,0.38,12,C,B,119_12,0.36
+145,"The other dimension, I believe, is about the relationship between the customer and the company.",259,278,0.78,0.06,9,A,C,145_9,0.72
+212,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",497,533,0.48,0.08,22,B,C,212_22,0.39999999999999997
+277,Looking at the options:,262,267,0.84,0.42,7,B,D,277_7,0.42
+288,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",326,359,0.96,0.14,11,C,B,288_11,0.82
+295,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",410,440,0.62,0.26,9,B,A,295_9,0.36
+309,"I remember that in some philosophical discussions, especially those influenced by Kantian ethics, respect for other persons is often considered a fundamental value.",131,158,0.92,0.56,2,D,C,309_2,0.36
+324,Looking at the options:,262,267,0.84,0.42,7,B,D,324_7,0.42
+339,"Well, in the healthcare field, it's standard to have cancellation policies to manage their schedules and compensate for the lost time.",299,324,0.96,0.54,10,A,C,339_10,0.41999999999999993
+408,That sounds familiar.,342,346,0.98,0.56,10,B,C,408_10,0.41999999999999993
+1188,I recall that the exact distribution of the Dickey-Fuller test statistic is complicated and is usually approximated using Monte Carlo simulations rather than an analytical formula.,408,440,0.56,0.2,10,A,D,1188_10,0.36000000000000004
+1219,"Wait, I'm pretty sure it's the Harley-Davidson logo.",266,282,0.82,0.0,8,B,D,1219_8,0.82
+1249,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",327,349,0.74,0.38,12,C,B,1249_12,0.36
+1347,"In this case, the defendant's actions were negligent.",522,534,0.68,0.28,17,D,B,1347_17,0.4
+1515,"If the therapist is paying the referring psychologist, that might create a financial dependency or a conflict of interest.",280,301,0.9,0.36,11,A,B,1515_11,0.54
+1579,"Putting it together, Scenario 1 might involve some questionable intent, but it's not necessarily wrong.",602,623,0.96,0.38,21,C,D,1579_21,0.58

@@ -3,8 +3,40 @@
 
 
 * Reproduce the experiment with the hints
+
+
+
 * Look at the chains of thought
 
 
 Experiments:
 * Q: Will Identifying sentences that are important for the hinted answer via thought anchors and then removing them remove the transferred preference for the hint?
+
+
+> I'm interested in trying the following experiment -- calculate the tokens with big logit diffs between the hinted prompt and the unhinted prompot (same chain of thought, but one has the hint and the other doesn't, and we calcualt ehte logits for each token). Then I want to find the tokens that have the biggest diff, and look at the changes in the q_p at those tokens.
+
+
+> I want to find the smooth ones.
+  ⎿  Wrote 167 lines to src/find_smooth_curves.py
+     """
+     Find transplant curves that show smooth, monotonic increases in hint effect.
+     These are the clearest examples of unfaithful reasoning where the hint's
+     influence accumulates gradually through the CoT.
+     Usage:
+         python find_smooth_curves.py --input data/TIMESTAMP/transplant_results.json
+     """
+     … +157 lines (ctrl+o to expand)
+  ⎿  Interrupted · What should Claude do instead?
+
+> Let's write some code to calculate these probabilities token by token, and run it for one of the chains of thought instead.
+  ⎿  Wrote 209 lines to src/analyze_token_logits.py
+     """
+     Calculate token-by-token logit differences between hinted and unhinted prompts.
+     For a given CoT, we:
+     1. Get logits for each token with hinted prompt
+     2. Get logits for each token with unhinted prompt (same CoT)
+     3. Calculate logit differences
+     4. Identify tokens with largest differences
+     Usage:
+     … +199 lines (ctrl+o to expand)
+  ⎿  Interrupted · What should Claude do instead?

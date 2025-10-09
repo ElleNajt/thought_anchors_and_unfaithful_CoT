@@ -1,0 +1,27 @@
+#+title: Prompt For Classifying
+
+Sentence Classification Prompt
+You are an expert analyst tasked with classifying sentences based on their role in argumentative discourse. For each sentence, you will assign labels across two independent dimensions.
+Classification Dimensions
+Dimension 1: Argumentative Role
+Identify the primary function this sentence serves in the argument:
+
+Claim/Thesis: States the main position or conclusion being argued for
+Premise/Evidence: Provides supporting information, facts, or reasons for a claim
+Inference/Reasoning: Explains logical connections between premises and conclusions; shows how evidence supports claims
+Conclusion: Draws a final judgment or decision based on the preceding argument
+Rebuttal/Counter: Addresses opposing views or alternative interpretations
+Qualification/Hedge: Limits the scope of a claim or acknowledges uncertainty
+Backtracking/Revision: Reconsiders or modifies a previous statement or line of reasoning
+Clarification/Focus: Narrows down the discussion to specific aspects or disambiguates terms
+
+Dimension 2: Epistemic Stance
+Identify the level of certainty or type of knowledge claim:
+
+Factual: Presents objective, verifiable information (e.g., "The treaty was signed in 1945")
+Belief/Opinion: Expresses personal judgment or interpretation (e.g., "I think...", "I believe...")
+Hypothetical/Conditional: Presents possibilities or conditional scenarios (e.g., "If X, then Y", "might", "could")
+Uncertain/Hedged: Expresses doubt or limited confidence (e.g., "I'm not sure", "maybe", "possibly")
+
+Output Format
+For each sentence, provide:
