@@ -79,7 +79,7 @@ def split_into_sentences(text):
 def get_baseline_cue_p(problem, model, tokenizer, device):
     """
     Get baseline cue_p (probability of cue answer) with no transplantation.
-    Just the question without any CoT.
+    Just the question without any CoT, but at the answer decision point.
     
     Returns:
         float: baseline probability of cue answer
@@ -87,7 +87,10 @@ def get_baseline_cue_p(problem, model, tokenizer, device):
     question = problem['question']
     cue_answer = problem['cue_answer']
     
-    _, answer_probs = get_answer_logits_at_position(model, tokenizer, question, device)
+    # Add the answer prompt to measure at the decision point (no CoT reasoning)
+    baseline_prompt = question + "</think>\nTherefore, the best answer is: ("
+    
+    _, answer_probs = get_answer_logits_at_position(model, tokenizer, baseline_prompt, device)
     
     return answer_probs[cue_answer]
 
@@ -95,7 +98,7 @@ def get_baseline_cue_p(problem, model, tokenizer, device):
 def build_cumulative_transplant(problem, num_sentences):
     """
     Build a transplanted prompt with cumulative hint sentences:
-    [no-hint question] + [hint sentences 0 to num_sentences-1]
+    [no-hint question] + [hint sentences 0 to num_sentences-1] + [answer prompt]
     
     Returns:
         str: transplanted prompt
@@ -111,13 +114,16 @@ def build_cumulative_transplant(problem, num_sentences):
         if idx < len(hint_sentences):
             transplanted_text += hint_sentences[idx] + " "
     
+    # Add the closing tag and answer prompt so we measure at the decision point
+    transplanted_text += "</think>\nTherefore, the best answer is: ("
+    
     return transplanted_text
 
 
 def build_single_sentence_transplant(problem, sentence_idx):
     """
     Build a transplanted prompt with only a single sentence from hint CoT:
-    [no-hint question] + [hint sentence at sentence_idx]
+    [no-hint question] + [hint sentence at sentence_idx] + [answer prompt]
     
     Returns:
         str: transplanted prompt
@@ -131,6 +137,9 @@ def build_single_sentence_transplant(problem, sentence_idx):
     # Add only the specific sentence
     if sentence_idx < len(hint_sentences):
         transplanted_text += hint_sentences[sentence_idx] + " "
+    
+    # Add the closing tag and answer prompt so we measure at the decision point
+    transplanted_text += "</think>\nTherefore, the best answer is: ("
     
     return transplanted_text
 
@@ -425,16 +434,35 @@ def print_summary_statistics(results_df):
     print(f"\nCorrelation between cumulative and single deltas: {correlation:.4f}")
     
     # Identify sentences where single >> cumulative (outliers)
-    results_df['single_advantage'] = results_df['single_delta'] - results_df['cumulative_delta']
-    top_single_advantage = results_df.nlargest(5, 'single_advantage')[
-        ['pn', 'sentence_idx', 'sentence_text', 'cumulative_delta', 'single_delta', 'single_advantage']
-    ]
+    # Ensure numeric types and handle any conversion issues
+    results_df['single_advantage'] = pd.to_numeric(
+        results_df['single_delta'], errors='coerce'
+    ) - pd.to_numeric(
+        results_df['cumulative_delta'], errors='coerce'
+    )
     
-    print("\n--- Top 5 sentences where single-sentence had highest advantage ---")
-    for idx, row in top_single_advantage.iterrows():
-        print(f"\nProblem {row['pn']}, Sentence {row['sentence_idx']}:")
-        print(f"  Cumulative Δ: {row['cumulative_delta']:.4f}, Single Δ: {row['single_delta']:.4f}, Advantage: {row['single_advantage']:.4f}")
-        print(f"  Text: {row['sentence_text'][:100]}...")
+    # Filter out NaN/inf values before sorting
+    valid_df = results_df[
+        np.isfinite(results_df['single_advantage']) & 
+        np.isfinite(results_df['cumulative_delta']) & 
+        np.isfinite(results_df['single_delta'])
+    ].copy()
+    
+    # Ensure the column is float type (not object)
+    valid_df['single_advantage'] = valid_df['single_advantage'].astype(float)
+    
+    if len(valid_df) > 0:
+        top_single_advantage = valid_df.nlargest(5, 'single_advantage')[
+            ['pn', 'sentence_idx', 'sentence_text', 'cumulative_delta', 'single_delta', 'single_advantage']
+        ]
+        
+        print("\n--- Top 5 sentences where single-sentence had highest advantage ---")
+        for idx, row in top_single_advantage.iterrows():
+            print(f"\nProblem {row['pn']}, Sentence {row['sentence_idx']}:")
+            print(f"  Cumulative Δ: {row['cumulative_delta']:.4f}, Single Δ: {row['single_delta']:.4f}, Advantage: {row['single_advantage']:.4f}")
+            print(f"  Text: {row['sentence_text'][:100]}...")
+    else:
+        print("\n--- No valid data points found for comparison ---")
 
 
 def main():
