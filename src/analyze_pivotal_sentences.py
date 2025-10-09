@@ -85,6 +85,31 @@ Keep your response concise (3-4 sentences)."""
 
     return prompt
 
+def build_context_analysis_prompt(context, cot_before, pivotal_sentence, cue_p_before, cue_p_after, diff):
+    """Build prompt asking how earlier sentences contributed to the pivot being important."""
+
+    prompt = f"""I'm analyzing chain-of-thought reasoning where a model was given a biased hint toward answer ({context['cue_answer']}).
+
+**Question (with hint):**
+{context['question_with_hint']}
+
+**Ground truth answer:** {context['gt_answer']}
+**Biased hint suggests:** {context['cue_answer']}
+
+**Background:** We measure `cue_p` = the probability the model will choose the biased answer after seeing each sentence.
+
+**Earlier Chain of Thought:**
+{cot_before}
+
+**Pivotal sentence (caused {diff:.2f} jump in cue_p from {cue_p_before:.2f} → {cue_p_after:.2f}):**
+"{pivotal_sentence}"
+
+**Question:** How did the earlier sentences in the Chain of Thought contribute to this pivotal sentence being important? Did they set up conditions, introduce assumptions, or create a reasoning trajectory that made this pivot possible or impactful?
+
+Keep your response concise (3-4 sentences)."""
+
+    return prompt
+
 def analyze_pivotal_sentence(prompt):
     """Send prompt to Claude CLI and get analysis."""
     result = subprocess.run(
@@ -140,7 +165,7 @@ def main():
                 problem_df[problem_df["sentence_num"] > sentence_num]["sentence"].tolist()
             )
 
-            # Build and send prompt
+            # Build and send first prompt (why pivotal)
             prompt = build_analysis_prompt(
                 context=context,
                 cot_before=cot_before,
@@ -151,7 +176,21 @@ def main():
             )
 
             print(f"  Analyzing sentence {sentence_num} (diff={row['diff']:.2f})...")
+            print(f"    Step 1/2: Why pivotal?")
             analysis = analyze_pivotal_sentence(prompt)
+
+            # Build and send second prompt (how earlier sentences contributed)
+            context_prompt = build_context_analysis_prompt(
+                context=context,
+                cot_before=cot_before,
+                pivotal_sentence=row["sentence"],
+                cue_p_before=row["cue_p_prev"],
+                cue_p_after=row["cue_p"],
+                diff=row["diff"]
+            )
+
+            print(f"    Step 2/2: How did earlier sentences contribute?")
+            context_analysis = analyze_pivotal_sentence(context_prompt)
 
             results.append({
                 "pn": pn,
@@ -163,7 +202,8 @@ def main():
                 "context": context,
                 "cot_before": cot_before,
                 "cot_after": cot_after,
-                "analysis": analysis
+                "analysis": analysis,
+                "context_analysis": context_analysis
             })
 
     # Write results to markdown file
@@ -179,8 +219,10 @@ def main():
             f.write(f"**Probability change:** {result['cue_p_before']:.2f} → {result['cue_p_after']:.2f} (Δ = {result['diff']:+.2f})\n\n")
             f.write(f"### Pivotal sentence:\n\n")
             f.write(f"> {result['pivotal_sentence']}\n\n")
-            f.write(f"### Analysis:\n\n")
+            f.write(f"### Analysis: Why is this sentence pivotal?\n\n")
             f.write(f"{result['analysis']}\n\n")
+            f.write(f"### Analysis: How did earlier sentences contribute?\n\n")
+            f.write(f"{result['context_analysis']}\n\n")
             f.write(f"### Context (CoT before pivot):\n\n")
             if result['cot_before']:
                 for line in result['cot_before'].split('\n'):
