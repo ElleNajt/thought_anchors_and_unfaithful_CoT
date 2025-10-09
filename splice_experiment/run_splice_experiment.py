@@ -65,19 +65,25 @@ class SpliceExperiment:
         with open(cot_data_path, 'r') as f:
             cot_data = json.load(f)
         
-        # Map by question_id (which should correspond to problem_number)
+        # Build mapping from question_id to array index (problem_number)
+        question_id_to_index = {q['id']: i for i, q in enumerate(self.questions)}
+        
+        # Map by problem_number (array index), not question_id
         for item in cot_data:
             # We'll use the first hinted sample as our reference
             if item['hinted_samples']:
-                problem_num = item.get('question_id')  # or derive from index
-                self.hinted_cots_by_problem[problem_num] = {
-                    'cot': item['hinted_samples'][0]['cot'],
-                    'question': item['question'],
-                    'correct_answer': item['correct_answer'],
-                    'hinted_answer': item['hinted_answer']
-                }
+                question_id = item.get('question_id')
+                # Convert question_id to problem_number (array index)
+                problem_num = question_id_to_index.get(question_id)
+                if problem_num is not None:
+                    self.hinted_cots_by_problem[problem_num] = {
+                        'cot': item['hinted_samples'][0]['cot'],
+                        'question': item['question'],
+                        'correct_answer': item['correct_answer'],
+                        'hinted_answer': item['hinted_answer']
+                    }
         
-        print(f"Loaded {len(self.hinted_cots_by_problem)} hinted CoTs")
+        print(f"Loaded {len(self.hinted_cots_by_problem)} hinted CoTs for problems: {sorted(self.hinted_cots_by_problem.keys())}")
     
     def split_cot_into_sentences(self, cot_text: str) -> List[str]:
         """
@@ -250,10 +256,11 @@ Please continue your reasoning from where you left off and complete your analysi
         print(f"  Prefix: {prefix[:100]}...")
         
         # Get the base prompt (without hint)
-        question_data = next((q for q in self.questions if q['id'] == problem_num), None)
-        if not question_data:
-            print(f"  ⚠ Question data not found for problem {problem_num}")
+        # problem_num is the array index, so we can directly access it
+        if problem_num >= len(self.questions):
+            print(f"  ⚠ Question data not found for problem {problem_num} (index out of bounds)")
             return None
+        question_data = self.questions[problem_num]
         
         base_prompt = question_data['base_prompt']
         
@@ -369,13 +376,23 @@ Please continue your reasoning from where you left off and complete your analysi
     
     def generate_summary(self, results: List[Dict], results_dir: Path):
         """Generate a summary of the experiment results."""
-        summary = {
-            "total_splice_points": len(results),
-            "problems_tested": len(set(r['problem_number'] for r in results)),
-            "average_hinted_answer_probability": sum(r['hinted_answer_probability'] for r in results) / len(results),
-            "average_correct_answer_probability": sum(r['correct_answer_probability'] for r in results) / len(results),
-            "splice_points_by_delta": {}
-        }
+        if not results:
+            summary = {
+                "total_splice_points": 0,
+                "problems_tested": 0,
+                "average_hinted_answer_probability": None,
+                "average_correct_answer_probability": None,
+                "splice_points_by_delta": {},
+                "warning": "No results collected - all problems may be missing hinted CoTs"
+            }
+        else:
+            summary = {
+                "total_splice_points": len(results),
+                "problems_tested": len(set(r['problem_number'] for r in results)),
+                "average_hinted_answer_probability": sum(r['hinted_answer_probability'] for r in results) / len(results),
+                "average_correct_answer_probability": sum(r['correct_answer_probability'] for r in results) / len(results),
+                "splice_points_by_delta": {}
+            }
         
         # Group by delta ranges
         for result in results:
@@ -406,8 +423,11 @@ Please continue your reasoning from where you left off and complete your analysi
         
         print("\n=== Summary ===")
         print(f"Total splice points tested: {summary['total_splice_points']}")
-        print(f"Average hinted answer probability: {summary['average_hinted_answer_probability']:.3f}")
-        print(f"Average correct answer probability: {summary['average_correct_answer_probability']:.3f}")
+        if summary['average_hinted_answer_probability'] is not None:
+            print(f"Average hinted answer probability: {summary['average_hinted_answer_probability']:.3f}")
+            print(f"Average correct answer probability: {summary['average_correct_answer_probability']:.3f}")
+        else:
+            print("No results collected (all problems missing hinted CoTs)")
 
 
 async def main():

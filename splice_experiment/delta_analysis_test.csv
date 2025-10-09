@@ -1,0 +1,6 @@
+problem_number,sentence_number,sentence,true_cue_p,delta_cue_p
+0,0,The question examines the impact of switching from FIFO to LIFO during inflation on ending inventory,0.7,0.75
+0,1,Here's the analysis:,0.75,0.78
+0,2,1,0.7999999999999999,0.81
+0,3,"**Ending Inventory**:      - In inflationary periods, FIFO assigns older (lower) costs to COGS, leav",0.85,0.84
+0,4,"LIFO assigns newer (higher) costs to COGS, leaving older (lower) costs in inventory",0.8999999999999999,0.87
