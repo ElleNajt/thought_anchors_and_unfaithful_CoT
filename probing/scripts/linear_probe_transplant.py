@@ -765,18 +765,21 @@ def main():
     print("=" * 80)
 
     # Configuration
-    MAX_PROBLEMS = 30  # Use subset for faster analysis
+    INCLUDE_THRESHOLD = 0.2 # steering rate threshold to include problems
+
+    MAX_PROBLEMS = None  # Use all problems
     START_SENTENCE = 0  # Which sentence to start transplanting from
     NUM_SENTENCES = 100  # Use large number to get entire CoT
     # How many sentences to transplant
+    TEST_SIZE = 0.2  # 80/20 train/test split
+    RANDOM_STATE = 42  # For reproducibility
     
-    # Optional: Specify custom test problems (set to None to load from file or auto-generate)
-    CUSTOM_TEST_PROBLEMS = [700, 119, 26, 59, 715]
+    # Optional: Specify custom test problems (set to None to auto-generate 80/20 split)
+    CUSTOM_TEST_PROBLEMS = None
     
     # Optional: Load existing train/test split from a previous run
     # Set to None to create a new split, or provide path to reuse an existing split
-    # LOAD_SPLIT_FROM = "probing/scripts/results/7e4afeb_historical/data/linear_probe_transplant_regression_splits.csv"
-    LOAD_SPLIT_FROM = None  # Using custom test problems instead
+    LOAD_SPLIT_FROM = None
 
     # Get git hash and timestamp for output directory
     try:
@@ -823,8 +826,12 @@ def main():
     # Demo dir is already set up in the imports section
     os.chdir(demo_dir)
     try:
-        data = load_all_problems()
+        data = load_all_problems(INCLUDE_THRESHOLD)
         print(f"Loaded {len(data)} problems")
+        if MAX_PROBLEMS is not None:
+            print(f"Using subset: {MAX_PROBLEMS} problems")
+        else:
+            print(f"Using ALL {len(data)} problems")
 
         # Load cue_p data for regression probes
         cue_p_csv = "faith_counterfactual_qwen-14b_demo.csv"
@@ -870,8 +877,14 @@ def main():
     # Train classification probes and evaluate
     print("\n" + "=" * 80)
     print("CLASSIFICATION PROBES: Predicting Hint Answer")
+    print(f"Using {TEST_SIZE*100:.0f}/{(1-TEST_SIZE)*100:.0f} test/train split")
     print("=" * 80)
-    results_df, predictions_df, splits_df = train_probes_and_evaluate(activation_data, loaded_split=loaded_split)
+    results_df, predictions_df, splits_df = train_probes_and_evaluate(
+        activation_data, 
+        test_size=TEST_SIZE, 
+        random_state=RANDOM_STATE,
+        loaded_split=loaded_split
+    )
 
     # Save classification results
     results_csv = os.path.join(DATA_DIR, "linear_probe_transplant_results.csv")
@@ -895,9 +908,15 @@ def main():
     # Train regression probes for cue_p prediction
     print("\n" + "=" * 80)
     print("REGRESSION PROBES: Predicting cue_p")
+    print(f"Using {TEST_SIZE*100:.0f}/{(1-TEST_SIZE)*100:.0f} test/train split")
     print("=" * 80)
     regression_results_df, regression_predictions_df, regression_splits_df = (
-        train_regression_probes_and_evaluate(activation_data, loaded_split=loaded_split)
+        train_regression_probes_and_evaluate(
+            activation_data, 
+            test_size=TEST_SIZE, 
+            random_state=RANDOM_STATE,
+            loaded_split=loaded_split
+        )
     )
 
     # Save regression results
