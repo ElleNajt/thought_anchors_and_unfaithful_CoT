@@ -10,16 +10,19 @@ echo "with high delta_cue_p sentences."
 echo ""
 
 # Configuration
-COT_DATA="../data/20251006_142931_deepseek_r1/cot_responses.json"
+COT_DATA="../data_problems/20251006_142931_deepseek_r1/cot_responses.json"
 DELTA_THRESHOLD=0.7
-NUM_SAMPLES=3
+NUM_SAMPLES=2  # Lower for local inference
 PROBLEMS="3,288,59"
+CONCURRENCY=1  # Sequential for local model (manage GPU memory)
 
 echo "Configuration:"
+echo "  Model: DeepSeek-R1-Distill-Qwen-14B (local)"
 echo "  CoT Data: $COT_DATA"
 echo "  Delta Threshold: $DELTA_THRESHOLD"
 echo "  Num Samples: $NUM_SAMPLES"
 echo "  Problems: $PROBLEMS"
+echo "  Concurrency: $CONCURRENCY"
 echo ""
 
 # Check if CoT data exists
@@ -40,6 +43,7 @@ python run_splice_experiment.py \
   --cot-data "$COT_DATA" \
   --delta-threshold $DELTA_THRESHOLD \
   --num-samples $NUM_SAMPLES \
+  --concurrency $CONCURRENCY \
   --problems "$PROBLEMS"
 
 if [ $? -eq 0 ]; then

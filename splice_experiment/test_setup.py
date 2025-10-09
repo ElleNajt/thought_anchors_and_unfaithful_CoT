@@ -16,7 +16,8 @@ def test_imports():
         import pandas as pd
         import matplotlib.pyplot as plt
         import seaborn as sns
-        from openai import AsyncOpenAI
+        import torch
+        from transformers import AutoTokenizer, AutoModelForCausalLM
         from dotenv import load_dotenv
         print("✓ All imports successful")
         return True
@@ -47,29 +48,26 @@ def test_data_files():
     return all_exist
 
 
-def test_env_variables():
-    """Test that environment variables are set."""
-    print("\nTesting environment variables...")
+def test_model_availability():
+    """Test that PyTorch and model libraries are available."""
+    print("\nTesting model availability...")
     
-    import os
-    from dotenv import load_dotenv
-    
-    load_dotenv(Path(__file__).parent.parent / ".env")
-    
-    vars_to_check = [
-        "OPENROUTER_API_KEY",
-    ]
-    
-    all_set = True
-    for var in vars_to_check:
-        value = os.environ.get(var)
-        if value:
-            print(f"✓ {var} is set")
+    try:
+        import torch
+        import transformers
+        
+        print(f"✓ PyTorch {torch.__version__} installed")
+        print(f"✓ Transformers {transformers.__version__} installed")
+        
+        if torch.cuda.is_available():
+            print(f"✓ CUDA available: {torch.cuda.get_device_name(0)}")
         else:
-            print(f"✗ {var} NOT SET")
-            all_set = False
-    
-    return all_set
+            print("⚠ CUDA not available (will use CPU - slower)")
+        
+        return True
+    except Exception as e:
+        print(f"✗ Error checking model availability: {e}")
+        return False
 
 
 def test_load_data():
@@ -111,7 +109,7 @@ def main():
     
     results.append(("Imports", test_imports()))
     results.append(("Data files", test_data_files()))
-    results.append(("Environment variables", test_env_variables()))
+    results.append(("Model availability", test_model_availability()))
     results.append(("Data loading", test_load_data()))
     
     print("\n" + "="*70)

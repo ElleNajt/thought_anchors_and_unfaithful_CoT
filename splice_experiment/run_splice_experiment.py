@@ -14,11 +14,12 @@ from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Any
 import pandas as pd
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Add parent directory to path to import from src
 sys.path.append(str(Path(__file__).parent.parent))
 
-from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import config
 
@@ -33,11 +34,18 @@ class SpliceExperiment:
         self.num_samples = num_samples
         self.semaphore = asyncio.Semaphore(concurrency)
         
-        # Initialize OpenRouter client
-        self.client = AsyncOpenAI(
-            base_url="https://openrouter.ai/api/v1",
-            api_key=config.OPENROUTER_API_KEY,
+        # Load local DeepSeek model
+        print("Loading local DeepSeek model...")
+        self.model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            self.model_name,
+            torch_dtype=torch.float16,
+            device_map="auto"
         )
+        self.model.eval()
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        print(f"✓ Model loaded on {self.device}")
         
         # Load data
         self.delta_df = pd.read_csv(config.DELTA_ANALYSIS_CSV)
@@ -101,9 +109,9 @@ class SpliceExperiment:
         
         return high_delta
     
-    async def generate_continuation(self, prefix: str, base_prompt: str) -> Dict[str, Any]:
+    def generate_continuation_sync(self, prefix: str, base_prompt: str) -> Dict[str, Any]:
         """
-        Generate an unhinted continuation from a given prefix.
+        Generate an unhinted continuation from a given prefix using local model.
         
         Args:
             prefix: The hinted CoT prefix (up to but not including the high delta sentence)
@@ -121,24 +129,31 @@ You've started reasoning about this question, and here's what you've thought so 
 
 Please continue your reasoning from where you left off and complete your analysis. Then provide your final answer as a single letter (A, B, C, or D)."""
 
-        async with self.semaphore:
-            try:
-                response = await asyncio.wait_for(
-                    self.client.chat.completions.create(
-                        model=config.MODEL_NAME,
-                        max_tokens=4096,
-                        temperature=config.TEMPERATURE,
-                        messages=[{"role": "user", "content": full_prompt}]
-                    ),
-                    timeout=180.0
+        try:
+            # Tokenize
+            inputs = self.tokenizer(full_prompt, return_tensors="pt")
+            if self.device == "cuda":
+                inputs = {k: v.cuda() for k, v in inputs.items()}
+            
+            # Generate
+            with torch.no_grad():
+                outputs = self.model.generate(
+                    **inputs,
+                    max_new_tokens=2048,
+                    temperature=config.TEMPERATURE,
+                    do_sample=True,
+                    pad_token_id=self.tokenizer.eos_token_id
                 )
-                continuation = response.choices[0].message.content
-            except asyncio.TimeoutError:
-                print(f"  ⚠ API call timed out")
-                return {"continuation": None, "answer": None, "error": "timeout"}
-            except Exception as e:
-                print(f"  ⚠ API error: {e}")
-                return {"continuation": None, "answer": None, "error": str(e)}
+            
+            # Decode
+            full_response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            
+            # Extract continuation (remove the prompt part)
+            continuation = full_response[len(full_prompt):].strip()
+            
+        except Exception as e:
+            print(f"  ⚠ Generation error: {e}")
+            return {"continuation": None, "answer": None, "error": str(e)}
         
         # Extract answer
         answer = self.extract_answer(continuation)
@@ -148,6 +163,19 @@ Please continue your reasoning from where you left off and complete your analysi
             "full_spliced_cot": prefix + "\n\n" + continuation,
             "answer": answer
         }
+    
+    async def generate_continuation(self, prefix: str, base_prompt: str) -> Dict[str, Any]:
+        """Async wrapper for local generation (to maintain async interface)."""
+        async with self.semaphore:
+            # Run the sync generation in executor to avoid blocking
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(
+                None, 
+                self.generate_continuation_sync,
+                prefix,
+                base_prompt
+            )
+            return result
     
     def extract_answer(self, text: str) -> str:
         """Extract the letter answer (A, B, C, or D) from response text."""
@@ -321,9 +349,12 @@ Please continue your reasoning from where you left off and complete your analysi
         # Save metadata
         metadata = {
             "timestamp": datetime.now().isoformat(),
-            "model": config.MODEL_NAME,
+            "model": self.model_name,
+            "inference_type": "local",
+            "device": self.device,
             "delta_threshold": self.delta_threshold,
             "num_samples": self.num_samples,
+            "temperature": config.TEMPERATURE,
             "num_splice_points": len(results),
             "problem_numbers_processed": sorted(list(set(r['problem_number'] for r in results)))
         }
