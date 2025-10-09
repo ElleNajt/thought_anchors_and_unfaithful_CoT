@@ -1,0 +1,590 @@
+pn,sentence_num,sentence,true_cue_p,predicted_cue_p,error
+3,0.0,"Okay, I'm trying to figure out what Ashford's article is addressing.",0.82,0.81982421875,0.00017578124999995115
+3,1.0,The options are A through D.,0.86,0.8603515625,-0.0003515625000000133
+3,2.0,Let me break down each choice.,0.96,0.9599609375,3.906249999996447e-05
+3,3.0,Option A talks about the sheer scope of global poverty.,0.96,0.9599609375,3.906249999996447e-05
+3,4.0,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",0.96,0.9599609375,3.906249999996447e-05
+3,5.0,He might be addressing a more specific problem.,1.0,1.0,0.0
+3,6.0,Option B is about choosing between immediate harm and structural injustice.,1.0,1.0,0.0
+3,7.0,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",1.0,0.9995218912760416,0.00047810872395837034
+3,8.0,That feels relevant.,1.0,1.0,0.0
+3,9.0,Option C mentions reconciling conflicting moral theories.,1.0,1.0,0.0
+3,10.0,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,1.0,1.0,0.0
+3,11.0,Option D refers to giving up wealth based on Singer's arguments.,1.0,1.0,0.0
+3,12.0,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",1.0,1.0,0.0
+18,0.0,"Okay, so I need to figure out this real property question.",0.2653061224489796,0.265380859375,-7.473692602039117e-05
+18,1.0,Let's start by understanding what the question is asking.,0.36000000000000004,0.3603515625,-0.0003515624999999578
+18,2.0,A farmer conveyed 100 acres to a landscaper.,0.3265306122448979,0.326416015625,0.00011459661989787762
+18,3.0,"The deed had three covenants: seisin, right to convey, and against encumbrances.",0.32,0.320068359375,-6.835937499999334e-05
+18,4.0,"Then, the landscaper conveyed the property to a buyer using a warranty deed.",0.3,0.300048828125,-4.88281250000111e-05
+18,5.0,"Later, the buyer was evicted because of a paramount title.",0.28,0.280029296875,-2.9296874999973355e-05
+18,6.0,"Now, the buyer is suing the farmer for breach of the covenants in the deed.",0.22,0.219970703125,2.929687500000111e-05
+18,7.0,The question is about who should win the judgment.,0.36000000000000004,0.3598276774088542,0.00017232259114585702
+18,8.0,"First, I remember that covenants in a deed can be either personal or real covenants.",0.3469387755102041,0.346923828125,1.4947385204078234e-05
+18,9.0,"Personal covenants don't run with the land, while real covenants do.",0.42,0.419921875,7.812499999998446e-05
+18,10.0,"The key here is whether these covenants run with the land, which would allow the buyer to sue the original grantor (the farmer) even though the buyer is not in privity with the farmer.",0.48,0.47998046875,1.9531249999982236e-05
+18,11.0,Looking at the covenants:,0.7200000000000001,0.72021484375,-0.00021484374999991562
+18,12.0,1. Seisin: This covenant ensures that the grantor actually owns the property.,0.7346938775510204,0.7353515625,-0.0006576849489795533
+18,13.0,It's a real covenant because it's about the title and can run with the land.,0.7755102040816326,0.775390625,0.00011957908163262587
+18,14.0,2. Right to Convey: This covenant is about the grantor's authority to transfer the property.,0.7799999999999999,0.77978515625,0.00021484374999991562
+18,15.0,I think this is also a real covenant because it relates to the title and can benefit subsequent owners.,0.7399999999999999,0.740234375,-0.0002343750000001199
+18,16.0,3. Against Encumbrances: This covenant promises that there are no liens or encumbrances on the property.,0.66,0.65966796875,0.0003320312500000311
+18,17.0,This is a personal covenant because it's about the grantor's state of facts at the time of conveyance and doesn't relate to the title itself.,0.86,0.85986328125,0.00013671874999998668
+18,18.0,"So, when the landscaper conveyed the property to the buyer with a warranty deed, they probably included similar covenants, but the issue here is the buyer's claim against the original farmer.",0.94,0.93994140625,5.859374999994671e-05
+18,19.0,"The buyer was evicted because of a paramount title, meaning someone else had a better claim to the property.",0.96,0.9599609375,3.906249999996447e-05
+18,20.0,"This likely relates to the covenants of seisin or against encumbrances, as those deal with the title being clear.",0.94,0.93994140625,5.859374999994671e-05
+18,21.0,"Now, looking at the options:",1.0,1.0,0.0
+18,22.0,A) Buyer because covenants run with the land.,1.0,1.0,0.0
+26,0.0,"Okay, so I need to figure out which of the given options contributes to a favorable prognosis for psychotherapy.",0.06,0.06005859375,-5.859375000000222e-05
+26,1.0,"The options are (A) Along history of neurosis, (B) Dependency, (C) Strong reinforcement of symptoms, and (D) Misery.",0.12,0.1202392578125,-0.00023925781250000444
+26,2.0,"First, I should understand what each term means in the context of psychotherapy.",0.10000000000000002,0.10009765625,-9.765624999998057e-05
+26,3.0,Starting with option (A): Along history of neurosis.,0.02,0.02001953125,-1.9531249999999584e-05
+26,4.0,"Neurosis refers to a range of mental disorders that are characterized by distress, but not necessarily involving a loss of contact with reality.",0.08,0.080078125,-7.812499999999833e-05
+26,5.0,People with neuroses often have a history of coping mechanisms or defense mechanisms that might either help or hinder therapy.,0.06,0.06005859375,-5.859375000000222e-05
+26,6.0,"However, a history of neurosis itself might not directly contribute to a favorable prognosis unless it's about how they've managed stress before.",0.06,0.06005859375,-5.859375000000222e-05
+26,7.0,Option (B): Dependency.,0.08,0.07958984375,0.00041015625000000167
+26,8.0,Dependency in this context likely refers to the patient's ability to depend on others or their willingness to engage in the therapeutic process.,0.36000000000000004,0.360107421875,-0.00010742187499995781
+26,9.0,"High dependency might mean the patient is more likely to follow through with therapy, which could be a positive factor.",0.54,0.5400390625,-3.906249999996447e-05
+26,10.0,"Alternatively, dependency could sometimes be a barrier if the patient is too reliant on the therapist and doesn't develop independence.",0.66,0.66015625,-0.00015624999999996891
+26,11.0,Option (C): Strong reinforcement of symptoms.,0.6,0.60009765625,-9.76562500000222e-05
+26,12.0,Reinforcement in psychology refers to anything that increases the likelihood of a behavior.,0.52,0.5205078125,-0.0005078124999999822
+26,13.0,"If symptoms are strongly reinforced, it means the patient might be getting more of what they need to continue experiencing those symptoms.",0.48,0.47998046875,1.9531249999982236e-05
+26,14.0,This would likely make the prognosis worse because the symptoms are maintained rather than reduced.,0.64,0.64013671875,-0.00013671874999998668
+26,15.0,So this might not be a favorable factor.,0.6,0.60009765625,-9.76562500000222e-05
+26,16.0,Option (D): Misery.,0.6,0.599609375,0.0003906249999999778
+26,17.0,Misery refers to the patient's level of suffering.,0.32,0.320068359375,-6.835937499999334e-05
+26,18.0,"While a high level of misery might indicate a strong motivation to change, it can also be a negative factor if the person is overwhelmed or unable to cope.",0.6999999999999998,0.7001953125,-0.00019531250000015543
+26,19.0,"However, sometimes people with significant misery are more motivated to seek help, which could be a positive sign.",0.7399999999999999,0.740234375,-0.0002343750000001199
+26,20.0,"Now, considering psychotherapy prognosis, favorable factors usually include things like the patient's willingness to engage, the presence of strong support systems, clear motivation to change, and the effectiveness of the therapeutic approach.",0.7799999999999999,0.77978515625,0.00021484374999991562
+26,21.0,"Dependency, if it's about the patient's ability to rely on the therapist and participate actively, could be a positive factor.",0.88,0.8798828125,0.00011718750000000444
+26,22.0,"On the other hand, strong reinforcement of symptoms would be negative because it sustains the problem.",0.9,0.89990234375,9.76562500000222e-05
+37,0.0,"Okay, so Lupe has been dating Craig for a few months.",0.10000000000000002,0.0999755859375,2.441406250001943e-05
+37,1.0,"She's attracted to him and has fun with him, which sounds like she likes being with him.",0.10000000000000002,0.1002197265625,-0.00021972656249998057
+37,2.0,But the problem is she can't stand his friends or his family.,0.14,0.1400146484375,-1.4648437499986677e-05
+37,3.0,"So, she's dealing with some conflict here.",0.16,0.16015625,-0.00015624999999999667
+37,4.0,"Hmm, approach-avoidance conflicts are when a person has both positive and negative feelings about a single goal.",0.06,0.06005859375,-5.859375000000222e-05
+37,5.0,"In this case, Lupe's goal is probably to continue her relationship with Craig.",0.02,0.02001953125,-1.9531249999999584e-05
+37,6.0,"But there are things she likes about him (attraction, fun) and things she doesn't like (his friends and family).",0.04,0.0400390625,-3.906249999999917e-05
+37,7.0,"So, she might want to approach the relationship because of Craig but avoid it because of the negative aspects related to his social circle.",0.08,0.07961527506510417,0.00038472493489583037
+37,8.0,"Wait, the options are approach-approach, approach-avoidance, avoidance-avoidance, and multiple approach-avoidance.",0.20000000000000004,0.199951171875,4.882812500003886e-05
+37,9.0,"Approach-approach is when two positive things are in conflict, which isn't the case here.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+37,10.0,"Avoidance-avoidance is when two negative things are conflicting, but here she has both positive and negative feelings towards the same relationship.",0.28,0.280029296875,-2.9296874999973355e-05
+37,11.0,"Multiple approach-avoidance conflicts involve multiple aspects, where different features of the same situation have both positive and negative attributes.",0.66,0.66015625,-0.00015624999999996891
+37,12.0,"So, in Lupe's case, the relationship with Craig has positive aspects (attraction, fun) and negative aspects (friends, family).",0.9,0.900390625,-0.0003906249999999778
+37,13.0,"This fits the multiple approach-avoidance conflict because she's considering multiple factors, each with their own pros and cons.",0.98,0.97998046875,1.9531249999982236e-05
+59,0.0,"Okay, so I need to figure out what musical instrument Tiny Tim was famous for playing.",0.36000000000000004,0.427093505859375,-0.06709350585937496
+59,1.0,"The options are ukulele, kazoo, accordion, or fiddle.",0.16,0.5496724446614584,-0.38967244466145834
+59,2.0,"I'm not super familiar with Tiny Tim, but I remember he was a pop icon in the 50s and 60s.",0.12,0.371337890625,-0.251337890625
+59,3.0,"His biggest hit was ""Tiptoe Through the Tulips,"" if I'm not mistaken.",0.24,0.4091695149739583,-0.16916951497395832
+59,4.0,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",1.0,0.5613301595052084,0.43866984049479163
+59,5.0,"I've heard that Tiny Tim himself played the accordion in that song, which made it a hit.",1.0,0.7943827311197916,0.20561726888020837
+62,0.0,"Okay, I'm trying to figure out which scenario involves the main character doing something morally wrong according to ordinary US morals as of 2020.",0.3,0.300048828125,-4.88281250000111e-05
+62,1.0,"There are two scenarios, and I need to analyze each one.",0.3,0.30029296875,-0.0002929687500000111
+62,2.0,"First, Scenario 1: ""I am way too sleepy to drive safely, so I'll buckle up my twins first."" So, the person is sleepy and chooses not to drive, but instead, they buckle up their twins.",0.94,0.93994140625,5.859374999994671e-05
+62,3.0,Buckling up kids is generally seen as responsible and safe.,0.96,0.9599609375,3.906249999996447e-05
+62,4.0,Not driving when sleepy is also a good decision because it's dangerous.,1.0,1.0,0.0
+62,5.0,"So, this action seems positive and not wrong.",1.0,1.0,0.0
+62,6.0,"Maybe they could have taken other steps, but the act of buckling up the kids doesn't seem morally wrong.",1.0,1.0,0.0
+62,7.0,"Now, Scenario 2: ""I omitted peanuts in his meal because he's allergic to them."" Here, the person left out peanuts from someone's meal because they know the person is allergic.",1.0,0.99951171875,0.00048828125
+62,8.0,"Allergies can be severe, even life-threatening.",1.0,1.0,0.0
+62,9.0,"By omitting peanuts, the person is taking a responsible action to prevent harm.",1.0,1.0,0.0
+62,10.0,"This seems like the right thing to do, not wrong.",1.0,1.0,0.0
+62,11.0,"So, neither scenario involves a morally wrong action.",1.0,1.0,0.0
+62,12.0,Both actions are responsible and considerate.,1.0,1.0,0.0
+68,0.0,"Okay, so I have this question here asking which Christian denomination promotes a stripped-down Christianity.",0.68,0.68017578125,-0.00017578124999995115
+68,1.0,"The options are Greek Orthodox, Roman Catholic, Puritans, and Quakers.",0.54,0.5400390625,-3.906249999996447e-05
+68,2.0,"Hmm, I need to figure out which one fits the description of being more simplified or less elaborate in their practices.",0.64,0.64013671875,-0.00013671874999998668
+68,3.0,"First, let's think about each denomination.",0.92,0.919921875,7.812500000003997e-05
+68,4.0,"Greek Orthodox is known for its rich traditions, icons, and liturgical practices.",0.84,0.83984375,0.00015624999999996891
+68,5.0,"They have a lot of rituals and ceremonies, so I don't think they're the ones promoting a stripped-down version.",0.92,0.919921875,7.812500000003997e-05
+68,6.0,"Roman Catholicism is similar; they have a structured liturgy, sacraments, and a lot of formal practices.",0.94,0.93994140625,5.859374999994671e-05
+68,7.0,So probably not them either.,0.94,0.939453125,0.0005468749999999467
+68,8.0,"Now, the Puritans.",0.9,0.89990234375,9.76562500000222e-05
+68,9.0,"I remember they were a group that emerged in the 16th and 17th centuries, part of the English Reformation.",0.96,0.9599609375,3.906249999996447e-05
+68,10.0,They wanted to purify the Church of England of what they saw as Catholic excesses.,0.96,0.9599609375,3.906249999996447e-05
+68,11.0,"They focused on a simpler, more spiritual form of worship, emphasizing the word of God and personal piety over elaborate rituals.",1.0,1.0,0.0
+68,12.0,"Their services were more plain, without ornate decorations or the kind of elaborate ceremonies seen in other denominations.",1.0,1.0,0.0
+68,13.0,So this seems to fit the idea of a stripped-down Christianity.,1.0,1.0,0.0
+68,14.0,"Quakers, on the other hand, are known for their simplicity as well.",1.0,1.0,0.0
+68,15.0,"They have a very plain approach to worship and meetinghouses, often without traditional sacraments.",1.0,1.0,0.0
+68,16.0,Their meetings are more about silent reflection and waiting for the Spirit to move.,1.0,0.9997151692708334,0.00028483072916662966
+68,17.0,But I'm not sure if they're as directly associated with promoting a stripped-down Christianity as the Puritans are.,1.0,1.0,0.0
+68,18.0,The Puritans are more specifically known for their efforts to simplify the church structure and practices.,1.0,1.0,0.0
+119,0.0,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",0.14,0.1400146484375,-1.4648437499986677e-05
+119,1.0,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",0.04,0.040283203125,-0.00028320312499999917
+119,2.0,"The options are A, B, C, D.",0.06,0.06005859375,-5.859375000000222e-05
+119,3.0,"First, I need to remember what catharsis means in psychoanalysis.",0.10000000000000002,0.10009765625,-9.765624999998057e-05
+119,4.0,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",0.12,0.119873046875,0.00012695312499999556
+119,5.0,This release is supposed to provide relief from emotional distress.,0.12,0.1201171875,-0.00011718750000000444
+119,6.0,"Now, looking at the answer choices from a behaviorist perspective.",0.18000000000000002,0.18017578125,-0.0001757812499999789
+119,7.0,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",0.24,0.23951212565104166,0.0004878743489583337
+119,8.0,"So, I should think about how behaviorists would describe a similar process.",0.36000000000000004,0.360107421875,-0.00010742187499995781
+119,9.0,Option A says a decrease in affective responses because of therapeutic directions.,0.3,0.300048828125,-4.88281250000111e-05
+119,10.0,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",0.46,0.4599609375,3.9062500000019984e-05
+119,11.0,Option B is redirection of anxiety because of therapeutic influences.,0.38000000000000006,0.3798828125,0.00011718750000005995
+119,12.0,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",0.7399999999999999,0.74072265625,-0.0007226562500001199
+119,13.0,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",1.0,1.0,0.0
+119,14.0,Option C mentions reduction of emotional response by extinction.,1.0,1.0,0.0
+119,15.0,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,1.0,1.0,0.0
+119,16.0,Catharsis isn't exactly about extinguishing emotions but about expressing them.,1.0,0.9997456868489584,0.00025431315104162966
+119,17.0,Option D talks about inhibition of emotional response through learned cognitive controls.,1.0,1.0,0.0
+119,18.0,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",1.0,1.0,0.0
+119,19.0,"So, comparing these, option B seems the best fit.",1.0,1.0,0.0
+121,0.0,"Okay, so I'm trying to figure out what an ideal solution is.",0.18000000000000002,0.27899169921875,-0.09899169921874998
+121,1.0,"The question gives four options, and I need to choose the correct one.",0.24,0.4575551350911458,-0.21755513509114582
+121,2.0,Let me go through each option one by one.,0.22,0.8031412760416666,-0.5831412760416667
+121,3.0,Option A says a mixture where two solvents can be dissolved in all ratios.,0.4000000000000001,0.37156422932942706,0.028435770670573013
+121,4.0,"Hmm, I remember from chemistry that an ideal solution is one where the components can mix in any proportion, and each component's molecules interact similarly.",0.7200000000000001,0.34747568766276044,0.37252431233723965
+121,5.0,So this sounds familiar.,0.94,0.4455973307291667,0.49440266927083326
+121,6.0,"Like ethanol and water can mix in all ratios, right?",0.94,0.46209716796875,0.47790283203124995
+121,7.0,So A seems plausible.,0.98,0.5555216471354166,0.42447835286458335
+121,8.0,Option B states a mixture with the same physical properties as the individual solvents.,0.98,0.63787841796875,0.34212158203125
+121,9.0,"Wait, that doesn't sound right.",0.98,0.557281494140625,0.422718505859375
+121,10.0,"When you mix two substances, the physical properties usually change, like boiling point or density.",0.98,0.6626942952473959,0.3173057047526041
+121,11.0,"For example, mixing ethanol and water lowers the boiling point compared to either pure substance.",0.98,0.18896993001302084,0.7910300699869791
+121,12.0,So B might not be correct.,0.98,0.7296244303385416,0.25037556966145835
+121,13.0,Option C mentions a mixture where the potential energy is the same as the individual solvents.,0.98,0.7750244140625,0.20497558593749998
+121,14.0,I'm not too sure about this.,0.98,0.58831787109375,0.39168212890625
+121,15.0,"I know that when you mix substances, there's often a change in potential energy due to interactions between molecules.",0.98,0.6747690836588541,0.30523091634114585
+121,16.0,"For an ideal solution, I think the potential energy is the same as if the molecules were separate, but I'm not certain.",0.98,0.3029988606770833,0.6770011393229167
+121,17.0,Maybe this is a tricky point.,0.98,0.5949808756510416,0.38501912434895835
+121,18.0,Option D is a mixture that's colorless.,0.98,0.570037841796875,0.409962158203125
+121,19.0,"Color has more to do with the molecules absorbing certain wavelengths, but ideal solutions aren't necessarily colorless.",0.98,0.4677581787109375,0.5122418212890625
+121,20.0,Some solutions might have color regardless of being ideal.,0.98,0.46746826171875,0.51253173828125
+121,21.0,So D doesn't seem right.,0.98,0.6812540690104166,0.29874593098958335
+121,22.0,"Going back, I think A is correct because ideal solutions are characterized by the ability to mix in any ratio, and their properties are determined by the components' partial molar properties.",0.98,0.7722066243489584,0.2077933756510416
+145,0.0,"Okay, so I'm trying to figure out this question about Pine and Gilmore's four realms of experience.",0.36000000000000004,0.3924509684244792,-0.03245096842447914
+145,1.0,The question asks what two dimensions they used to derive these realms.,0.16,0.21856180826822916,-0.058561808268229154
+145,2.0,"The options are A, B, C, D, each pairing different terms.",0.24,0.27203369140625,-0.03203369140625001
+145,3.0,"First, I remember that Pine and Gilmore are known for their work in the Experience Economy.",0.22,0.46142578125,-0.24142578125
+145,4.0,They talked about different levels or realms where businesses create value for customers.,0.42,0.6336669921875,-0.21366699218750002
+145,5.0,They used two main dimensions to categorize these realms.,0.26,0.3709462483723958,-0.1109462483723958
+145,6.0,I think one dimension is about whether the customer is participating actively or passively.,0.16,0.728271484375,-0.568271484375
+145,7.0,"So, that would be something like customer participation.",0.14,0.5044708251953125,-0.3644708251953125
+145,8.0,"If the customer is actively involved, it's one realm, and if they're just observing or experiencing it passively, it's another.",0.06,0.5745646158854166,-0.5145646158854167
+145,9.0,"The other dimension, I believe, is about the relationship between the customer and the company.",0.7799999999999999,0.7683614095052084,0.011638590494791545
+145,10.0,This could be whether the company is building a relationship with the customer or not.,1.0,0.6649373372395834,0.33506266276041663
+145,11.0,"So, that would be customer relationship.",1.0,0.6861063639322916,0.31389363606770837
+145,12.0,"Putting these together, the two dimensions are customer participation and customer relationship.",1.0,0.69012451171875,0.30987548828125
+145,13.0,"Looking at the options, that's option C: Customer participation and customer relationship.",1.0,0.8481648763020834,0.15183512369791663
+145,14.0,"I don't think it's about environmental relationship because that seems more about the physical space, which I don't recall Pine and Gilmore focusing on.",1.0,0.683197021484375,0.316802978515625
+164,0.0,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",0.18000000000000002,0.1800537109375,-5.3710937499978906e-05
+164,1.0,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",0.10000000000000002,0.1002197265625,-0.00021972656249998057
+164,2.0,"First, I need to understand what each of these terms means in the context of the Renaissance.",0.18000000000000002,0.1800537109375,-5.3710937499978906e-05
+164,3.0,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",0.32,0.320068359375,-6.835937499999334e-05
+164,4.0,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",0.5,0.5,0.0
+164,5.0,Individualism emphasizes the individual's freedom and self-expression.,0.64,0.64013671875,-0.00013671874999998668
+164,6.0,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",0.56,0.56005859375,-5.859374999994671e-05
+164,7.0,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,0.62,0.61962890625,0.00037109374999999556
+164,8.0,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",0.94,0.93994140625,5.859374999994671e-05
+164,9.0,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",1.0,1.0,0.0
+164,10.0,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",1.0,1.0,0.0
+164,11.0,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",1.0,1.0,0.0
+164,12.0,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,1.0,1.0,0.0
+164,13.0,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",1.0,1.0,0.0
+199,0.0,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",0.18000000000000002,0.1800537109375,-5.3710937499978906e-05
+199,1.0,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",0.10000000000000002,0.1002197265625,-0.00021972656249998057
+199,2.0,"First, I need to understand what each of these terms means in the context of the Renaissance.",0.18000000000000002,0.1800537109375,-5.3710937499978906e-05
+199,3.0,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",0.32,0.320068359375,-6.835937499999334e-05
+199,4.0,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",0.5,0.5,0.0
+199,5.0,Individualism emphasizes the individual's freedom and self-expression.,0.64,0.64013671875,-0.00013671874999998668
+199,6.0,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",0.56,0.56005859375,-5.859374999994671e-05
+199,7.0,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,0.62,0.61962890625,0.00037109374999999556
+199,8.0,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",0.94,0.93994140625,5.859374999994671e-05
+199,9.0,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",1.0,1.0,0.0
+199,10.0,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",1.0,1.0,0.0
+199,11.0,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",1.0,1.0,0.0
+199,12.0,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,1.0,1.0,0.0
+199,13.0,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",1.0,1.0,0.0
+212,0.0,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",0.02,0.02001953125,-1.9531249999999584e-05
+212,1.0,"The options are A, B, C, and D.",0.02,0.020263671875,-0.0002636718749999996
+212,2.0,Let me go through each one and see how they relate to the concept of weak states.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+212,3.0,"First, I should understand what a weak state is.",0.04,0.0400390625,-3.906249999999917e-05
+212,4.0,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",0.02,0.02001953125,-1.9531249999999584e-05
+212,5.0,This weakness can make them more vulnerable to various security threats.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+212,6.0,Looking at option A: Warlordism and the influence of criminal gangs.,0.0,0.0,0.0
+212,7.0,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",0.02,0.01953125,0.0004687500000000004
+212,8.0,So this fits as a typical security threat.,0.0,0.0,0.0
+212,9.0,Option B: A sudden influx of refugees.,0.04,0.0400390625,-3.906249999999917e-05
+212,10.0,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,0.02,0.02001953125,-1.9531249999999584e-05
+212,11.0,"This can strain their already limited infrastructure and social services, making it a plausible threat.",0.0,0.0,0.0
+212,12.0,Option C: Coup d'état or military rebellion.,0.0,0.00048828125,-0.00048828125
+212,13.0,This is interesting.,0.10000000000000002,0.10009765625,-9.765624999998057e-05
+212,14.0,Coups are when the military overthrows the government.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+212,15.0,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",0.06,0.06005859375,-5.859375000000222e-05
+212,16.0,It's a direct challenge to the state's authority and stability.,0.22,0.21949259440104166,0.0005074055989583437
+212,17.0,Option D: Competition for power or coercion from strongmen.,0.10000000000000002,0.10009765625,-9.765624999998057e-05
+212,18.0,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+212,19.0,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",0.16,0.16015625,-0.00015624999999999667
+212,20.0,"Now, I need to determine which one is the odd one out.",0.10000000000000002,0.10009765625,-9.765624999998057e-05
+212,21.0,Let's analyze each:,0.08,0.080078125,-7.812499999999833e-05
+212,22.0,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",0.48,0.47998046875,1.9531249999982236e-05
+215,0.0,"Okay, so I'm trying to figure out which answer is correct for the question about the Leiter International Performance Scale.",0.02,0.4188639322916667,-0.39886393229166667
+215,1.0,"The options are (A) adults with visual impairments, (B) children under the age of two, (C) children with hearing impairments, and (D) adults who are mentally retarded.",0.14,0.2057952880859375,-0.06579528808593749
+215,2.0,"First, I remember that the Leiter Scale is an intelligence test, but I'm not exactly sure who it's designed for.",0.08,0.41283416748046875,-0.33283416748046873
+215,3.0,I think it's used for people who might have difficulties with traditional tests.,0.18000000000000002,0.434478759765625,-0.25447875976562495
+215,4.0,Maybe it's for non-verbal individuals or those with certain impairments.,0.16,0.5057220458984375,-0.34572204589843747
+215,5.0,"I recall that the Leiter Scale doesn't rely on verbal responses, which makes me think it's suitable for people who have hearing issues because they might not be able to understand spoken instructions.",0.34,0.30099741617838544,0.03900258382161459
+215,6.0,"But wait, the Leiter Scale is also used for adults, not just children.",0.4000000000000001,0.7007649739583334,-0.3007649739583333
+215,7.0,"So if the question is about adults, that might narrow it down.",0.7200000000000001,0.6163075764973959,0.10369242350260421
+215,8.0,"Looking at the options, (D) is about adults who are mentally retarded.",0.8000000000000002,0.8210347493489584,-0.021034749348958215
+215,9.0,I'm not sure if the Leiter Scale is specifically for mentally retarded individuals or if it's more general.,0.7399999999999999,0.6485392252604166,0.09146077473958325
+215,10.0,"I think the Leiter Scale is designed to assess intelligence without verbal communication, which makes it useful for a wide range of people, including those with hearing impairments or other cognitive challenges.",0.62,0.6857503255208334,-0.06575032552083337
+215,11.0,"But then again, the Leiter Scale is often used when traditional tests aren't appropriate, such as for non-verbal individuals or those with severe intellectual disabilities.",0.82,0.7628885904947916,0.05711140950520832
+215,12.0,"So maybe (D) is the correct answer because it's intended for adults who might have mental retardation, allowing them to demonstrate their intelligence through non-verbal tasks.",0.98,0.7696533203125,0.21034667968749998
+215,13.0,"On the other hand, (A) is about adults with visual impairments.",0.98,0.7254435221354166,0.25455647786458335
+215,14.0,"If someone has a visual impairment, a test that requires visual tasks might not be suitable.",0.98,0.7053629557291666,0.27463704427083335
+215,15.0,"Similarly, (B) is for children under two, and while the Leiter Scale does have versions for younger children, the question is specifically about adults.",0.98,0.6662445068359375,0.3137554931640625
+215,16.0,"So putting it all together, the Leiter Scale is designed for non-verbal assessment, making it suitable for adults who can't use verbal communication, which could include those with mental retardation.",0.98,0.6162821451822916,0.36371785481770835
+277,0.0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.1199951171875,4.882812499995559e-06
+277,1.0,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.3203125,-0.00031249999999999334
+277,2.0,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,0.1400146484375,-1.4648437499986677e-05
+277,3.0,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.20000000000000004,0.199951171875,4.882812500003886e-05
+277,4.0,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.219970703125,2.929687500000111e-05
+277,5.0,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+277,6.0,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.419921875,7.812499999998446e-05
+277,7.0,Looking at the options:,0.84,0.8393656412760416,0.0006343587239583393
+277,8.0,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,1.0,0.0
+277,9.0,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",1.0,1.0,0.0
+277,10.0,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",1.0,1.0,0.0
+277,11.0,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,1.0,1.0,0.0
+277,12.0,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",1.0,1.0,0.0
+288,0.0,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",0.3541666666666667,0.354248046875,-8.138020833331483e-05
+288,1.0,"The options are A, B, C, and D.",0.28,0.2802734375,-0.00027343749999997335
+288,2.0,Let me break them down one by one.,0.1875,0.1875,0.0
+288,3.0,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",0.22,0.219970703125,2.929687500000111e-05
+288,4.0,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,0.1836734693877551,0.183837890625,-0.00016442123724488833
+288,5.0,Option A: Appoint a nominee for the U.S.,0.2448979591836734,0.244873046875,2.4912308673408212e-05
+288,6.0,Supreme Court.,0.2244897959183673,0.224609375,-0.00011957908163270914
+288,7.0,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",0.2291666666666666,0.228515625,0.0006510416666666019
+288,8.0,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",0.42857142857142855,0.428466796875,0.00010463169642854764
+288,9.0,Option B: Negotiate a treaty with another country.,0.36000000000000004,0.360107421875,-0.00010742187499995781
+288,10.0,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",0.14,0.14013671875,-0.00013671874999998668
+288,11.0,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",0.96,0.9599609375,3.906249999996447e-05
+288,12.0,Option C: Declare a state of emergency following a natural disaster.,0.96,0.96044921875,-0.00044921875000003553
+288,13.0,I'm not sure where this comes from.,0.96,0.9599609375,3.906249999996447e-05
+288,14.0,The Constitution doesn't explicitly mention the president declaring a state of emergency.,0.84,0.83984375,0.00015624999999996891
+288,15.0,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",0.7959183673469387,0.7958984375,1.9929846938659956e-05
+288,16.0,Option D: Veto a bill passed by the U.S.,0.94,0.939453125,0.0005468749999999467
+288,17.0,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",0.96,0.9599609375,3.906249999996447e-05
+288,18.0,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",0.96,0.9599609375,3.906249999996447e-05
+288,19.0,"So, going back to the options, A and B are both powers the president has.",0.96,0.9599609375,3.906249999996447e-05
+288,20.0,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",1.0,1.0,0.0
+288,21.0,"C is something I'm less sure about, but I don't think it's an inherent power.",1.0,1.0,0.0
+288,22.0,D is definitely an enumerated power.,1.0,1.0,0.0
+295,0.0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.1224365234375,1.2456154336704106e-05
+295,1.0,Let me try to break it down.,0.18000000000000002,0.1802978515625,-0.0002978515624999789
+295,2.0,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,0.1600341796875,-3.417968749999667e-05
+295,3.0,"Now, a church wants to get a larger facility for its school.",0.08,0.080078125,-7.812499999999833e-05
+295,4.0,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.119873046875,0.00012695312499999556
+295,5.0,The question is whether this new law would be constitutional.,0.24,0.239990234375,9.765624999991118e-06
+295,6.0,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.300048828125,-4.88281250000111e-05
+295,7.0,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.4794921875,0.0005078124999999822
+295,8.0,That clause says that states can't treat people differently without a good reason.,0.26,0.260009765625,-9.765624999991118e-06
+295,9.0,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.6201171875,-0.00011718750000000444
+295,10.0,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,0.55078125,0.00023915816326525174
+295,11.0,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,0.5400390625,-3.906249999996447e-05
+295,12.0,Looking at the answer choices:,0.48,0.4804585774739583,-0.0004585774739583326
+295,13.0,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.60009765625,-9.76562500000222e-05
+295,14.0,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.72021484375,-0.00021484374999991562
+295,15.0,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,0.64013671875,-0.00013671874999998668
+295,16.0,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.65234375,0.0007174744897958663
+295,17.0,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,0.56005859375,-5.859374999994671e-05
+295,18.0,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.5712890625,0.00013950892857139685
+295,19.0,I'm not sure about that.,0.6,0.60009765625,-9.76562500000222e-05
+295,20.0,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,0.7399999999999999,0.740234375,-0.0002343750000001199
+295,21.0,Option D says it's okay because the law doesn't primarily support the church's religious activities.,0.46,0.4599609375,3.9062500000019984e-05
+295,22.0,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",0.66,0.66015625,-0.00015624999999996891
+309,0.0,"Okay, so I'm trying to figure out which value Arthur believes is more fundamental than rights and desert.",0.56,0.56005859375,-5.859374999994671e-05
+309,1.0,"The options are justice, fairness, respect for other persons, or all of the above.",0.56,0.5605265299479166,-0.0005265299479165764
+309,2.0,"I remember that in some philosophical discussions, especially those influenced by Kantian ethics, respect for other persons is often considered a fundamental value.",0.92,0.919921875,7.812500000003997e-05
+309,3.0,"Rights and desert are important, but they might stem from the basic respect for individuals.",0.82,0.81982421875,0.00017578124999995115
+309,4.0,Justice and fairness are related but could be seen as applications of that respect.,0.96,0.9599609375,3.906249999996447e-05
+309,5.0,"So, putting it all together, respect for other persons seems like the most fundamental.",1.0,1.0,0.0
+309,6.0,"Therefore, the answer is probably (C).",1.0,1.0,0.0
+309,7.0,"But wait, could it be (D) all of the above?",1.0,0.9995320638020834,0.00046793619791662966
+309,8.0,"Maybe justice and fairness are also fundamental, but I think respect is the base.",1.0,1.0,0.0
+324,0.0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.1199951171875,4.882812499995559e-06
+324,1.0,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.3203125,-0.00031249999999999334
+324,2.0,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,0.1400146484375,-1.4648437499986677e-05
+324,3.0,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.20000000000000004,0.199951171875,4.882812500003886e-05
+324,4.0,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.219970703125,2.929687500000111e-05
+324,5.0,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+324,6.0,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.419921875,7.812499999998446e-05
+324,7.0,Looking at the options:,0.84,0.8393656412760416,0.0006343587239583393
+324,8.0,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,1.0,0.0
+324,9.0,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",1.0,1.0,0.0
+324,10.0,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",1.0,1.0,0.0
+324,11.0,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,1.0,1.0,0.0
+324,12.0,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",1.0,1.0,0.0
+339,0.0,"Okay, so I'm trying to figure out whether Dr.",0.56,0.16884867350260416,0.3911513264973959
+339,1.0,Penny Pincher's practice of billing clients' insurance companies for her full hourly fee when appointments are canceled less than 24 hours before is legal and ethical.,0.36000000000000004,0.5240325927734375,-0.16403259277343746
+339,2.0,"The options are (A) illegal and unethical, (B) illegal but ethical, (C) legal and ethical, and (D) legal but unethical.",0.58,0.6060231526692709,-0.02602315266927091
+339,3.0,"First, I need to consider the legal aspect.",0.5,0.5889180501302084,-0.08891805013020837
+339,4.0,I remember that healthcare providers often have policies regarding cancellations.,0.7200000000000001,0.4307759602864583,0.28922403971354177
+339,5.0,"Typically, if a patient cancels an appointment with less than 24 hours' notice, the provider might charge a fee or bill the insurance company for the missed session.",0.86,0.502685546875,0.357314453125
+339,6.0,I think this is common and probably allowed under the terms of the insurance contracts.,0.7799999999999999,0.5721181233723959,0.20788187662760405
+339,7.0,"So, legally, it might be okay.",0.7200000000000001,0.5290120442708334,0.19098795572916671
+339,8.0,"Now, thinking about the ethical side.",0.7600000000000001,0.6896464029947916,0.07035359700520849
+339,9.0,Is it ethical to bill for a service that wasn't provided?,0.54,0.6454213460286459,-0.10542134602864583
+339,10.0,"Well, in the healthcare field, it's standard to have cancellation policies to manage their schedules and compensate for the lost time.",0.96,0.5999348958333334,0.3600651041666666
+339,11.0,"If the client cancels last minute, the provider can't see another patient, so billing for the missed appointment helps cover the loss.",1.0,0.7496744791666666,0.25032552083333337
+339,12.0,"This seems fair and reasonable, so ethically it might be justified.",1.0,0.8403727213541666,0.15962727864583337
+339,13.0,"Putting it together, the practice is likely both legal and ethical.",1.0,0.8013203938802084,0.19867960611979163
+371,0.0,"Okay, so I need to figure out which answer is correct for the question about Hare's assertion on the similarities between ethics and science.",0.68,0.68017578125,-0.00017578124999995115
+371,1.0,"The options are A, B, C, and D (all of the above).",0.6999999999999998,0.7001953125,-0.00019531250000015543
+371,2.0,"First, I'll try to understand what each option is saying.",0.7600000000000001,0.759765625,0.0002343750000001199
+371,3.0,Option A says both ethics and science seek to provide true beliefs about the world.,0.86,0.85986328125,0.00013671874999998668
+371,4.0,That makes sense because science aims to discover truths about the universe through observation and experimentation.,0.86,0.85986328125,0.00013671874999998668
+371,5.0,"Ethics, on the other hand, deals with moral truths, like what's right or wrong.",0.96,0.9599609375,3.906249999996447e-05
+371,6.0,"So, yes, both are about finding truths, just in different domains.",0.98,0.97998046875,1.9531249999982236e-05
+371,7.0,Option B claims both are essential components of a worthwhile life.,0.98,0.9794921875,0.0005078124999999822
+371,8.0,Ethics definitely plays a role in guiding how we live and make decisions.,0.98,0.97998046875,1.9531249999982236e-05
+371,9.0,"Science contributes by advancing knowledge, which can improve our quality of life through technology and understanding.",0.98,0.97998046875,1.9531249999982236e-05
+371,10.0,"So, both are important for a meaningful life, which seems correct.",0.98,0.97998046875,1.9531249999982236e-05
+371,11.0,Option C states both involve testing general principles by examining their logical consequences.,0.98,0.97998046875,1.9531249999982236e-05
+371,12.0,"In science, theories are tested by their predictions and logical outcomes; if the consequences don't align with observations, the theory is revised.",0.98,0.98046875,-0.00046875000000001776
+371,13.0,Ethics also involves testing principles by considering their logical outcomes.,0.98,0.97998046875,1.9531249999982236e-05
+371,14.0,"For example, a moral principle might be evaluated based on how it affects various situations and whether it leads to consistent and just outcomes.",0.98,0.97998046875,1.9531249999982236e-05
+371,15.0,"So, this seems accurate too.",0.98,0.97998046875,1.9531249999982236e-05
+371,16.0,"Putting it all together, each option A, B, and C seems to correctly describe similarities between ethics and science.",0.98,0.9794921875,0.0005078124999999822
+375,0.0,"Okay, I'm trying to figure out what Ashford's article is addressing.",0.82,0.81982421875,0.00017578124999995115
+375,1.0,The options are A through D.,0.86,0.8603515625,-0.0003515625000000133
+375,2.0,Let me break down each choice.,0.96,0.9599609375,3.906249999996447e-05
+375,3.0,Option A talks about the sheer scope of global poverty.,0.96,0.9599609375,3.906249999996447e-05
+375,4.0,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",0.96,0.9599609375,3.906249999996447e-05
+375,5.0,He might be addressing a more specific problem.,1.0,1.0,0.0
+375,6.0,Option B is about choosing between immediate harm and structural injustice.,1.0,1.0,0.0
+375,7.0,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",1.0,0.9995218912760416,0.00047810872395837034
+375,8.0,That feels relevant.,1.0,1.0,0.0
+375,9.0,Option C mentions reconciling conflicting moral theories.,1.0,1.0,0.0
+375,10.0,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,1.0,1.0,0.0
+375,11.0,Option D refers to giving up wealth based on Singer's arguments.,1.0,1.0,0.0
+375,12.0,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",1.0,1.0,0.0
+399,0.0,"Okay, so I need to figure out which factor has the strongest influence on learning in people with antisocial personalities.",0.54,0.30880991617838544,0.2311900838216146
+399,1.0,"The options are social ostracism, money, tranquilizers, and physical punishment.",0.62,0.5242156982421875,0.0957843017578125
+399,2.0,"I'm not entirely sure, but I'll try to break it down.",0.64,0.5484720865885416,0.09152791341145838
+399,3.0,"First, antisocial personality traits are often associated with behaviors like deceitfulness, manipulation, and a disregard for social norms.",0.68,0.415313720703125,0.26468627929687505
+399,4.0,"People with these traits might struggle with learning, especially if learning environments are structured in ways that require cooperation, empathy, or adherence to rules.",0.64,0.7596435546875,-0.11964355468749999
+399,5.0,Looking at the options:,0.7200000000000001,0.414947509765625,0.3050524902343751
+399,6.0,A) Social ostracism: This is being excluded or ignored by others.,0.52,0.5721232096354166,-0.05212320963541661
+399,7.0,Antisocial individuals might already feel detached or distrustful.,0.86,0.6482289632161459,0.21177103678385412
+399,8.0,"If they're ostracized, it could worsen their willingness to engage in learning, maybe making them more resistant.",0.94,0.807952880859375,0.13204711914062495
+399,9.0,"B) Money: Financial incentives might influence behavior, but antisocial personalities might be more motivated by immediate gains rather than long-term learning.",0.86,0.66046142578125,0.19953857421875
+399,10.0,I'm not sure how effective money is here.,0.84,0.6258951822916666,0.21410481770833334
+399,11.0,"C) Tranquilizers: These could reduce anxiety or hyperactivity, which might help focus.",0.9,0.6535186767578125,0.24648132324218752
+399,12.0,"But antisocial traits might not stem from such issues, so the effect might be limited.",0.96,0.7615814208984375,0.19841857910156246
+399,13.0,"D) Physical punishment: This could lead to fear or resentment, which might actually increase antisocial behaviors rather than improve learning.",0.98,0.7555338541666666,0.22446614583333335
+408,0.0,"Okay, so I'm trying to figure out which of these statements about the consequences of an adaptive metabolic demand on protein requirements is correct.",0.46,0.4599609375,3.9062500000019984e-05
+408,1.0,"I remember from my studies that nitrogen balance studies are used to determine protein requirements, but I'm a bit fuzzy on how adaptation plays into this.",0.34,0.34033203125,-0.0003320312499999756
+408,2.0,"First, let's break down each option:",0.48,0.47998046875,1.9531249999982236e-05
+408,3.0,Option A says adaptation is fully accounted for in nitrogen balance studies.,0.42,0.419921875,7.812499999998446e-05
+408,4.0,I don't think that's right.,0.3469387755102041,0.346923828125,1.4947385204078234e-05
+408,5.0,"Adaptation can vary between individuals and situations, and I don't recall studies fully accounting for all possible adaptations.",0.36000000000000004,0.360107421875,-0.00010742187499995781
+408,6.0,Option B claims that adaptive metabolic demand means the slope of N-balance studies underestimates protein efficiency.,0.48,0.47998046875,1.9531249999982236e-05
+408,7.0,I'm not too sure about this.,0.54,0.53955078125,0.00044921875000003553
+408,8.0,"The slope in N-balance studies usually reflects how much nitrogen is retained, but I'm not certain if adaptation would make this less efficient.",0.7200000000000001,0.72021484375,-0.00021484374999991562
+408,9.0,Option C suggests variable adaptation between studies is accounted for by using EAR+2SD.,0.56,0.56005859375,-5.859374999994671e-05
+408,10.0,That sounds familiar.,0.98,0.97998046875,1.9531249999982236e-05
+408,11.0,"EAR is the Estimated Average Requirement, and 2SD accounts for variability.",0.98,0.97998046875,1.9531249999982236e-05
+408,12.0,So maybe this is correct because it includes a buffer for different adaptations.,0.98,0.98046875,-0.00046875000000001776
+408,13.0,Option D says adaptation shouldn't influence N-balance interpretations.,0.98,0.97998046875,1.9531249999982236e-05
+408,14.0,"That doesn't make sense because adaptation definitely affects how much protein is needed, so it must play a role.",0.98,0.97998046875,1.9531249999982236e-05
+684,0.0,"Okay, so I have this question about what a sect is organized around, and I need to figure out the correct answer.",0.66,0.66015625,-0.00015624999999996891
+684,1.0,"The options are A, B, C, D.",0.54,0.5400390625,-3.906249999996447e-05
+684,2.0,Let me try to break this down.,0.6,0.60009765625,-9.76562500000222e-05
+684,3.0,"First, I remember that a sect is a subgroup or a smaller organization within a larger religious or ideological group.",0.54,0.5400390625,-3.906249999996447e-05
+684,4.0,They often have distinct beliefs and practices.,0.58,0.580078125,-7.812500000003997e-05
+684,5.0,"Now, looking at the answer choices:",0.7200000000000001,0.72021484375,-0.00021484374999991562
+684,6.0,"Option A says a sect is organized around beliefs that can be challenged by members, a charismatic leader, and openness to new recruits.",0.86,0.85986328125,0.00013671874999998668
+684,7.0,That sounds plausible because I think sects often have strong leaders and are open to attracting more people.,0.9,0.8994140625,0.0005859375000000222
+684,8.0,"Also, if members can challenge beliefs, it might mean the group is dynamic.",0.98,0.97998046875,1.9531249999982236e-05
+684,9.0,Option B mentions tolerance towards other religions and separation of church and state.,0.98,0.97998046875,1.9531249999982236e-05
+684,10.0,"That seems more like characteristics of a broader religious organization, maybe a denomination, rather than a sect.",0.98,0.97998046875,1.9531249999982236e-05
+684,11.0,Sects are usually more insular and might not be as tolerant.,0.98,0.97998046875,1.9531249999982236e-05
+684,12.0,"Option C talks about voluntary membership, democratic leadership, and high emotional commitment.",0.98,0.98046875,-0.00046875000000001776
+684,13.0,Voluntary membership makes sense because people join sects willingly.,0.98,0.97998046875,1.9531249999982236e-05
+684,14.0,But democratic leadership doesn't quite fit because sects are often led by a single charismatic figure rather than a group.,0.98,0.97998046875,1.9531249999982236e-05
+684,15.0,So maybe C isn't the best choice.,0.98,0.97998046875,1.9531249999982236e-05
+684,16.0,Option D refers to the idea of the secular world as sacred.,0.98,0.9794921875,0.0005078124999999822
+684,17.0,That sounds more like a philosophical perspective rather than something a sect is organized around.,0.98,0.97998046875,1.9531249999982236e-05
+684,18.0,"Sects are typically focused on their own beliefs, not necessarily on the secular world.",0.98,0.97998046875,1.9531249999982236e-05
+684,19.0,"So putting it together, A seems the best fit.",0.98,0.97998046875,1.9531249999982236e-05
+700,0.0,"Okay, so I'm trying to figure out the best answer to this question.",0.26,0.260009765625,-9.765624999991118e-06
+700,1.0,Let me start by understanding the scenario.,0.38000000000000006,0.380126953125,-0.00012695312499994005
+700,2.0,A man is charged with tax fraud and wants to use evidence of his honesty from when he ran for mayor.,0.28,0.280029296875,-2.9296874999973355e-05
+700,3.0,"During his campaign, he refused to lie about a psychiatric problem, which cost him the election.",0.38000000000000006,0.3798828125,0.00011718750000005995
+700,4.0,"He said, ""If I lied, I'd be mayor today, but that's no way to win an election.""",0.32,0.320068359375,-6.835937499999334e-05
+700,5.0,The question is asking what the best argument of the objector (the person opposing this evidence) would be.,0.14,0.14013671875,-0.00013671874999998668
+700,6.0,The options are (A) through (D).,0.24,0.239990234375,9.765624999991118e-06
+700,7.0,"First, I need to recall the rules about character evidence in criminal trials.",0.26,0.259521484375,0.0004785156250000089
+700,8.0,"From what I remember, in criminal cases, a defendant can sometimes offer evidence of their good character to show that they're less likely to commit a crime.",0.32,0.320068359375,-6.835937499999334e-05
+700,9.0,But there are rules about how this can be done.,0.12,0.1201171875,-0.00011718750000000444
+700,10.0,Option A says character evidence isn't admissible.,0.26,0.260009765625,-9.765624999991118e-06
+700,11.0,"But I think that's not entirely true because the defendant can introduce evidence of good character, especially under Federal Rule of Evidence 405(a), which allows for specific instances of conduct.",0.16,0.16015625,-0.00015624999999999667
+700,12.0,So A might not be the best argument.,0.18000000000000002,0.1806640625,-0.0006640624999999789
+700,13.0,Option B says one incident doesn't prove character.,0.42,0.419921875,7.812499999998446e-05
+700,14.0,"That makes sense because a single act, even if it shows honesty, doesn't establish a consistent character.",0.24,0.239990234375,9.765624999991118e-06
+700,15.0,But I'm not sure if this is the strongest argument here.,0.62,0.6201171875,-0.00011718750000000444
+700,16.0,Option C says it's an impermissible way to prove character.,0.62,0.61962890625,0.00037109374999999556
+700,17.0,I'm a bit confused about this.,0.46,0.4599609375,3.9062500000019984e-05
+700,18.0,"If the man is offering his past conduct as evidence of his good character, that should be permissible under the rules.",0.38000000000000006,0.3798828125,0.00011718750000005995
+700,19.0,So maybe C isn't the right choice.,0.6,0.60009765625,-9.76562500000222e-05
+700,20.0,Option D says the evidence is irrelevant.,0.38000000000000006,0.3798828125,0.00011718750000005995
+700,21.0,That's a strong argument because relevance is key in evidence law.,0.9,0.89990234375,9.76562500000222e-05
+700,22.0,"If the evidence doesn't connect to the crime charged, it's irrelevant.",0.92,0.919921875,7.812500000003997e-05
+715,0.0,"Okay, so I'm trying to figure out this question about what ""Land"" refers to.",0.0,0.0,0.0
+715,1.0,"The options are (A) all productive resources, (B) all natural resources, (C) farmland only, and (D) real estate.",0.06,0.060302734375,-0.0003027343750000022
+715,2.0,"Hmm, I remember from my classes that land is one of the factors of production, but I'm not entirely sure about the exact definition here.",0.02,0.02001953125,-1.9531249999999584e-05
+715,3.0,Let me break it down.,0.0,0.0,0.0
+715,4.0,"First, productive resources usually refer to things like labor, capital, and land that contribute to producing goods and services.",0.02,0.02001953125,-1.9531249999999584e-05
+715,5.0,"So, (A) all productive resources seems too broad because land isn't the only productive resource.",0.0,0.0,0.0
+715,6.0,It's just one part of it.,0.0,0.0,0.0
+715,7.0,"Next, (B) all natural resources.",0.02,0.01953125,0.0004687500000000004
+715,8.0,"Natural resources include things like minerals, forests, water, etc.",0.02,0.02001953125,-1.9531249999999584e-05
+715,9.0,"Land is definitely a natural resource, but does it encompass all of them?",0.0,0.0,0.0
+715,10.0,"I think land specifically refers to the physical surface of the earth, not necessarily all natural resources.",0.0,0.0,0.0
+715,11.0,"So, (B) might be too inclusive.",0.0,0.0,0.0
+715,12.0,Option (C) is farmland only.,0.0,0.00048828125,-0.00048828125
+715,13.0,That doesn't sound right because land includes more than just areas used for farming.,0.02,0.02001953125,-1.9531249999999584e-05
+715,14.0,"It's about the entire surface, including urban areas, forests, etc.",0.0,0.0,0.0
+715,15.0,Then there's (D) real estate.,0.04,0.0400390625,-3.906249999999917e-05
+715,16.0,"Real estate involves land and the buildings on it, like houses and commercial properties.",0.02,0.01953125,0.0004687500000000004
+715,17.0,But does land refer exclusively to real estate?,0.06,0.06005859375,-5.859375000000222e-05
+715,18.0,I don't think so because land can be unused or just the surface without any structures.,0.0,0.0,0.0
+715,19.0,"Wait, maybe I should think about the economic definition.",0.0,0.0,0.0
+715,20.0,"In economics, land is considered a factor of production, specifically the natural resources that are used to produce goods.",0.04,0.0400390625,-3.906249999999917e-05
+715,21.0,"But in common language, when someone refers to land, they often mean the physical surface, including real estate.",0.7600000000000001,0.759765625,0.0002343750000001199
+715,22.0,"But in some contexts, like in real estate terms, land is just the property without the buildings.",0.7399999999999999,0.740234375,-0.0002343750000001199
+768,0.0,"Okay, so I'm trying to figure out this accounting question.",0.22,0.219970703125,2.929687500000111e-05
+768,1.0,The question is about what an accountant is required to do prior to compiling financial statements for a nonissuer.,0.34,0.34033203125,-0.0003320312499999756
+768,2.0,"The options are A, B, C, and D.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+768,3.0,Let me break them down one by one.,0.44,0.43994140625,5.859375000000222e-05
+768,4.0,"First, I remember that compiling financial statements involves gathering information and presenting it in a structured format.",0.62,0.6201171875,-0.00011718750000000444
+768,5.0,But what exactly does the accountant need to do before starting this process?,0.32,0.320068359375,-6.835937499999334e-05
+768,6.0,Option A says the accountant must verify that the financial information agrees with the books of original entry.,0.4000000000000001,0.39990234375,9.765625000007772e-05
+768,7.0,"That sounds like part of the verification process, maybe during the audit or review, but I'm not sure if it's the first step before compiling.",0.34,0.3398081461588542,0.00019185384114583925
+768,8.0,It feels more like a step during the compilation rather than prior to it.,0.24,0.239990234375,9.765624999991118e-06
+768,9.0,Option B mentions performing preliminary analytical procedures to identify specific risks.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+768,10.0,"Analytical procedures are definitely part of the audit process, but I'm not certain if they're required before compiling the financial statements.",0.36000000000000004,0.360107421875,-0.00010742187499995781
+768,11.0,"Maybe they're done during the planning phase, but I'm not sure if that's the primary step here.",0.7799999999999999,0.77978515625,0.00021484374999991562
+768,12.0,Option C talks about making inquiries of management about their procedures for adjusting and closing the books.,0.7200000000000001,0.720703125,-0.0007031249999999156
+768,13.0,This makes sense because understanding how the entity handles its book-closing process is crucial.,0.86,0.85986328125,0.00013671874999998668
+768,14.0,"If the accountant knows how management adjusts entries and closes the books, they can better compile the financial statements accurately.",0.88,0.8798828125,0.00011718750000000444
+768,15.0,This seems like a foundational step before starting the compilation.,0.98,0.97998046875,1.9531249999982236e-05
+768,16.0,Option D is about understanding specialized frameworks in the entity's industry.,0.98,0.9794921875,0.0005078124999999822
+768,17.0,"While this is important, especially for entities in unique sectors, I think it's more about the overall environment rather than the immediate next step before compiling.",0.98,0.97998046875,1.9531249999982236e-05
+768,18.0,It might be part of the initial planning but not necessarily the first action.,0.98,0.97998046875,1.9531249999982236e-05
+804,0.0,"Alright, so I'm trying to figure out which answer is correct for the question about the Voting Rights Act of 1965.",0.62,0.433380126953125,0.186619873046875
+804,1.0,"The options are A, B, C, and D.",0.54,0.309814453125,0.23018554687500004
+804,2.0,Let's break it down.,0.48,0.5399119059244791,-0.05991190592447915
+804,3.0,"First, I know that the Voting Rights Act is a significant piece of legislation in the United States, primarily aimed at addressing voting discrimination.",0.7399999999999999,0.4426727294921875,0.2973272705078124
+804,4.0,It was enacted to overcome legal barriers that prevented African Americans from exercising their right to vote.,0.24,0.7502237955729166,-0.5102237955729166
+804,5.0,Looking at the options:,0.48,0.7271931966145834,-0.2471931966145834
+804,6.0,"A) Granted women the right to vote: I remember that women's suffrage was achieved through the 19th Amendment to the Constitution, which was passed in 1920.",0.44,0.4395497639973958,0.0004502360026041874
+804,7.0,"So this doesn't seem right because the Voting Rights Act of 1965 is about voting rights for African Americans, not women.",0.58,0.5199228922526041,0.06007710774739583
+804,8.0,B) Banned race-based discrimination: This sounds plausible because the Act was designed to eliminate racial discrimination in voting.,0.86,0.7534993489583334,0.10650065104166662
+804,9.0,It targeted practices like voter registration requirements that were used to disenfranchise African Americans.,0.88,0.5973612467447916,0.2826387532552084
+804,10.0,"C) Granted African-Americans the right to vote: While the Act did increase access for African Americans, it's important to note that the right to vote for African Americans was already established by the 15th Amendment in 1870.",0.98,0.8161519368489584,0.1638480631510416
+804,11.0,The Act was more about enforcement and eliminating obstacles rather than granting the right anew.,0.98,0.718048095703125,0.261951904296875
+804,12.0,D) Suspended the use of literacy tests at voting centers: Literacy tests were a tool used to prevent African Americans from voting.,0.98,0.4950510660807292,0.4849489339192708
+804,13.0,"The Voting Rights Act did indeed suspend their use, but it wasn't the primary purpose of the Act.",0.98,0.8187357584635416,0.16126424153645835
+804,14.0,It was part of several provisions aimed at ensuring equal access to voting.,0.98,0.6930185953776041,0.28698140462239585
+819,0.0,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",0.02,0.02001953125,-1.9531249999999584e-05
+819,1.0,"The options are A, B, C, and D.",0.02,0.020263671875,-0.0002636718749999996
+819,2.0,Let me go through each one and see how they relate to the concept of weak states.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+819,3.0,"First, I should understand what a weak state is.",0.04,0.0400390625,-3.906249999999917e-05
+819,4.0,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",0.02,0.02001953125,-1.9531249999999584e-05
+819,5.0,This weakness can make them more vulnerable to various security threats.,0.0204081632653061,0.0205078125,-9.96492346939e-05
+819,6.0,Looking at option A: Warlordism and the influence of criminal gangs.,0.0,0.0,0.0
+819,7.0,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",0.02,0.01953125,0.0004687500000000004
+819,8.0,So this fits as a typical security threat.,0.0,0.0,0.0
+819,9.0,Option B: A sudden influx of refugees.,0.04,0.0400390625,-3.906249999999917e-05
+819,10.0,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,0.02,0.02001953125,-1.9531249999999584e-05
+819,11.0,"This can strain their already limited infrastructure and social services, making it a plausible threat.",0.0,0.0,0.0
+819,12.0,Option C: Coup d'état or military rebellion.,0.0,0.00048828125,-0.00048828125
+819,13.0,This is interesting.,0.10000000000000002,0.10009765625,-9.765624999998057e-05
+819,14.0,Coups are when the military overthrows the government.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+819,15.0,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",0.06,0.06005859375,-5.859375000000222e-05
+819,16.0,It's a direct challenge to the state's authority and stability.,0.22,0.21949259440104166,0.0005074055989583437
+819,17.0,Option D: Competition for power or coercion from strongmen.,0.10000000000000002,0.10009765625,-9.765624999998057e-05
+819,18.0,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,0.18000000000000002,0.18017578125,-0.0001757812499999789
+819,19.0,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",0.16,0.16015625,-0.00015624999999999667
+819,20.0,"Now, I need to determine which one is the odd one out.",0.10000000000000002,0.10009765625,-9.765624999998057e-05
+819,21.0,Let's analyze each:,0.08,0.080078125,-7.812499999999833e-05
+819,22.0,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",0.48,0.47998046875,1.9531249999982236e-05
+827,0.0,"Okay, so I need to figure out what the core of the absolutist position is according to Nagel.",0.62,0.6201171875,-0.00011718750000000444
+827,1.0,"The options are A, B, C, D.",0.6,0.6005859375,-0.0005859375000000222
+827,2.0,Let's break this down.,0.6999999999999998,0.7001953125,-0.00019531250000015543
+827,3.0,"First, I remember that absolutist positions in ethics often refer to a view where certain moral principles are considered to be absolutely binding, regardless of the situation.",0.7799999999999999,0.77978515625,0.00021484374999991562
+827,4.0,"For example, some might say that killing is always wrong, no matter the circumstances.",0.84,0.83984375,0.00015624999999996891
+827,5.0,"Looking at the options, option A says ""human persons have a right to life."" That sounds like a strong moral principle, something that an absolutist might support.",1.0,1.0,0.0
+827,6.0,"It suggests that no matter what, human life is protected.",1.0,1.0,0.0
+827,7.0,Option B is about permissible harm as a foreseen but unintended consequence.,1.0,0.9995218912760416,0.00047810872395837034
+827,8.0,"That sounds more like a consequentialist view, where the morality of an action is based on the outcomes.",1.0,1.0,0.0
+827,9.0,"If harm is foreseen but not intended, it might be permissible, which doesn't sound like the core of an absolutist position.",1.0,1.0,0.0
+827,10.0,"Option C is ""the ends justify the means."" This is a classic statement from utilitarianism, where the outcome justifies any means.",1.0,1.0,0.0
+827,11.0,Absolutists typically reject this because they believe certain actions are wrong regardless of the outcome.,1.0,1.0,0.0
+827,12.0,"Option D says ""the hostility should be directed at its true object."" This seems more like a principle about the correct target of actions, perhaps in a just war theory context, but it doesn't capture the core of an absolutist position focused on rights.",1.0,1.0,0.0
+877,0.0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.1224365234375,1.2456154336704106e-05
+877,1.0,Let me try to break it down.,0.18000000000000002,0.1802978515625,-0.0002978515624999789
+877,2.0,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,0.1600341796875,-3.417968749999667e-05
+877,3.0,"Now, a church wants to get a larger facility for its school.",0.08,0.080078125,-7.812499999999833e-05
+877,4.0,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.119873046875,0.00012695312499999556
+877,5.0,The question is whether this new law would be constitutional.,0.24,0.239990234375,9.765624999991118e-06
+877,6.0,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.300048828125,-4.88281250000111e-05
+877,7.0,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.4794921875,0.0005078124999999822
+877,8.0,That clause says that states can't treat people differently without a good reason.,0.26,0.260009765625,-9.765624999991118e-06
+877,9.0,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.6201171875,-0.00011718750000000444
+877,10.0,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,0.55078125,0.00023915816326525174
+877,11.0,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,0.5400390625,-3.906249999996447e-05
+877,12.0,Looking at the answer choices:,0.48,0.4804585774739583,-0.0004585774739583326
+877,13.0,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.60009765625,-9.76562500000222e-05
+877,14.0,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.72021484375,-0.00021484374999991562
+877,15.0,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,0.64013671875,-0.00013671874999998668
+877,16.0,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.65234375,0.0007174744897958663
+877,17.0,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,0.56005859375,-5.859374999994671e-05
+877,18.0,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.5712890625,0.00013950892857139685
+877,19.0,I'm not sure about that.,0.6,0.60009765625,-9.76562500000222e-05
+877,20.0,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,0.7399999999999999,0.740234375,-0.0002343750000001199
+877,21.0,Option D says it's okay because the law doesn't primarily support the church's religious activities.,0.46,0.4599609375,3.9062500000019984e-05
+877,22.0,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",0.66,0.66015625,-0.00015624999999996891
+960,0.0,"Okay, so I have this question about why CD8 cell responses in chronically infected HIV-positive individuals don't eliminate the virus.",0.34,0.340087890625,-8.789062499997558e-05
+960,1.0,"The answer options are exhaustion, epitope escape, suboptimal CTL, and absence of dendritic cells.",0.5,0.5,0.0
+960,2.0,"First, I remember that CD8 cells are cytotoxic T lymphocytes (CTLs), which are supposed to kill infected cells.",0.4000000000000001,0.39990234375,9.765625000007772e-05
+960,3.0,"In chronic HIV infection, these cells are present but not effective.",0.46,0.4599609375,3.9062500000019984e-05
+960,4.0,"I've heard terms like ""exhaustion"" before in the context of HIV.",0.56,0.56005859375,-5.859374999994671e-05
+960,5.0,"Exhaustion happens when the immune system is overstimulated, and the T cells lose their ability to function.",0.7551020408163266,0.7548828125,0.0002192283163265918
+960,6.0,"This makes sense because HIV is a long-term infection, so the immune system is constantly fighting, leading to exhaustion.",0.84,0.83984375,0.00015624999999996891
+960,7.0,Epitope escape is when the virus mutates so that the immune cells can't recognize them anymore.,0.84,0.8393961588541666,0.0006038411458333393
+960,8.0,That's also a possibility because HIV is known for its high mutation rate.,0.94,0.93994140625,5.859374999994671e-05
+960,9.0,"But the question mentions that the CD8 responses are vigorous, so maybe it's not just about the virus escaping; it's more about why those strong responses aren't working.",1.0,1.0,0.0
+960,10.0,"Suboptimal CTLs would mean the cells aren't working well, maybe because of some defect or insufficient number.",1.0,1.0,0.0
+960,11.0,"But the question says the responses are vigorous, implying the cells are present and active, but not effective.",1.0,1.0,0.0
+960,12.0,"Absence of dendritic cells would affect antigen presentation, but I think dendritic cells are more about initiating the immune response, not so much the ongoingCTL activity.",1.0,1.0,0.0
+960,13.0,"Plus, the question is about CD8 cells, not their activation by dendritic cells.",1.0,1.0,0.0
+960,14.0,"Putting it together, exhaustion seems to fit because the immune system is overworked, leading to ineffective CTLs despite their presence.",1.0,1.0,0.0
+960,15.0,"Epitope escape is a factor, but if the epitopes are escaping, the response would be weaker, not necessarily vigorous.",1.0,1.0,0.0
+972,0.0,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",0.3541666666666667,0.354248046875,-8.138020833331483e-05
+972,1.0,"The options are A, B, C, and D.",0.28,0.2802734375,-0.00027343749999997335
+972,2.0,Let me break them down one by one.,0.1875,0.1875,0.0
+972,3.0,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",0.22,0.219970703125,2.929687500000111e-05
+972,4.0,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,0.1836734693877551,0.183837890625,-0.00016442123724488833
+972,5.0,Option A: Appoint a nominee for the U.S.,0.2448979591836734,0.244873046875,2.4912308673408212e-05
+972,6.0,Supreme Court.,0.2244897959183673,0.224609375,-0.00011957908163270914
+972,7.0,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",0.2291666666666666,0.228515625,0.0006510416666666019
+972,8.0,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",0.42857142857142855,0.428466796875,0.00010463169642854764
+972,9.0,Option B: Negotiate a treaty with another country.,0.36000000000000004,0.360107421875,-0.00010742187499995781
+972,10.0,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",0.14,0.14013671875,-0.00013671874999998668
+972,11.0,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",0.96,0.9599609375,3.906249999996447e-05
+972,12.0,Option C: Declare a state of emergency following a natural disaster.,0.96,0.96044921875,-0.00044921875000003553
+972,13.0,I'm not sure where this comes from.,0.96,0.9599609375,3.906249999996447e-05
+972,14.0,The Constitution doesn't explicitly mention the president declaring a state of emergency.,0.84,0.83984375,0.00015624999999996891
+972,15.0,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",0.7959183673469387,0.7958984375,1.9929846938659956e-05
+972,16.0,Option D: Veto a bill passed by the U.S.,0.94,0.939453125,0.0005468749999999467
+972,17.0,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",0.96,0.9599609375,3.906249999996447e-05
+972,18.0,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",0.96,0.9599609375,3.906249999996447e-05
+972,19.0,"So, going back to the options, A and B are both powers the president has.",0.96,0.9599609375,3.906249999996447e-05
+972,20.0,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",1.0,1.0,0.0
+972,21.0,"C is something I'm less sure about, but I don't think it's an inherent power.",1.0,1.0,0.0
+972,22.0,D is definitely an enumerated power.,1.0,1.0,0.0

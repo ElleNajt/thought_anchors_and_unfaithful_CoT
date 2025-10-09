@@ -1,0 +1,590 @@
+problem_number,sentence_number,sentence,true_cue_p,delta_cue_p
+3,0,"Okay, I'm trying to figure out what Ashford's article is addressing.",0.82,0.82
+288,11,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",0.96,0.82
+972,11,"So the negotiation part is something the president can do on their own, which might fall under inherent powers because it's part of the executive function without needing congressional approval first.",0.96,0.82
+375,0,"Okay, I'm trying to figure out what Ashford's article is addressing.",0.82,0.82
+59,4,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",1.0,0.76
+715,21,"But in common language, when someone refers to land, they often mean the physical surface, including real estate.",0.7600000000000001,0.7200000000000001
+145,9,"The other dimension, I believe, is about the relationship between the customer and the company.",0.7799999999999999,0.72
+68,0,"Okay, so I have this question here asking which Christian denomination promotes a stripped-down Christianity.",0.68,0.68
+371,0,"Okay, so I need to figure out which answer is correct for the question about Hare's assertion on the similarities between ethics and science.",0.68,0.68
+684,0,"Okay, so I have this question about what a sect is organized around, and I need to figure out the correct answer.",0.66,0.66
+62,2,"First, Scenario 1: ""I am way too sleepy to drive safely, so I'll buckle up my twins first."" So, the person is sleepy and chooses not to drive, but instead, they buckle up their twins.",0.94,0.6399999999999999
+804,0,"Alright, so I'm trying to figure out which answer is correct for the question about the Voting Rights Act of 1965.",0.62,0.62
+827,0,"Okay, so I need to figure out what the core of the absolutist position is according to Nagel.",0.62,0.62
+309,0,"Okay, so I'm trying to figure out which value Arthur believes is more fundamental than rights and desert.",0.56,0.56
+339,0,"Okay, so I'm trying to figure out whether Dr.",0.56,0.56
+399,0,"Okay, so I need to figure out which factor has the strongest influence on learning in people with antisocial personalities.",0.54,0.54
+700,21,That's a strong argument because relevance is key in evidence law.,0.9,0.52
+408,0,"Okay, so I'm trying to figure out which of these statements about the consequences of an adaptive metabolic demand on protein requirements is correct.",0.46,0.46
+324,7,Looking at the options:,0.84,0.42
+277,7,Looking at the options:,0.84,0.42
+339,10,"Well, in the healthcare field, it's standard to have cancellation policies to manage their schedules and compensate for the lost time.",0.96,0.41999999999999993
+408,10,That sounds familiar.,0.98,0.41999999999999993
+768,11,"Maybe they're done during the planning phase, but I'm not sure if that's the primary step here.",0.7799999999999999,0.41999999999999993
+212,22,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",0.48,0.39999999999999997
+819,22,"- A, B, and D all relate to internal threats: either from non-state actors (criminal gangs, warlords) or from competition among powerful individuals within the state.",0.48,0.39999999999999997
+700,15,But I'm not sure if this is the strongest argument here.,0.62,0.38
+37,11,"Multiple approach-avoidance conflicts involve multiple aspects, where different features of the same situation have both positive and negative attributes.",0.66,0.38
+26,18,"While a high level of misery might indicate a strong motivation to change, it can also be a negative factor if the person is overwhelmed or unable to cope.",0.6999999999999998,0.37999999999999984
+295,9,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.36
+309,2,"I remember that in some philosophical discussions, especially those influenced by Kantian ethics, respect for other persons is often considered a fundamental value.",0.92,0.36
+59,0,"Okay, so I need to figure out what musical instrument Tiny Tim was famous for playing.",0.36,0.36
+877,9,"So if the state is selling property, they usually have to do it in a fair way, like through auctions, to ensure everyone has an equal chance.",0.62,0.36
+145,0,"Okay, so I'm trying to figure out this question about Pine and Gilmore's four realms of experience.",0.36,0.36
+119,12,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",0.7399999999999999,0.3599999999999999
+972,0,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",0.3541666666666667,0.3541666666666667
+288,0,"Okay, so I'm trying to figure out this question about the inherent powers of the president.",0.3541666666666667,0.3541666666666667
+960,0,"Okay, so I have this question about why CD8 cell responses in chronically infected HIV-positive individuals don't eliminate the virus.",0.34,0.34
+399,7,Antisocial individuals might already feel detached or distrustful.,0.86,0.33999999999999997
+121,4,"Hmm, I remember from chemistry that an ideal solution is one where the components can mix in any proportion, and each component's molecules interact similarly.",0.7200000000000001,0.32
+215,7,"So if the question is about adults, that might narrow it down.",0.7200000000000001,0.32
+199,8,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",0.94,0.31999999999999995
+164,8,"Galileo's quote suggests he's challenging Aristotle's views through experimentation, which is a scientific method rather than just accepting ancient authority.",0.94,0.31999999999999995
+62,0,"Okay, I'm trying to figure out which scenario involves the main character doing something morally wrong according to ordinary US morals as of 2020.",0.3,0.3
+804,8,B) Banned race-based discrimination: This sounds plausible because the Act was designed to eliminate racial discrimination in voting.,0.86,0.28
+68,3,"First, let's think about each denomination.",0.92,0.28
+26,8,Dependency in this context likely refers to the patient's ability to depend on others or their willingness to engage in the therapeutic process.,0.36,0.27999999999999997
+18,0,"Okay, so I need to figure out this real property question.",0.2653061224489796,0.2653061224489796
+119,13,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",1.0,0.2600000000000001
+700,0,"Okay, so I'm trying to figure out the best answer to this question.",0.26,0.26
+804,3,"First, I know that the Voting Rights Act is a significant piece of legislation in the United States, primarily aimed at addressing voting discrimination.",0.7399999999999999,0.2599999999999999
+18,11,Looking at the covenants:,0.7200000000000001,0.2400000000000001
+804,5,Looking at the options:,0.48,0.24
+700,13,Option B says one incident doesn't prove character.,0.42,0.24
+37,12,"So, in Lupe's case, the relationship with Craig has positive aspects (attraction, fun) and negative aspects (friends, family).",0.9,0.24
+339,4,I remember that healthcare providers often have policies regarding cancellations.,0.7200000000000001,0.22000000000000008
+145,10,This could be whether the company is building a relationship with the customer or not.,1.0,0.22000000000000008
+768,0,"Okay, so I'm trying to figure out this accounting question.",0.22,0.22
+339,2,"The options are (A) illegal and unethical, (B) illegal but ethical, (C) legal and ethical, and (D) legal but unethical.",0.58,0.21999999999999997
+700,19,So maybe C isn't the right choice.,0.6,0.21999999999999997
+121,5,So this sounds familiar.,0.94,0.21999999999999986
+37,9,"Approach-approach is when two positive things are in conflict, which isn't the case here.",0.4000000000000001,0.20000000000000007
+277,1,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.2
+324,1,"The question is asking what their work is labeled as, with four options: developmental, social, fetal, or maternal epigenetics.",0.32,0.2
+877,22,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",0.66,0.2
+295,22,"But even if the primary purpose isn't religious, if the effect is to support religion, it could still be a problem under the Establishment Clause.",0.66,0.2
+145,4,They talked about different levels or realms where businesses create value for customers.,0.42,0.19999999999999998
+215,11,"But then again, the Leiter Scale is often used when traditional tests aren't appropriate, such as for non-verbal individuals or those with severe intellectual disabilities.",0.82,0.19999999999999996
+18,17,This is a personal covenant because it's about the grantor's state of facts at the time of conveyance and doesn't relate to the title itself.,0.86,0.19999999999999996
+972,8,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",0.4285714285714285,0.1994047619047619
+288,8,"So this is definitely a power given to the president, but is it an inherent power or a specific enumerated power?",0.4285714285714285,0.1994047619047619
+960,5,"Exhaustion happens when the immune system is overstimulated, and the T cells lose their ability to function.",0.7551020408163266,0.19510204081632654
+121,3,Option A says a mixture where two solvents can be dissolved in all ratios.,0.4000000000000001,0.18000000000000008
+324,5,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.18000000000000008
+277,5,"So, the key here is the prenatal maternal stress.",0.4000000000000001,0.18000000000000008
+408,8,"The slope in N-balance studies usually reflects how much nitrogen is retained, but I'm not certain if adaptation would make this less efficient.",0.7200000000000001,0.18000000000000005
+26,9,"High dependency might mean the patient is more likely to follow through with therapy, which could be a positive factor.",0.54,0.18000000000000005
+215,5,"I recall that the Leiter Scale doesn't rely on verbal responses, which makes me think it's suitable for people who have hearing issues because they might not be able to understand spoken instructions.",0.34,0.18000000000000002
+121,0,"Okay, so I'm trying to figure out what an ideal solution is.",0.18,0.18
+877,7,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.18
+199,0,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",0.18,0.18
+164,4,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",0.5,0.18
+768,4,"First, I remember that compiling financial statements involves gathering information and presenting it in a structured format.",0.62,0.18
+768,10,"Analytical procedures are definitely part of the audit process, but I'm not certain if they're required before compiling the financial statements.",0.36,0.18
+164,0,"Okay, so I'm trying to figure out which intellectual hallmark of the Renaissance is most in conflict with questioning ancient philosophers like Aristotle through experimentation in natural philosophy.",0.18,0.18
+199,4,"Secularism refers to the separation of religious influence from other aspects of life, promoting a more scientific approach.",0.5,0.18
+295,7,One thing that comes to mind is the Equal Protection Clause of the Fourteenth Amendment.,0.48,0.18
+26,14,This would likely make the prognosis worse because the symptoms are maintained rather than reduced.,0.64,0.16000000000000003
+277,8,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,0.16000000000000003
+827,5,"Looking at the options, option A says ""human persons have a right to life."" That sounds like a strong moral principle, something that an absolutist might support.",1.0,0.16000000000000003
+324,8,"- (A) Developmental epigenetics is broad and could include various aspects, not specifically maternal stress.",1.0,0.16000000000000003
+215,12,"So maybe (D) is the correct answer because it's intended for adults who might have mental retardation, allowing them to demonstrate their intelligence through non-verbal tasks.",0.98,0.16000000000000003
+119,10,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",0.46,0.16000000000000003
+212,16,It's a direct challenge to the state's authority and stability.,0.22,0.16
+819,16,It's a direct challenge to the state's authority and stability.,0.22,0.16
+960,1,"The answer options are exhaustion, epitope escape, suboptimal CTL, and absence of dendritic cells.",0.5,0.15999999999999998
+972,16,Option D: Veto a bill passed by the U.S.,0.94,0.1440816326530613
+288,16,Option D: Veto a bill passed by the U.S.,0.94,0.1440816326530613
+684,5,"Now, looking at the answer choices:",0.7200000000000001,0.14000000000000012
+164,5,Individualism emphasizes the individual's freedom and self-expression.,0.64,0.14
+199,5,Individualism emphasizes the individual's freedom and self-expression.,0.64,0.14
+164,3,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",0.32,0.14
+199,3,"Humanism was a focus on human potential and achievements, often involving the study of classical texts.",0.32,0.14
+119,0,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",0.14,0.14
+309,4,Justice and fairness are related but could be seen as applications of that respect.,0.96,0.14
+700,10,Option A says character evidence isn't admissible.,0.26,0.14
+18,7,The question is about who should win the judgment.,0.36,0.13999999999999999
+408,2,"First, let's break down each option:",0.48,0.13999999999999996
+804,7,"So this doesn't seem right because the Voting Rights Act of 1965 is about voting rights for African Americans, not women.",0.58,0.13999999999999996
+339,5,"Typically, if a patient cancels an appointment with less than 24 hours' notice, the provider might charge a fee or bill the insurance company for the missed session.",0.86,0.1399999999999999
+295,20,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,0.7399999999999999,0.1399999999999999
+768,13,This makes sense because understanding how the entity handles its book-closing process is crucial.,0.86,0.1399999999999999
+684,6,"Option A says a sect is organized around beliefs that can be challenged by members, a charismatic leader, and openness to new recruits.",0.86,0.1399999999999999
+877,20,I think surplus property can still be subject to Establishment Clause issues if the transfer has the purpose or effect of advancing religion.,0.7399999999999999,0.1399999999999999
+295,0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.1224489795918367
+877,0,"Okay, so I have this question about whether a new state law would be constitutional.",0.1224489795918367,0.1224489795918367
+877,14,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.1200000000000001
+295,14,"That makes sense because usually, selling public property requires some form of competitive bidding to ensure fairness.",0.7200000000000001,0.1200000000000001
+768,1,The question is about what an accountant is required to do prior to compiling financial statements for a nonissuer.,0.34,0.12000000000000002
+37,8,"Wait, the options are approach-approach, approach-avoidance, avoidance-avoidance, and multiple approach-avoidance.",0.2,0.12000000000000001
+215,1,"The options are (A) adults with visual impairments, (B) children under the age of two, (C) children with hearing impairments, and (D) adults who are mentally retarded.",0.14,0.12000000000000001
+877,5,The question is whether this new law would be constitutional.,0.24,0.12
+877,13,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.12
+277,0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.12
+295,13,"Option A says it's unconstitutional because the law would allow selling without competitive bidding, violating equal protection.",0.6,0.12
+324,0,"Alright, so I have this question about epigenetics and a study by Moshe Szyf and colleagues.",0.12,0.12
+59,3,"His biggest hit was ""Tiptoe Through the Tulips,"" if I'm not mistaken.",0.24,0.12
+408,6,Option B claims that adaptive metabolic demand means the slope of N-balance studies underestimates protein efficiency.,0.48,0.12
+26,10,"Alternatively, dependency could sometimes be a barrier if the patient is too reliant on the therapist and doesn't develop independence.",0.66,0.12
+700,1,Let me start by understanding the scenario.,0.38,0.12
+119,8,"So, I should think about how behaviorists would describe a similar process.",0.36,0.12
+295,5,The question is whether this new law would be constitutional.,0.24,0.12
+26,21,"Dependency, if it's about the patient's ability to rely on the therapist and participate actively, could be a positive factor.",0.88,0.10000000000000009
+960,4,"I've heard terms like ""exhaustion"" before in the context of HIV.",0.56,0.10000000000000003
+819,13,This is interesting.,0.1,0.1
+37,0,"Okay, so Lupe has been dating Craig for a few months.",0.1,0.1
+212,13,This is interesting.,0.1,0.1
+215,3,I think it's used for people who might have difficulties with traditional tests.,0.18,0.09999999999999999
+3,2,Let me break down each choice.,0.96,0.09999999999999998
+960,8,That's also a possibility because HIV is known for its high mutation rate.,0.94,0.09999999999999998
+804,10,"C) Granted African-Americans the right to vote: While the Act did increase access for African Americans, it's important to note that the right to vote for African Americans was already established by the 15th Amendment in 1870.",0.98,0.09999999999999998
+375,2,Let me break down each choice.,0.96,0.09999999999999998
+371,5,"Ethics, on the other hand, deals with moral truths, like what's right or wrong.",0.96,0.09999999999999998
+700,3,"During his campaign, he refused to lie about a psychiatric problem, which cost him the election.",0.38,0.09999999999999998
+700,6,The options are (A) through (D).,0.24,0.09999999999999998
+68,2,"Hmm, I need to figure out which one fits the description of being more simplified or less elaborate in their practices.",0.64,0.09999999999999998
+768,15,This seems like a foundational step before starting the compilation.,0.98,0.09999999999999998
+371,3,Option A says both ethics and science seek to provide true beliefs about the world.,0.86,0.09999999999999987
+827,2,Let's break this down.,0.6999999999999998,0.09999999999999987
+18,1,Let's start by understanding what the question is asking.,0.36,0.09469387755102038
+960,6,"This makes sense because HIV is a long-term infection, so the immune system is constantly fighting, leading to exhaustion.",0.84,0.08489795918367338
+827,3,"First, I remember that absolutist positions in ethics often refer to a view where certain moral principles are considered to be absolutely binding, regardless of the situation.",0.7799999999999999,0.08000000000000007
+215,8,"Looking at the options, (D) is about adults who are mentally retarded.",0.8000000000000002,0.08000000000000007
+768,6,Option A says the accountant must verify that the financial information agrees with the books of original entry.,0.4000000000000001,0.08000000000000007
+399,5,Looking at the options:,0.7200000000000001,0.08000000000000007
+68,5,"They have a lot of rituals and ceremonies, so I don't think they're the ones promoting a stripped-down version.",0.92,0.08000000000000007
+145,2,"The options are A, B, C, D, each pairing different terms.",0.24,0.07999999999999999
+212,14,Coups are when the military overthrows the government.,0.18,0.07999999999999999
+164,2,"First, I need to understand what each of these terms means in the context of the Renaissance.",0.18,0.07999999999999999
+819,18,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,0.18,0.07999999999999999
+819,14,Coups are when the military overthrows the government.,0.18,0.07999999999999999
+199,2,"First, I need to understand what each of these terms means in the context of the Renaissance.",0.18,0.07999999999999999
+212,18,This seems to refer to situations where individuals or groups within the state compete for control using force or threats.,0.18,0.07999999999999999
+399,1,"The options are social ostracism, money, tranquilizers, and physical punishment.",0.62,0.07999999999999996
+399,8,"If they're ostracized, it could worsen their willingness to engage in learning, maybe making them more resistant.",0.94,0.07999999999999996
+684,8,"Also, if members can challenge beliefs, it might mean the group is dynamic.",0.98,0.07999999999999996
+18,18,"So, when the landscaper conveyed the property to the buyer with a warranty deed, they probably included similar covenants, but the issue here is the buyer's claim against the original farmer.",0.94,0.07999999999999996
+37,13,"This fits the multiple approach-avoidance conflict because she's considering multiple factors, each with their own pros and cons.",0.98,0.07999999999999996
+18,9,"Personal covenants don't run with the land, while real covenants do.",0.42,0.0730612244897959
+972,5,Option A: Appoint a nominee for the U.S.,0.2448979591836734,0.0612244897959183
+288,5,Option A: Appoint a nominee for the U.S.,0.2448979591836734,0.0612244897959183
+371,2,"First, I'll try to understand what each option is saying.",0.7600000000000001,0.060000000000000275
+960,9,"But the question mentions that the CD8 responses are vigorous, so maybe it's not just about the virus escaping; it's more about why those strong responses aren't working.",1.0,0.06000000000000005
+215,6,"But wait, the Leiter Scale is also used for adults, not just children.",0.4000000000000001,0.06000000000000005
+199,9,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",1.0,0.06000000000000005
+827,4,"For example, some might say that killing is always wrong, no matter the circumstances.",0.84,0.06000000000000005
+768,2,"The options are A, B, C, and D.",0.4000000000000001,0.06000000000000005
+408,7,I'm not too sure about this.,0.54,0.06000000000000005
+164,9,"Looking at the options, Secularism (B) seems relevant because it moved away from religious explanations and toward empirical evidence.",1.0,0.06000000000000005
+18,21,"Now, looking at the options:",1.0,0.06000000000000005
+399,11,"C) Tranquilizers: These could reduce anxiety or hyperactivity, which might help focus.",0.9,0.06000000000000005
+277,3,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.2,0.06
+877,6,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.06
+26,4,"Neurosis refers to a range of mental disorders that are characterized by distress, but not necessarily involving a loss of contact with reality.",0.08,0.06
+26,0,"Okay, so I need to figure out which of the given options contributes to a favorable prognosis for psychotherapy.",0.06,0.06
+26,1,"The options are (A) Along history of neurosis, (B) Dependency, (C) Strong reinforcement of symptoms, and (D) Misery.",0.12,0.06
+121,1,"The question gives four options, and I need to choose the correct one.",0.24,0.06
+119,7,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",0.24,0.06
+715,1,"The options are (A) all productive resources, (B) all natural resources, (C) farmland only, and (D) real estate.",0.06,0.06
+700,8,"From what I remember, in criminal cases, a defendant can sometimes offer evidence of their good character to show that they're less likely to commit a crime.",0.32,0.06
+119,6,"Now, looking at the answer choices from a behaviorist perspective.",0.18,0.06
+18,10,"The key here is whether these covenants run with the land, which would allow the buyer to sue the original grantor (the farmer) even though the buyer is not in privity with the farmer.",0.48,0.06
+295,6,"First, I remember that when the government deals with property, especially selling it, there are legal principles they have to follow.",0.3,0.06
+324,3,"Moshe Szyf's work, if I recall correctly, focuses on how stress during pregnancy affects the baby.",0.2,0.06
+164,7,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,0.62,0.05999999999999994
+199,7,The question is about conflicting with the tradition of relying on ancient philosophers like Aristotle.,0.62,0.05999999999999994
+68,9,"I remember they were a group that emerged in the 16th and 17th centuries, part of the English Reformation.",0.96,0.05999999999999994
+960,3,"In chronic HIV infection, these cells are present but not effective.",0.46,0.05999999999999994
+684,2,Let me try to break this down.,0.6,0.05999999999999994
+399,12,"But antisocial traits might not stem from such issues, so the effect might be limited.",0.96,0.05999999999999994
+877,1,Let me try to break it down.,0.18,0.05755102040816329
+295,1,Let me try to break it down.,0.18,0.05755102040816329
+18,13,It's a real covenant because it's about the title and can run with the land.,0.7755102040816326,0.04081632653061218
+26,20,"Now, considering psychotherapy prognosis, favorable factors usually include things like the patient's willingness to engage, the presence of strong support systems, clear motivation to change, and the effectiveness of the therapeutic approach.",0.7799999999999999,0.040000000000000036
+26,19,"However, sometimes people with significant misery are more motivated to seek help, which could be a positive sign.",0.7399999999999999,0.040000000000000036
+972,20,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",1.0,0.040000000000000036
+375,5,He might be addressing a more specific problem.,1.0,0.040000000000000036
+399,3,"First, antisocial personality traits are often associated with behaviors like deceitfulness, manipulation, and a disregard for social norms.",0.68,0.040000000000000036
+684,7,That sounds plausible because I think sects often have strong leaders and are open to attracting more people.,0.9,0.040000000000000036
+62,4,Not driving when sleepy is also a good decision because it's dangerous.,1.0,0.040000000000000036
+375,1,The options are A through D.,0.86,0.040000000000000036
+339,11,"If the client cancels last minute, the provider can't see another patient, so billing for the missed appointment helps cover the loss.",1.0,0.040000000000000036
+339,8,"Now, thinking about the ethical side.",0.7600000000000001,0.040000000000000036
+309,5,"So, putting it all together, respect for other persons seems like the most fundamental.",1.0,0.040000000000000036
+68,11,"They focused on a simpler, more spiritual form of worship, emphasizing the word of God and personal piety over elaborate rituals.",1.0,0.040000000000000036
+288,20,"A is more about appointment, which is an enumerated power, while B is about treaty negotiation, which the president does inherently before seeking Senate approval.",1.0,0.040000000000000036
+3,1,The options are A through D.,0.86,0.040000000000000036
+121,7,So A seems plausible.,0.98,0.040000000000000036
+3,5,He might be addressing a more specific problem.,1.0,0.040000000000000036
+119,3,"First, I need to remember what catharsis means in psychoanalysis.",0.1,0.04000000000000001
+37,2,But the problem is she can't stand his friends or his family.,0.14,0.04000000000000001
+715,15,Then there's (D) real estate.,0.04,0.04
+819,9,Option B: A sudden influx of refugees.,0.04,0.04
+37,7,"So, she might want to approach the relationship because of Craig but avoid it because of the negative aspects related to his social circle.",0.08,0.04
+212,9,Option B: A sudden influx of refugees.,0.04,0.04
+715,20,"In economics, land is considered a factor of production, specifically the natural resources that are used to produce goods.",0.04,0.04
+295,4,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.039999999999999994
+877,4,The city's school board is proposing a new law that would let them sell a vacant public school building to the church below its fair market value.,0.12,0.039999999999999994
+715,17,But does land refer exclusively to real estate?,0.06,0.039999999999999994
+768,3,Let me break them down one by one.,0.44,0.039999999999999925
+684,4,They often have distinct beliefs and practices.,0.58,0.039999999999999925
+972,3,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",0.22,0.0325
+288,3,"First, inherent powers refer to the powers that the president has by virtue of being the head of the executive branch, as outlined in the Constitution.",0.22,0.0325
+877,19,I'm not sure about that.,0.6,0.02857142857142858
+295,19,I'm not sure about that.,0.6,0.02857142857142858
+804,9,It targeted practices like voter registration requirements that were used to disenfranchise African Americans.,0.88,0.020000000000000018
+288,17,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",0.96,0.020000000000000018
+768,14,"If the accountant knows how management adjusts entries and closes the books, they can better compile the financial statements accurately.",0.88,0.020000000000000018
+972,17,"Congress. This is clearly an enumerated power in the Constitution, specifically in Article I, Section 7.",0.96,0.020000000000000018
+700,22,"If the evidence doesn't connect to the crime charged, it's irrelevant.",0.92,0.020000000000000018
+700,7,"First, I need to recall the rules about character evidence in criminal trials.",0.26,0.020000000000000018
+26,22,"On the other hand, strong reinforcement of symptoms would be negative because it sustains the problem.",0.9,0.020000000000000018
+18,19,"The buyer was evicted because of a paramount title, meaning someone else had a better claim to the property.",0.96,0.020000000000000018
+62,3,Buckling up kids is generally seen as responsible and safe.,0.96,0.020000000000000018
+399,13,"D) Physical punishment: This could lead to fear or resentment, which might actually increase antisocial behaviors rather than improve learning.",0.98,0.020000000000000018
+399,2,"I'm not entirely sure, but I'll try to break it down.",0.64,0.020000000000000018
+371,6,"So, yes, both are about finding truths, just in different domains.",0.98,0.020000000000000018
+26,7,Option (B): Dependency.,0.08,0.020000000000000004
+212,0,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",0.02,0.02
+819,0,"Alright, so I need to figure out which of the given options is the odd one out when it comes to security threats faced by weak states.",0.02,0.02
+715,4,"First, productive resources usually refer to things like labor, capital, and land that contribute to producing goods and services.",0.02,0.02
+715,13,That doesn't sound right because land includes more than just areas used for farming.,0.02,0.02
+819,7,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",0.02,0.02
+715,7,"Next, (B) all natural resources.",0.02,0.02
+37,6,"But there are things she likes about him (attraction, fun) and things she doesn't like (his friends and family).",0.04,0.02
+212,7,"I think this is a common issue in weak states because without strong governance, criminal elements can take over areas, leading to lawlessness.",0.02,0.02
+215,0,"Okay, so I'm trying to figure out which answer is correct for the question about the Leiter International Performance Scale.",0.02,0.02
+119,2,"The options are A, B, C, D.",0.06,0.019999999999999997
+277,4,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.01999999999999999
+324,4,"Specifically, I think it's about how maternal stress can influence the fetus's epigenome.",0.22,0.01999999999999999
+119,4,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",0.12,0.01999999999999999
+37,3,"So, she's dealing with some conflict here.",0.16,0.01999999999999999
+700,12,So A might not be the best argument.,0.18,0.01999999999999999
+68,6,"Roman Catholicism is similar; they have a structured liturgy, sacraments, and a lot of formal practices.",0.94,0.019999999999999907
+324,6,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.019999999999999907
+277,6,"The term ""prenatal"" refers to before birth, so it's related to the mother and the developing fetus.",0.42,0.019999999999999907
+371,1,"The options are A, B, C, and D (all of the above).",0.6999999999999998,0.019999999999999796
+819,3,"First, I should understand what a weak state is.",0.04,0.0195918367346939
+212,3,"First, I should understand what a weak state is.",0.04,0.0195918367346939
+18,12,1. Seisin: This covenant ensures that the grantor actually owns the property.,0.7346938775510204,0.014693877551020362
+408,5,"Adaptation can vary between individuals and situations, and I don't recall studies fully accounting for all possible adaptations.",0.36,0.013061224489795908
+877,16,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.013061224489795853
+295,16,Option B argues it's unconstitutional because it would establish religion.,0.6530612244897959,0.013061224489795853
+877,18,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.011428571428571344
+295,18,Option C claims it's constitutional because surplus property isn't subject to the Establishment Clause.,0.5714285714285714,0.011428571428571344
+972,7,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",0.2291666666666666,0.004676870748299311
+288,7,"I remember that the Constitution does mention the president's role in appointments, specifically in Article II, Section 2, which says the president ""shall nominate, and by and with the Advice and Consent of the Senate, shall appoint"" judges.",0.2291666666666666,0.004676870748299311
+18,14,2. Right to Convey: This covenant is about the grantor's authority to transfer the property.,0.7799999999999999,0.00448979591836729
+212,2,Let me go through each one and see how they relate to the concept of weak states.,0.0204081632653061,0.0004081632653060996
+819,2,Let me go through each one and see how they relate to the concept of weak states.,0.0204081632653061,0.0004081632653060996
+819,5,This weakness can make them more vulnerable to various security threats.,0.0204081632653061,0.0004081632653060996
+212,5,This weakness can make them more vulnerable to various security threats.,0.0204081632653061,0.0004081632653060996
+121,12,So B might not be correct.,0.98,0.0
+121,21,So D doesn't seem right.,0.98,0.0
+121,22,"Going back, I think A is correct because ideal solutions are characterized by the ability to mix in any ratio, and their properties are determined by the components' partial molar properties.",0.98,0.0
+121,8,Option B states a mixture with the same physical properties as the individual solvents.,0.98,0.0
+121,11,"For example, mixing ethanol and water lowers the boiling point compared to either pure substance.",0.98,0.0
+121,16,"For an ideal solution, I think the potential energy is the same as if the molecules were separate, but I'm not certain.",0.98,0.0
+215,14,"If someone has a visual impairment, a test that requires visual tasks might not be suitable.",0.98,0.0
+215,13,"On the other hand, (A) is about adults with visual impairments.",0.98,0.0
+819,1,"The options are A, B, C, and D.",0.02,0.0
+804,13,"The Voting Rights Act did indeed suspend their use, but it wasn't the primary purpose of the Act.",0.98,0.0
+804,14,It was part of several provisions aimed at ensuring equal access to voting.,0.98,0.0
+804,11,The Act was more about enforcement and eliminating obstacles rather than granting the right anew.,0.98,0.0
+804,12,D) Suspended the use of literacy tests at voting centers: Literacy tests were a tool used to prevent African Americans from voting.,0.98,0.0
+960,15,"Epitope escape is a factor, but if the epitopes are escaping, the response would be weaker, not necessarily vigorous.",1.0,0.0
+972,21,"C is something I'm less sure about, but I don't think it's an inherent power.",1.0,0.0
+819,12,Option C: Coup d'état or military rebellion.,0.0,0.0
+960,10,"Suboptimal CTLs would mean the cells aren't working well, maybe because of some defect or insufficient number.",1.0,0.0
+960,11,"But the question says the responses are vigorous, implying the cells are present and active, but not effective.",1.0,0.0
+960,12,"Absence of dendritic cells would affect antigen presentation, but I think dendritic cells are more about initiating the immune response, not so much the ongoingCTL activity.",1.0,0.0
+960,13,"Plus, the question is about CD8 cells, not their activation by dendritic cells.",1.0,0.0
+960,14,"Putting it together, exhaustion seems to fit because the immune system is overworked, leading to ineffective CTLs despite their presence.",1.0,0.0
+3,9,Option C mentions reconciling conflicting moral theories.,1.0,0.0
+3,8,That feels relevant.,1.0,0.0
+3,10,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,1.0,0.0
+121,15,"I know that when you mix substances, there's often a change in potential energy due to interactions between molecules.",0.98,0.0
+972,18,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",0.96,0.0
+121,17,Maybe this is a tricky point.,0.98,0.0
+121,19,"Color has more to do with the molecules absorbing certain wavelengths, but ideal solutions aren't necessarily colorless.",0.98,0.0
+121,18,Option D is a mixture that's colorless.,0.98,0.0
+121,9,"Wait, that doesn't sound right.",0.98,0.0
+121,10,"When you mix two substances, the physical properties usually change, like boiling point or density.",0.98,0.0
+3,7,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",1.0,0.0
+3,12,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",1.0,0.0
+3,11,Option D refers to giving up wealth based on Singer's arguments.,1.0,0.0
+3,6,Option B is about choosing between immediate harm and structural injustice.,1.0,0.0
+3,4,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",0.96,0.0
+972,22,D is definitely an enumerated power.,1.0,0.0
+119,15,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,1.0,0.0
+119,14,Option C mentions reduction of emotional response by extinction.,1.0,0.0
+119,5,This release is supposed to provide relief from emotional distress.,0.12,0.0
+309,1,"The options are justice, fairness, respect for other persons, or all of the above.",0.56,0.0
+715,10,"I think land specifically refers to the physical surface of the earth, not necessarily all natural resources.",0.0,0.0
+715,11,"So, (B) might be too inclusive.",0.0,0.0
+119,17,Option D talks about inhibition of emotional response through learned cognitive controls.,1.0,0.0
+119,18,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",1.0,0.0
+715,8,"Natural resources include things like minerals, forests, water, etc.",0.02,0.0
+715,6,It's just one part of it.,0.0,0.0
+277,11,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,1.0,0.0
+277,10,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",1.0,0.0
+277,9,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",1.0,0.0
+768,18,It might be part of the initial planning but not necessarily the first action.,0.98,0.0
+715,12,Option (C) is farmland only.,0.0,0.0
+715,19,"Wait, maybe I should think about the economic definition.",0.0,0.0
+768,16,Option D is about understanding specialized frameworks in the entity's industry.,0.98,0.0
+768,17,"While this is important, especially for entities in unique sectors, I think it's more about the overall environment rather than the immediate next step before compiling.",0.98,0.0
+121,14,I'm not too sure about this.,0.98,0.0
+121,13,Option C mentions a mixture where the potential energy is the same as the individual solvents.,0.98,0.0
+288,21,"C is something I'm less sure about, but I don't think it's an inherent power.",1.0,0.0
+972,19,"So, going back to the options, A and B are both powers the president has.",0.96,0.0
+121,6,"Like ethanol and water can mix in all ratios, right?",0.94,0.0
+3,3,Option A talks about the sheer scope of global poverty.,0.96,0.0
+288,13,I'm not sure where this comes from.,0.96,0.0
+288,12,Option C: Declare a state of emergency following a natural disaster.,0.96,0.0
+288,22,D is definitely an enumerated power.,1.0,0.0
+288,18,"The president can veto bills, and this is a direct power given by the Constitution, so it's not really an inherent power but a specific one.",0.96,0.0
+277,12,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",1.0,0.0
+288,19,"So, going back to the options, A and B are both powers the president has.",0.96,0.0
+215,15,"Similarly, (B) is for children under two, and while the Leiter Scale does have versions for younger children, the question is specifically about adults.",0.98,0.0
+215,16,"So putting it all together, the Leiter Scale is designed for non-verbal assessment, making it suitable for adults who can't use verbal communication, which could include those with mental retardation.",0.98,0.0
+121,20,Some solutions might have color regardless of being ideal.,0.98,0.0
+309,8,"Maybe justice and fairness are also fundamental, but I think respect is the base.",1.0,0.0
+309,6,"Therefore, the answer is probably (C).",1.0,0.0
+309,7,"But wait, could it be (D) all of the above?",1.0,0.0
+324,11,- (D) Maternal epigenetics directly ties the mother's factors to the epigenetic changes in the offspring.,1.0,0.0
+324,12,"Putting it together, the study is about how the mother's stress during pregnancy affects the fetus's epigenetics.",1.0,0.0
+700,16,Option C says it's an impermissible way to prove character.,0.62,0.0
+339,12,"This seems fair and reasonable, so ethically it might be justified.",1.0,0.0
+62,12,Both actions are responsible and considerate.,1.0,0.0
+715,0,"Okay, so I'm trying to figure out this question about what ""Land"" refers to.",0.0,0.0
+62,5,"So, this action seems positive and not wrong.",1.0,0.0
+62,6,"Maybe they could have taken other steps, but the act of buckling up the kids doesn't seem morally wrong.",1.0,0.0
+62,7,"Now, Scenario 2: ""I omitted peanuts in his meal because he's allergic to them."" Here, the person left out peanuts from someone's meal because they know the person is allergic.",1.0,0.0
+62,8,"Allergies can be severe, even life-threatening.",1.0,0.0
+62,9,"By omitting peanuts, the person is taking a responsible action to prevent harm.",1.0,0.0
+324,10,"- (C) Fetal epigenetics is about the fetus, but the influence comes from the mother.",1.0,0.0
+68,12,"Their services were more plain, without ornate decorations or the kind of elaborate ceremonies seen in other denominations.",1.0,0.0
+212,1,"The options are A, B, C, and D.",0.02,0.0
+68,7,So probably not them either.,0.94,0.0
+68,10,They wanted to purify the Church of England of what they saw as Catholic excesses.,0.96,0.0
+68,15,"They have a very plain approach to worship and meetinghouses, often without traditional sacraments.",1.0,0.0
+199,11,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",1.0,0.0
+199,10,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",1.0,0.0
+339,13,"Putting it together, the practice is likely both legal and ethical.",1.0,0.0
+199,13,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",1.0,0.0
+199,12,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,1.0,0.0
+68,16,Their meetings are more about silent reflection and waiting for the Spirit to move.,1.0,0.0
+68,17,But I'm not sure if they're as directly associated with promoting a stripped-down Christianity as the Puritans are.,1.0,0.0
+68,18,The Puritans are more specifically known for their efforts to simplify the church structure and practices.,1.0,0.0
+119,16,Catharsis isn't exactly about extinguishing emotions but about expressing them.,1.0,0.0
+68,14,"Quakers, on the other hand, are known for their simplicity as well.",1.0,0.0
+68,13,So this seems to fit the idea of a stripped-down Christianity.,1.0,0.0
+371,11,Option C states both involve testing general principles by examining their logical consequences.,0.98,0.0
+371,10,"So, both are important for a meaningful life, which seems correct.",0.98,0.0
+371,9,"Science contributes by advancing knowledge, which can improve our quality of life through technology and understanding.",0.98,0.0
+371,8,Ethics definitely plays a role in guiding how we live and make decisions.,0.98,0.0
+375,10,That's a bit abstract and might be more about theoretical discussions rather than a practical paralysis.,1.0,0.0
+375,9,Option C mentions reconciling conflicting moral theories.,1.0,0.0
+375,8,That feels relevant.,1.0,0.0
+375,7,"This seems like a common ethical dilemma—whether to fix an immediate problem or tackle deeper, systemic issues.",1.0,0.0
+375,6,Option B is about choosing between immediate harm and structural injustice.,1.0,0.0
+375,4,"That's a big issue, but I'm not sure if that's what Ashford is focusing on.",0.96,0.0
+375,3,Option A talks about the sheer scope of global poverty.,0.96,0.0
+371,16,"Putting it all together, each option A, B, and C seems to correctly describe similarities between ethics and science.",0.98,0.0
+62,1,"There are two scenarios, and I need to analyze each one.",0.3,0.0
+59,5,"I've heard that Tiny Tim himself played the accordion in that song, which made it a hit.",1.0,0.0
+62,11,"So, neither scenario involves a morally wrong action.",1.0,0.0
+62,10,"This seems like the right thing to do, not wrong.",1.0,0.0
+324,9,"- (B) Social epigenetics might relate to social factors, but the study here is more about biological stress during pregnancy.",1.0,0.0
+684,16,Option D refers to the idea of the secular world as sacred.,0.98,0.0
+684,17,That sounds more like a philosophical perspective rather than something a sect is organized around.,0.98,0.0
+684,14,But democratic leadership doesn't quite fit because sects are often led by a single charismatic figure rather than a group.,0.98,0.0
+684,9,Option B mentions tolerance towards other religions and separation of church and state.,0.98,0.0
+684,18,"Sects are typically focused on their own beliefs, not necessarily on the secular world.",0.98,0.0
+684,15,So maybe C isn't the best choice.,0.98,0.0
+371,12,"In science, theories are tested by their predictions and logical outcomes; if the consequences don't align with observations, the theory is revised.",0.98,0.0
+371,4,That makes sense because science aims to discover truths about the universe through observation and experimentation.,0.86,0.0
+371,7,Option B claims both are essential components of a worthwhile life.,0.98,0.0
+212,12,Option C: Coup d'état or military rebellion.,0.0,0.0
+684,13,Voluntary membership makes sense because people join sects willingly.,0.98,0.0
+371,15,"So, this seems accurate too.",0.98,0.0
+371,14,"For example, a moral principle might be evaluated based on how it affects various situations and whether it leads to consistent and just outcomes.",0.98,0.0
+119,19,"So, comparing these, option B seems the best fit.",1.0,0.0
+371,13,Ethics also involves testing principles by considering their logical outcomes.,0.98,0.0
+375,11,Option D refers to giving up wealth based on Singer's arguments.,1.0,0.0
+375,12,"Singer's utilitarian views are about giving as much as possible, but I'm not sure if that's the main issue Ashford is addressing.",1.0,0.0
+408,12,So maybe this is correct because it includes a buffer for different adaptations.,0.98,0.0
+408,13,Option D says adaptation shouldn't influence N-balance interpretations.,0.98,0.0
+408,11,"EAR is the Estimated Average Requirement, and 2SD accounts for variability.",0.98,0.0
+684,10,"That seems more like characteristics of a broader religious organization, maybe a denomination, rather than a sect.",0.98,0.0
+684,11,Sects are usually more insular and might not be as tolerant.,0.98,0.0
+684,12,"Option C talks about voluntary membership, democratic leadership, and high emotional commitment.",0.98,0.0
+408,14,"That doesn't make sense because adaptation definitely affects how much protein is needed, so it must play a role.",0.98,0.0
+684,19,"So putting it together, A seems the best fit.",0.98,0.0
+164,11,"Humanism (A) actually supports studying classical texts, so it wouldn't conflict as much.",1.0,0.0
+164,12,Individualism (C) is more about personal freedom and doesn't directly relate to questioning ancient authorities.,1.0,0.0
+37,1,"She's attracted to him and has fun with him, which sounds like she likes being with him.",0.1,0.0
+18,22,A) Buyer because covenants run with the land.,1.0,0.0
+26,6,"However, a history of neurosis itself might not directly contribute to a favorable prognosis unless it's about how they've managed stress before.",0.06,0.0
+26,16,Option (D): Misery.,0.6,0.0
+164,10,"This would conflict with the traditional authority of Aristotle, who was often tied to religious and scholastic thought.",1.0,0.0
+145,14,"I don't think it's about environmental relationship because that seems more about the physical space, which I don't recall Pine and Gilmore focusing on.",1.0,0.0
+145,13,"Looking at the options, that's option C: Customer participation and customer relationship.",1.0,0.0
+145,12,"Putting these together, the two dimensions are customer participation and customer relationship.",1.0,0.0
+164,13,"Arête (D) is about virtue, which isn't really about conflicting with the method of experimentation.",1.0,0.0
+145,11,"So, that would be customer relationship.",1.0,0.0
+827,10,"Option C is ""the ends justify the means."" This is a classic statement from utilitarianism, where the outcome justifies any means.",1.0,0.0
+972,12,Option C: Declare a state of emergency following a natural disaster.,0.96,0.0
+827,11,Absolutists typically reject this because they believe certain actions are wrong regardless of the outcome.,1.0,0.0
+827,12,"Option D says ""the hostility should be directed at its true object."" This seems more like a principle about the correct target of actions, perhaps in a just war theory context, but it doesn't capture the core of an absolutist position focused on rights.",1.0,0.0
+972,13,I'm not sure where this comes from.,0.96,0.0
+960,7,Epitope escape is when the virus mutates so that the immune cells can't recognize them anymore.,0.84,0.0
+827,8,"That sounds more like a consequentialist view, where the morality of an action is based on the outcomes.",1.0,0.0
+827,7,Option B is about permissible harm as a foreseen but unintended consequence.,1.0,0.0
+827,6,"It suggests that no matter what, human life is protected.",1.0,0.0
+827,9,"If harm is foreseen but not intended, it might be permissible, which doesn't sound like the core of an absolutist position.",1.0,0.0
+18,3,"The deed had three covenants: seisin, right to convey, and against encumbrances.",0.32,-0.006530612244897871
+295,11,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,-0.011020408163265216
+877,11,"It prohibits the government from making any law ""respecting an establishment of religion."" This means the government can't favor one religion over another or support religious activities too closely.",0.54,-0.011020408163265216
+18,8,"First, I remember that covenants in a deed can be either personal or real covenants.",0.3469387755102041,-0.013061224489795908
+18,5,"Later, the buyer was evicted because of a paramount title.",0.28,-0.019999999999999962
+819,19,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",0.16,-0.01999999999999999
+877,2,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,-0.01999999999999999
+212,19,"In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.",0.16,-0.01999999999999999
+215,4,Maybe it's for non-verbal individuals or those with certain impairments.,0.16,-0.01999999999999999
+26,2,"First, I should understand what each term means in the context of psychotherapy.",0.1,-0.01999999999999999
+295,2,The situation is that a state law currently requires vacant public school buildings to be sold at auction to the highest bidder.,0.16,-0.01999999999999999
+145,3,"First, I remember that Pine and Gilmore are known for their work in the Experience Economy.",0.22,-0.01999999999999999
+121,2,Let me go through each option one by one.,0.22,-0.01999999999999999
+145,7,"So, that would be something like customer participation.",0.14,-0.01999999999999999
+212,8,So this fits as a typical security threat.,0.0,-0.02
+715,5,"So, (A) all productive resources seems too broad because land isn't the only productive resource.",0.0,-0.02
+819,11,"This can strain their already limited infrastructure and social services, making it a plausible threat.",0.0,-0.02
+819,10,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,0.02,-0.02
+715,9,"Land is definitely a natural resource, but does it encompass all of them?",0.0,-0.02
+715,16,"Real estate involves land and the buildings on it, like houses and commercial properties.",0.02,-0.02
+715,14,"It's about the entire surface, including urban areas, forests, etc.",0.0,-0.02
+819,4,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",0.02,-0.02
+819,8,So this fits as a typical security threat.,0.0,-0.02
+715,3,Let me break it down.,0.0,-0.02
+212,4,"From what I remember, a weak state is one that lacks the capacity to effectively govern its territory, enforce laws, maintain order, and protect its citizens.",0.02,-0.02
+212,11,"This can strain their already limited infrastructure and social services, making it a plausible threat.",0.0,-0.02
+212,10,Weak states might struggle to handle refugee flows because they don't have the resources to provide for large numbers of displaced people.,0.02,-0.02
+212,21,Let's analyze each:,0.08,-0.020000000000000004
+819,21,Let's analyze each:,0.08,-0.020000000000000004
+26,5,People with neuroses often have a history of coping mechanisms or defense mechanisms that might either help or hinder therapy.,0.06,-0.020000000000000004
+18,20,"This likely relates to the covenants of seisin or against encumbrances, as those deal with the title being clear.",0.94,-0.020000000000000018
+399,10,I'm not sure how effective money is here.,0.84,-0.020000000000000018
+827,1,"The options are A, B, C, D.",0.6,-0.020000000000000018
+18,4,"Then, the landscaper conveyed the property to a buyer using a warranty deed.",0.3,-0.020000000000000018
+715,22,"But in some contexts, like in real estate terms, land is just the property without the buildings.",0.7399999999999999,-0.02000000000000024
+819,6,Looking at option A: Warlordism and the influence of criminal gangs.,0.0,-0.0204081632653061
+212,6,Looking at option A: Warlordism and the influence of criminal gangs.,0.0,-0.0204081632653061
+288,6,Supreme Court.,0.2244897959183673,-0.020408163265306117
+972,6,Supreme Court.,0.2244897959183673,-0.020408163265306117
+18,2,A farmer conveyed 100 acres to a landscaper.,0.3265306122448979,-0.03346938775510211
+288,4,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,0.1836734693877551,-0.03632653061224489
+972,4,These aren't explicitly listed in the Constitution but are understood to be part of the president's role.,0.1836734693877551,-0.03632653061224489
+68,8,"Now, the Puritans.",0.9,-0.039999999999999925
+804,6,"A) Granted women the right to vote: I remember that women's suffrage was achieved through the 19th Amendment to the Constitution, which was passed in 1920.",0.44,-0.03999999999999998
+715,2,"Hmm, I remember from my classes that land is one of the factors of production, but I'm not entirely sure about the exact definition here.",0.02,-0.039999999999999994
+37,5,"In this case, Lupe's goal is probably to continue her relationship with Craig.",0.02,-0.039999999999999994
+59,2,"I'm not super familiar with Tiny Tim, but I remember he was a pop icon in the 50s and 60s.",0.12,-0.04000000000000001
+26,15,So this might not be a favorable factor.,0.6,-0.040000000000000036
+26,13,"If symptoms are strongly reinforced, it means the patient might be getting more of what they need to continue experiencing those symptoms.",0.48,-0.040000000000000036
+18,15,I think this is also a real covenant because it relates to the title and can benefit subsequent owners.,0.7399999999999999,-0.040000000000000036
+399,4,"People with these traits might struggle with learning, especially if learning environments are structured in ways that require cooperation, empathy, or adherence to rules.",0.64,-0.040000000000000036
+288,15,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",0.7959183673469387,-0.04408163265306131
+972,15,"I think this might be something that's been done through executive orders, but I'm not certain if it's an inherent power or if it's derived from other sources like laws passed by Congress.",0.7959183673469387,-0.04408163265306131
+768,12,Option C talks about making inquiries of management about their procedures for adjusting and closing the books.,0.7200000000000001,-0.05999999999999983
+339,7,"So, legally, it might be okay.",0.7200000000000001,-0.05999999999999983
+684,3,"First, I remember that a sect is a subgroup or a smaller organization within a larger religious or ideological group.",0.54,-0.05999999999999994
+715,18,I don't think so because land can be unused or just the surface without any structures.,0.0,-0.06
+819,20,"Now, I need to determine which one is the odd one out.",0.1,-0.06
+119,9,Option A says a decrease in affective responses because of therapeutic directions.,0.3,-0.06
+768,9,Option B mentions performing preliminary analytical procedures to identify specific risks.,0.18,-0.06
+700,4,"He said, ""If I lied, I'd be mayor today, but that's no way to win an election.""",0.32,-0.06
+212,20,"Now, I need to determine which one is the odd one out.",0.1,-0.06
+408,3,Option A says adaptation is fully accounted for in nitrogen balance studies.,0.42,-0.06
+215,2,"First, I remember that the Leiter Scale is an intelligence test, but I'm not exactly sure who it's designed for.",0.08,-0.06000000000000001
+18,6,"Now, the buyer is suing the farmer for breach of the covenants in the deed.",0.22,-0.060000000000000026
+877,12,Looking at the answer choices:,0.48,-0.06000000000000005
+295,12,Looking at the answer choices:,0.48,-0.06000000000000005
+768,7,"That sounds like part of the verification process, maybe during the audit or review, but I'm not sure if it's the first step before compiling.",0.34,-0.06000000000000005
+804,2,Let's break it down.,0.48,-0.06000000000000005
+26,11,Option (C): Strong reinforcement of symptoms.,0.6,-0.06000000000000005
+215,9,I'm not sure if the Leiter Scale is specifically for mentally retarded individuals or if it's more general.,0.7399999999999999,-0.060000000000000275
+288,9,Option B: Negotiate a treaty with another country.,0.36,-0.0685714285714285
+972,9,Option B: Negotiate a treaty with another country.,0.36,-0.0685714285714285
+295,10,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,-0.06897959183673474
+877,10,"Then, there's the Establishment Clause, which is part of the First Amendment.",0.5510204081632653,-0.06897959183673474
+408,4,I don't think that's right.,0.3469387755102041,-0.0730612244897959
+288,1,"The options are A, B, C, and D.",0.28,-0.07416666666666666
+972,1,"The options are A, B, C, and D.",0.28,-0.07416666666666666
+18,16,3. Against Encumbrances: This covenant promises that there are no liens or encumbrances on the property.,0.66,-0.07999999999999985
+26,12,Reinforcement in psychology refers to anything that increases the likelihood of a behavior.,0.52,-0.07999999999999996
+804,1,"The options are A, B, C, and D.",0.54,-0.07999999999999996
+199,6,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",0.56,-0.07999999999999996
+339,3,"First, I need to consider the legal aspect.",0.5,-0.07999999999999996
+399,9,"B) Money: Financial incentives might influence behavior, but antisocial personalities might be more motivated by immediate gains rather than long-term learning.",0.86,-0.07999999999999996
+164,6,"Arête is related to excellence or virtue, more from ancient Greek philosophy.",0.56,-0.07999999999999996
+199,1,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",0.1,-0.07999999999999999
+164,1,"The options are (A) Humanism, (B) Secularism, (C) Individualism, and (D) Arête.",0.1,-0.07999999999999999
+295,3,"Now, a church wants to get a larger facility for its school.",0.08,-0.08
+877,3,"Now, a church wants to get a larger facility for its school.",0.08,-0.08
+26,3,Starting with option (A): Along history of neurosis.,0.02,-0.08
+700,18,"If the man is offering his past conduct as evidence of his good character, that should be permissible under the rules.",0.38,-0.08000000000000002
+119,11,Option B is redirection of anxiety because of therapeutic influences.,0.38,-0.08000000000000002
+145,8,"If the customer is actively involved, it's one realm, and if they're just observing or experiencing it passively, it's another.",0.06,-0.08000000000000002
+877,15,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,-0.08000000000000007
+68,4,"Greek Orthodox is known for its rich traditions, icons, and liturgical practices.",0.84,-0.08000000000000007
+339,6,I think this is common and probably allowed under the terms of the insurance contracts.,0.7799999999999999,-0.08000000000000007
+295,15,"If the law lets them sell below market value to the church without a competitive process, that could be unequal treatment.",0.64,-0.08000000000000007
+288,2,Let me break them down one by one.,0.1875,-0.09250000000000003
+972,2,Let me break them down one by one.,0.1875,-0.09250000000000003
+295,17,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,-0.09306122448979581
+877,17,"The church is a religious institution, so transferring a public building to them might be seen as the government supporting religion, which is against the Establishment Clause.",0.56,-0.09306122448979581
+960,2,"First, I remember that CD8 cells are cytotoxic T lymphocytes (CTLs), which are supposed to kill infected cells.",0.4000000000000001,-0.09999999999999992
+700,2,A man is charged with tax fraud and wants to use evidence of his honesty from when he ran for mayor.,0.28,-0.09999999999999998
+700,11,"But I think that's not entirely true because the defendant can introduce evidence of good character, especially under Federal Rule of Evidence 405(a), which allows for specific instances of conduct.",0.16,-0.1
+145,6,I think one dimension is about whether the customer is participating actively or passively.,0.16,-0.1
+37,4,"Hmm, approach-avoidance conflicts are when a person has both positive and negative feelings about a single goal.",0.06,-0.1
+119,1,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",0.04,-0.1
+768,8,It feels more like a step during the compilation rather than prior to it.,0.24,-0.10000000000000003
+309,3,"Rights and desert are important, but they might stem from the basic respect for individuals.",0.82,-0.10000000000000009
+215,10,"I think the Leiter Scale is designed to assess intelligence without verbal communication, which makes it useful for a wide range of people, including those with hearing impairments or other cognitive challenges.",0.62,-0.11999999999999988
+212,15,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",0.06,-0.12
+212,17,Option D: Competition for power or coercion from strongmen.,0.1,-0.12
+288,14,The Constitution doesn't explicitly mention the president declaring a state of emergency.,0.84,-0.12
+408,1,"I remember from my studies that nitrogen balance studies are used to determine protein requirements, but I'm a bit fuzzy on how adaptation plays into this.",0.34,-0.12
+819,15,"In weak states, where the military might be stronger than the civilian government, coups are a significant threat.",0.06,-0.12
+819,17,Option D: Competition for power or coercion from strongmen.,0.1,-0.12
+684,1,"The options are A, B, C, D.",0.54,-0.12
+972,14,The Constitution doesn't explicitly mention the president declaring a state of emergency.,0.84,-0.12
+37,10,"Avoidance-avoidance is when two negative things are conflicting, but here she has both positive and negative feelings towards the same relationship.",0.28,-0.12000000000000005
+68,1,"The options are Greek Orthodox, Roman Catholic, Puritans, and Quakers.",0.54,-0.14
+700,17,I'm a bit confused about this.,0.46,-0.15999999999999998
+145,5,They used two main dimensions to categorize these realms.,0.26,-0.15999999999999998
+408,9,Option C suggests variable adaptation between studies is accounted for by using EAR+2SD.,0.56,-0.16000000000000003
+277,2,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,-0.18
+700,14,"That makes sense because a single act, even if it shows honesty, doesn't establish a consistent character.",0.24,-0.18
+700,5,The question is asking what the best argument of the objector (the person opposing this evidence) would be.,0.14,-0.18
+324,2,"First, I remember that epigenetics deals with changes in gene expression that don't alter the DNA sequence.",0.14,-0.18
+59,1,"The options are ukulele, kazoo, accordion, or fiddle.",0.16,-0.19999999999999998
+145,1,The question asks what two dimensions they used to derive these realms.,0.16,-0.19999999999999998
+700,9,But there are rules about how this can be done.,0.12,-0.2
+399,6,A) Social ostracism: This is being excluded or ignored by others.,0.52,-0.20000000000000007
+339,1,Penny Pincher's practice of billing clients' insurance companies for her full hourly fee when appointments are canceled less than 24 hours before is legal and ethical.,0.36,-0.20000000000000007
+877,8,That clause says that states can't treat people differently without a good reason.,0.26,-0.21999999999999997
+972,10,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",0.14,-0.21999999999999997
+700,20,Option D says the evidence is irrelevant.,0.38,-0.21999999999999997
+295,8,That clause says that states can't treat people differently without a good reason.,0.26,-0.21999999999999997
+288,10,"The Constitution states in Article II, Section 2 that the president has the power to negotiate treaties, but they need to be approved by the Senate.",0.14,-0.21999999999999997
+339,9,Is it ethical to bill for a service that wasn't provided?,0.54,-0.22000000000000008
+877,21,Option D says it's okay because the law doesn't primarily support the church's religious activities.,0.46,-0.27999999999999986
+295,21,Option D says it's okay because the law doesn't primarily support the church's religious activities.,0.46,-0.27999999999999986
+26,17,Misery refers to the patient's level of suffering.,0.32,-0.27999999999999997
+768,5,But what exactly does the accountant need to do before starting this process?,0.32,-0.3
+804,4,It was enacted to overcome legal barriers that prevented African Americans from exercising their right to vote.,0.24,-0.4999999999999999
