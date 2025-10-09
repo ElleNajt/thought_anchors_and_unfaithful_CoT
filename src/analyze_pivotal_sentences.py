@@ -135,6 +135,11 @@ def main():
                 problem_df[problem_df["sentence_num"] < sentence_num]["sentence"].tolist()
             )
 
+            # Get CoT after this sentence
+            cot_after = "\n".join(
+                problem_df[problem_df["sentence_num"] > sentence_num]["sentence"].tolist()
+            )
+
             # Build and send prompt
             prompt = build_analysis_prompt(
                 context=context,
@@ -157,6 +162,7 @@ def main():
                 "pivotal_sentence": row["sentence"],
                 "context": context,
                 "cot_before": cot_before,
+                "cot_after": cot_after,
                 "analysis": analysis
             })
 
@@ -181,6 +187,14 @@ def main():
                     f.write(f"> {line}\n")
             else:
                 f.write("> (This was the first sentence)\n")
+            f.write("\n")
+
+            f.write(f"### Continuation (CoT after pivot):\n\n")
+            if result['cot_after']:
+                for line in result['cot_after'].split('\n'):
+                    f.write(f"> {line}\n")
+            else:
+                f.write("> (This was the last sentence)\n")
             f.write("\n---\n\n")
 
     print(f"✓ Analysis complete! Results saved to {OUTPUT_FILE}")
