@@ -1,0 +1,87 @@
+pn,sentence_num,sentence,true_cue_p,predicted_cue_p,error
+26,0.0,"Okay, so I need to figure out which of the given options contributes to a favorable prognosis for psychotherapy.",0.06,0.2550760904947917,-0.1950760904947917
+26,1.0,"The options are (A) Along history of neurosis, (B) Dependency, (C) Strong reinforcement of symptoms, and (D) Misery.",0.12,0.24253082275390625,-0.12253082275390625
+26,2.0,"First, I should understand what each term means in the context of psychotherapy.",0.10000000000000002,0.3173116048177083,-0.21731160481770828
+26,3.0,Starting with option (A): Along history of neurosis.,0.02,0.5034077962239584,-0.48340779622395835
+26,4.0,"Neurosis refers to a range of mental disorders that are characterized by distress, but not necessarily involving a loss of contact with reality.",0.08,0.4579925537109375,-0.3779925537109375
+26,5.0,People with neuroses often have a history of coping mechanisms or defense mechanisms that might either help or hinder therapy.,0.06,0.6053670247395834,-0.5453670247395834
+26,6.0,"However, a history of neurosis itself might not directly contribute to a favorable prognosis unless it's about how they've managed stress before.",0.06,0.583038330078125,-0.523038330078125
+26,7.0,Option (B): Dependency.,0.08,0.5740102132161459,-0.49401021321614585
+26,8.0,Dependency in this context likely refers to the patient's ability to depend on others or their willingness to engage in the therapeutic process.,0.36000000000000004,0.6656443277994791,-0.3056443277994791
+26,9.0,"High dependency might mean the patient is more likely to follow through with therapy, which could be a positive factor.",0.54,0.7718607584635416,-0.2318607584635416
+26,10.0,"Alternatively, dependency could sometimes be a barrier if the patient is too reliant on the therapist and doesn't develop independence.",0.66,0.7033182779947916,-0.0433182779947916
+26,11.0,Option (C): Strong reinforcement of symptoms.,0.6,0.8588358561197916,-0.25883585611979165
+26,12.0,Reinforcement in psychology refers to anything that increases the likelihood of a behavior.,0.52,0.8600056966145834,-0.34000569661458335
+26,13.0,"If symptoms are strongly reinforced, it means the patient might be getting more of what they need to continue experiencing those symptoms.",0.48,0.8814595540364584,-0.4014595540364584
+26,14.0,This would likely make the prognosis worse because the symptoms are maintained rather than reduced.,0.64,0.8137919108072916,-0.17379191080729162
+26,15.0,So this might not be a favorable factor.,0.6,0.7900187174479166,-0.19001871744791665
+26,16.0,Option (D): Misery.,0.6,0.8123982747395834,-0.2123982747395834
+26,17.0,Misery refers to the patient's level of suffering.,0.32,0.7448628743489584,-0.42486287434895836
+26,18.0,"While a high level of misery might indicate a strong motivation to change, it can also be a negative factor if the person is overwhelmed or unable to cope.",0.6999999999999998,0.7194417317708334,-0.019441731770833526
+26,19.0,"However, sometimes people with significant misery are more motivated to seek help, which could be a positive sign.",0.7399999999999999,0.6405487060546875,0.09945129394531238
+59,0.0,"Okay, so I need to figure out what musical instrument Tiny Tim was famous for playing.",0.36000000000000004,0.5234476725260416,-0.1634476725260416
+59,1.0,"The options are ukulele, kazoo, accordion, or fiddle.",0.16,0.5738627115885416,-0.4138627115885416
+59,2.0,"I'm not super familiar with Tiny Tim, but I remember he was a pop icon in the 50s and 60s.",0.12,0.33182525634765625,-0.21182525634765625
+59,3.0,"His biggest hit was ""Tiptoe Through the Tulips,"" if I'm not mistaken.",0.24,0.4144744873046875,-0.1744744873046875
+59,4.0,"I think that song has a very distinctive sound, and I believe it's the accordion that's playing the main melody.",1.0,0.2566426595052083,0.7433573404947917
+59,5.0,"I've heard that Tiny Tim himself played the accordion in that song, which made it a hit.",1.0,0.692291259765625,0.307708740234375
+119,0.0,"Okay, so I have this question about psychoanalytic theory and behaviorist terms.",0.14,0.20780436197916666,-0.06780436197916664
+119,1.0,"The question is asking what ""catharsis"" in psychoanalytic theory would be called by behaviorists.",0.04,0.28075408935546875,-0.24075408935546874
+119,2.0,"The options are A, B, C, D.",0.06,0.3740132649739583,-0.3140132649739583
+119,3.0,"First, I need to remember what catharsis means in psychoanalysis.",0.10000000000000002,0.12650299072265625,-0.02650299072265623
+119,4.0,"From what I recall, catharsis refers to the process where a client releases repressed emotions, usually through talking about them in therapy.",0.12,0.24647013346354166,-0.12647013346354166
+119,5.0,This release is supposed to provide relief from emotional distress.,0.12,0.3733164469401042,-0.2533164469401042
+119,6.0,"Now, looking at the answer choices from a behaviorist perspective.",0.18000000000000002,0.4847462972005208,-0.3047462972005208
+119,7.0,"Behaviorism focuses on observable behaviors and learning processes, like conditioning.",0.24,0.3199361165364583,-0.07993611653645832
+119,8.0,"So, I should think about how behaviorists would describe a similar process.",0.36000000000000004,0.14992777506510416,0.21007222493489588
+119,9.0,Option A says a decrease in affective responses because of therapeutic directions.,0.3,0.6503702799479166,-0.35037027994791664
+119,10.0,"That sounds a bit like the therapist telling the client to calm down, but catharsis is more about expressing emotions rather than just reducing them.",0.46,0.4543253580729167,0.005674641927083335
+119,11.0,Option B is redirection of anxiety because of therapeutic influences.,0.38000000000000006,0.8029581705729166,-0.42295817057291657
+119,12.0,"Behaviorists might use techniques like systematic desensitization, where anxiety is redirected to a less harmful response.",0.7399999999999999,0.6732889811197916,0.06671101888020825
+119,13.0,"That seems closer to what catharsis achieves, which is channeling emotions in a healthier way.",1.0,0.9284261067708334,0.07157389322916663
+119,14.0,Option C mentions reduction of emotional response by extinction.,1.0,0.798675537109375,0.201324462890625
+119,15.0,Extinction is a behavioral principle where a response decreases because it's no longer reinforced.,1.0,0.763336181640625,0.236663818359375
+119,16.0,Catharsis isn't exactly about extinguishing emotions but about expressing them.,1.0,0.8009847005208334,0.19901529947916663
+119,17.0,Option D talks about inhibition of emotional response through learned cognitive controls.,1.0,0.672027587890625,0.327972412109375
+119,18.0,"This seems more like cognitive-behavioral approaches, where you learn to control your emotions, not necessarily the release aspect of catharsis.",1.0,0.8653462727864584,0.13465372721354163
+119,19.0,"So, comparing these, option B seems the best fit.",1.0,0.6995747884114584,0.30042521158854163
+700,0.0,"Okay, so I'm trying to figure out the best answer to this question.",0.26,0.09478505452473958,0.16521494547526044
+700,1.0,Let me start by understanding the scenario.,0.38000000000000006,0.2415008544921875,0.13849914550781256
+700,2.0,A man is charged with tax fraud and wants to use evidence of his honesty from when he ran for mayor.,0.28,0.37442779541015625,-0.09442779541015622
+700,3.0,"During his campaign, he refused to lie about a psychiatric problem, which cost him the election.",0.38000000000000006,0.34937795003255206,0.030622049967447995
+700,4.0,"He said, ""If I lied, I'd be mayor today, but that's no way to win an election.""",0.32,0.3903452555338542,-0.07034525553385418
+700,5.0,The question is asking what the best argument of the objector (the person opposing this evidence) would be.,0.14,0.3379313151041667,-0.19793131510416667
+700,6.0,The options are (A) through (D).,0.24,0.5356699625651041,-0.29566996256510414
+700,7.0,"First, I need to recall the rules about character evidence in criminal trials.",0.26,0.5495961507161459,-0.28959615071614586
+700,8.0,"From what I remember, in criminal cases, a defendant can sometimes offer evidence of their good character to show that they're less likely to commit a crime.",0.32,0.56439208984375,-0.24439208984375
+700,9.0,But there are rules about how this can be done.,0.12,0.772552490234375,-0.652552490234375
+700,10.0,Option A says character evidence isn't admissible.,0.26,0.7646687825520834,-0.5046687825520834
+700,11.0,"But I think that's not entirely true because the defendant can introduce evidence of good character, especially under Federal Rule of Evidence 405(a), which allows for specific instances of conduct.",0.16,0.9200948079427084,-0.7600948079427083
+700,12.0,So A might not be the best argument.,0.18000000000000002,0.947265625,-0.767265625
+700,13.0,Option B says one incident doesn't prove character.,0.42,0.9017842610677084,-0.4817842610677084
+700,14.0,"That makes sense because a single act, even if it shows honesty, doesn't establish a consistent character.",0.24,0.8889872233072916,-0.6489872233072916
+700,15.0,But I'm not sure if this is the strongest argument here.,0.62,0.8357645670572916,-0.21576456705729163
+700,16.0,Option C says it's an impermissible way to prove character.,0.62,0.8470458984375,-0.2270458984375
+700,17.0,I'm a bit confused about this.,0.46,0.7682698567708334,-0.30826985677083335
+700,18.0,"If the man is offering his past conduct as evidence of his good character, that should be permissible under the rules.",0.38000000000000006,0.8027445475260416,-0.42274454752604157
+700,19.0,So maybe C isn't the right choice.,0.6,0.6794789632161459,-0.07947896321614589
+715,0.0,"Okay, so I'm trying to figure out this question about what ""Land"" refers to.",0.0,0.4856313069661458,-0.4856313069661458
+715,1.0,"The options are (A) all productive resources, (B) all natural resources, (C) farmland only, and (D) real estate.",0.06,0.5150400797526041,-0.45504007975260413
+715,2.0,"Hmm, I remember from my classes that land is one of the factors of production, but I'm not entirely sure about the exact definition here.",0.02,0.3939259847005208,-0.3739259847005208
+715,3.0,Let me break it down.,0.0,0.4404805501302083,-0.4404805501302083
+715,4.0,"First, productive resources usually refer to things like labor, capital, and land that contribute to producing goods and services.",0.02,0.683746337890625,-0.663746337890625
+715,5.0,"So, (A) all productive resources seems too broad because land isn't the only productive resource.",0.0,0.419158935546875,-0.419158935546875
+715,6.0,It's just one part of it.,0.0,0.5176137288411459,-0.5176137288411459
+715,7.0,"Next, (B) all natural resources.",0.02,0.5253346761067709,-0.5053346761067709
+715,8.0,"Natural resources include things like minerals, forests, water, etc.",0.02,0.5319925944010416,-0.5119925944010416
+715,9.0,"Land is definitely a natural resource, but does it encompass all of them?",0.0,0.6820068359375,-0.6820068359375
+715,10.0,"I think land specifically refers to the physical surface of the earth, not necessarily all natural resources.",0.0,0.4733174641927083,-0.4733174641927083
+715,11.0,"So, (B) might be too inclusive.",0.0,0.8090413411458334,-0.8090413411458334
+715,12.0,Option (C) is farmland only.,0.0,0.8411763509114584,-0.8411763509114584
+715,13.0,That doesn't sound right because land includes more than just areas used for farming.,0.02,0.9222513834635416,-0.9022513834635416
+715,14.0,"It's about the entire surface, including urban areas, forests, etc.",0.0,0.8034464518229166,-0.8034464518229166
+715,15.0,Then there's (D) real estate.,0.04,0.785919189453125,-0.745919189453125
+715,16.0,"Real estate involves land and the buildings on it, like houses and commercial properties.",0.02,0.8076985677083334,-0.7876985677083334
+715,17.0,But does land refer exclusively to real estate?,0.06,0.7778727213541666,-0.7178727213541667
+715,18.0,I don't think so because land can be unused or just the surface without any structures.,0.0,0.7581278483072916,-0.7581278483072916
+715,19.0,"Wait, maybe I should think about the economic definition.",0.0,0.5704345703125,-0.5704345703125

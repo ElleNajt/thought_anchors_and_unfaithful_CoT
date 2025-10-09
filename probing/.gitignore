@@ -1,0 +1,9 @@
+# Ignore generated results
+results/data/
+results/figures/
+
+# But keep the directory structure
+!results/data/.gitkeep
+!results/figures/.gitkeep
+!results/.gitkeep
+
