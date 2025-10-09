@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
 Track answer option logits (A, B, C, D) over time for each problem
-and plot them alongside cue_p by sentence.
+and plot them alongside cue_p by normalized CoT position.
 
-This script:
-1. Loads problems with CoT reasoning
-2. For each sentence position, gets the logits for each answer option (A, B, C, D)
-3. Plots the logits over time along with cue_p progression
-4. Identifies which sentences cause the biggest shifts in answer preferences
+This script uses CUMULATIVE TRANSPLANTATION:
+1. Loads problems with hint-influenced CoT reasoning
+2. For each position (0 to 1), transplants an increasing PREFIX of hint-influenced CoT
+   - Position 0.2: transplant first 20% of hint CoT
+   - Position 0.5: transplant first 50% of hint CoT  
+   - Position 1.0: transplant entire hint CoT
+3. Gets the logits for each answer option (A, B, C, D) after each cumulative transplantation
+4. Plots the logits over normalized position along with cue_p progression
+5. Shows how answer preferences build up as more hint-influenced sentences are added
 """
 
 import os
@@ -90,9 +94,49 @@ def split_into_sentences(text):
     return sentences
 
 
+def build_transplanted_prompt(problem, num_sentences):
+    """
+    Build a transplanted prompt with CUMULATIVE hint sentences:
+    [no-hint question] + [hint sentences 0 to num_sentences-1]
+    
+    This transplants an increasing PREFIX of the hint-influenced CoT.
+    
+    Args:
+        problem: Problem data dict with both 'reasoning_text' (hint) and 'base_reasoning_text' (non-hint)
+        num_sentences: How many hint sentences to transplant (0 to num_sentences-1)
+    
+    Returns:
+        tuple: (transplanted_prompt, transplanted_sentences, num_sentences_transplanted)
+    """
+    # Get the hint-influenced reasoning
+    hint_reasoning = problem['reasoning_text']
+    
+    # Split into sentences
+    hint_sentences = split_into_sentences(hint_reasoning)
+    
+    # Build the transplanted prompt:
+    # [question] + [hint sentences 0 to num_sentences-1]
+    # Note: question already ends with "<think>\n"
+    question = problem['question']
+    transplanted_text = question  # Already has <think>\n at the end
+    
+    # Add cumulative hint sentences from 0 to num_sentences-1
+    transplanted_sents = []
+    for idx in range(num_sentences):
+        if idx < len(hint_sentences):
+            transplanted_text += hint_sentences[idx] + " "
+            transplanted_sents.append(hint_sentences[idx])
+    
+    return transplanted_text, transplanted_sents, len(transplanted_sents)
+
+
 def analyze_problem_logits(problem, model, tokenizer, device, cue_p_dict=None):
     """
     Analyze a single problem: track logits for each answer option over sentences.
+    
+    Uses CUMULATIVE TRANSPLANTATION: For each position, transplants hint sentences 0 to n
+    and measures the resulting logits. This shows how answer preferences build up as
+    more hint-influenced sentences are added.
     
     Args:
         problem: Problem data dict
@@ -106,47 +150,56 @@ def analyze_problem_logits(problem, model, tokenizer, device, cue_p_dict=None):
     """
     pn = problem['pn']
     question = problem['question']
-    reasoning_text = problem['reasoning_text']
+    hint_reasoning_text = problem['reasoning_text']
     cue_answer = problem['cue_answer']
     gt_answer = problem['gt_answer']
     
-    # Split reasoning into sentences
-    sentences = split_into_sentences(reasoning_text)
+    # Split hint reasoning into sentences
+    hint_sentences = split_into_sentences(hint_reasoning_text)
     
     results = {
         'pn': pn,
         'cue_answer': cue_answer,
         'gt_answer': gt_answer,
         'question': question,
-        'sentences': [],
+        'num_sentences': len(hint_sentences),
         'sentence_data': []
     }
     
-    # Track logits at each sentence position
-    cumulative_text = question + " <think>\n"
+    # Track logits at each position using CUMULATIVE TRANSPLANTATION
+    # Position 0: transplant sentences 0
+    # Position 1: transplant sentences 0-1
+    # Position 2: transplant sentences 0-2, etc.
     
-    for sent_idx, sentence in enumerate(sentences):
-        cumulative_text += sentence + " "
-        
-        # Get answer logits at this position
-        answer_logits, answer_probs = get_answer_logits_at_position(
-            model, tokenizer, cumulative_text, device
+    for num_sents in range(1, len(hint_sentences) + 1):
+        # Build transplanted prompt with cumulative hint sentences 0 to num_sents-1
+        transplanted_prompt, transplanted_sents, actual_num_sents = build_transplanted_prompt(
+            problem, num_sents
         )
         
-        # Get cue_p if available
+        if actual_num_sents == 0:  # Skip if no sentences to transplant
+            continue
+        
+        # Get answer logits after transplanting this many sentences
+        answer_logits, answer_probs = get_answer_logits_at_position(
+            model, tokenizer, transplanted_prompt, device
+        )
+        
+        # Get cue_p if available (cue_p is indexed by sentence_num, which is num_sents-1)
         cue_p = None
         if cue_p_dict is not None:
-            cue_p = cue_p_dict.get((pn, sent_idx), None)
+            # Use the last sentence position for cue_p lookup
+            cue_p = cue_p_dict.get((pn, num_sents - 1), None)
         
         sentence_data = {
-            'sentence_num': sent_idx,
-            'sentence': sentence,
+            'num_sentences_transplanted': actual_num_sents,
+            'normalized_position': actual_num_sents / len(hint_sentences) if len(hint_sentences) > 0 else 0,
+            'last_sentence': transplanted_sents[-1] if transplanted_sents else "",
             'logits': answer_logits,
             'probs': answer_probs,
             'cue_p': cue_p
         }
         
-        results['sentences'].append(sentence)
         results['sentence_data'].append(sentence_data)
     
     return results
@@ -154,7 +207,8 @@ def analyze_problem_logits(problem, model, tokenizer, device, cue_p_dict=None):
 
 def plot_problem_logits(results, output_dir):
     """
-    Plot logits for all answer options over sentences, along with cue_p.
+    Plot logits for all answer options over normalized sentence position, along with cue_p.
+    Shows results from CUMULATIVE TRANSPLANTATION (increasing prefixes of hint CoT).
     
     Args:
         results: Results dict from analyze_problem_logits
@@ -169,8 +223,8 @@ def plot_problem_logits(results, output_dir):
         print(f"No sentence data for problem {pn}, skipping plot")
         return
     
-    # Extract data for plotting
-    sentence_nums = [d['sentence_num'] for d in sentence_data]
+    # Extract data for plotting - use normalized position for x-axis
+    normalized_positions = [d['normalized_position'] for d in sentence_data]
     logits_A = [d['logits']['A'] for d in sentence_data]
     logits_B = [d['logits']['B'] for d in sentence_data]
     logits_C = [d['logits']['C'] for d in sentence_data]
@@ -184,86 +238,65 @@ def plot_problem_logits(results, output_dir):
     cue_ps = [d['cue_p'] if d['cue_p'] is not None else np.nan for d in sentence_data]
     has_cue_p = not all(np.isnan(cue_ps))
     
-    # Create figure with subplots
-    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
+    # Create figure with 2 subplots
+    fig, axes = plt.subplots(2, 1, figsize=(14, 8))
     
     # Plot 1: Raw logits
     ax1 = axes[0]
-    ax1.plot(sentence_nums, logits_A, 'o-', label='A', linewidth=2, markersize=6, alpha=0.7)
-    ax1.plot(sentence_nums, logits_B, 's-', label='B', linewidth=2, markersize=6, alpha=0.7)
-    ax1.plot(sentence_nums, logits_C, '^-', label='C', linewidth=2, markersize=6, alpha=0.7)
-    ax1.plot(sentence_nums, logits_D, 'd-', label='D', linewidth=2, markersize=6, alpha=0.7)
+    ax1.plot(normalized_positions, logits_A, 'o-', label='A', linewidth=2, markersize=6, alpha=0.7)
+    ax1.plot(normalized_positions, logits_B, 's-', label='B', linewidth=2, markersize=6, alpha=0.7)
+    ax1.plot(normalized_positions, logits_C, '^-', label='C', linewidth=2, markersize=6, alpha=0.7)
+    ax1.plot(normalized_positions, logits_D, 'd-', label='D', linewidth=2, markersize=6, alpha=0.7)
     
-    # Highlight the cue answer and ground truth
-    for idx, sent_num in enumerate(sentence_nums):
+    # Highlight the cue answer
+    for idx, norm_pos in enumerate(normalized_positions):
         if cue_answer == 'A':
-            ax1.scatter(sent_num, logits_A[idx], s=150, facecolors='none', 
+            ax1.scatter(norm_pos, logits_A[idx], s=150, facecolors='none', 
                        edgecolors='red', linewidths=2, zorder=10)
         elif cue_answer == 'B':
-            ax1.scatter(sent_num, logits_B[idx], s=150, facecolors='none', 
+            ax1.scatter(norm_pos, logits_B[idx], s=150, facecolors='none', 
                        edgecolors='red', linewidths=2, zorder=10)
         elif cue_answer == 'C':
-            ax1.scatter(sent_num, logits_C[idx], s=150, facecolors='none', 
+            ax1.scatter(norm_pos, logits_C[idx], s=150, facecolors='none', 
                        edgecolors='red', linewidths=2, zorder=10)
         elif cue_answer == 'D':
-            ax1.scatter(sent_num, logits_D[idx], s=150, facecolors='none', 
+            ax1.scatter(norm_pos, logits_D[idx], s=150, facecolors='none', 
                        edgecolors='red', linewidths=2, zorder=10)
     
-    ax1.set_xlabel('Sentence Number', fontsize=12)
+    ax1.set_xlabel('Normalized CoT Position (0 to 1)', fontsize=12)
     ax1.set_ylabel('Logit Value', fontsize=12)
-    ax1.set_title(f'Problem {pn}: Answer Logits Over Time\n'
-                 f'Cue Answer: {cue_answer} (red circles), Ground Truth: {gt_answer}', 
+    ax1.set_title(f'Problem {pn}: Answer Logits with Cumulative Transplantation\n'
+                 f'Cue Answer: {cue_answer} (red circles), GT: {gt_answer}', 
                  fontsize=13, fontweight='bold')
     ax1.legend(loc='best', fontsize=10)
     ax1.grid(True, alpha=0.3)
+    ax1.set_xlim(0, 1)
     
-    # Plot 2: Probabilities (softmax over A, B, C, D)
-    ax2 = axes[1]
-    ax2.plot(sentence_nums, probs_A, 'o-', label='A', linewidth=2, markersize=6, alpha=0.7)
-    ax2.plot(sentence_nums, probs_B, 's-', label='B', linewidth=2, markersize=6, alpha=0.7)
-    ax2.plot(sentence_nums, probs_C, '^-', label='C', linewidth=2, markersize=6, alpha=0.7)
-    ax2.plot(sentence_nums, probs_D, 'd-', label='D', linewidth=2, markersize=6, alpha=0.7)
-    
-    ax2.set_xlabel('Sentence Number', fontsize=12)
-    ax2.set_ylabel('Probability (Softmax over {A,B,C,D})', fontsize=12)
-    ax2.set_title(f'Problem {pn}: Answer Probabilities Over Time', fontsize=13, fontweight='bold')
-    ax2.legend(loc='best', fontsize=10)
-    ax2.grid(True, alpha=0.3)
-    ax2.set_ylim(0, 1)
-    
-    # Plot 3: Cue_p comparison (if available)
+    # Plot 2: Cue_p (if available)
     if has_cue_p:
-        ax3 = axes[2]
+        ax2 = axes[1]
         
-        # Plot cue_p
-        valid_cue_p = [(sn, cp) for sn, cp in zip(sentence_nums, cue_ps) if not np.isnan(cp)]
+        # Plot cue_p only
+        valid_cue_p = [(pos, cp) for pos, cp in zip(normalized_positions, cue_ps) if not np.isnan(cp)]
         if valid_cue_p:
-            sns_cue, cps_cue = zip(*valid_cue_p)
-            ax3.plot(sns_cue, cps_cue, 'o-', label='cue_p (from data)', 
+            positions_cue, cps_cue = zip(*valid_cue_p)
+            ax2.plot(positions_cue, cps_cue, 'o-', label='cue_p (reference data)', 
                     linewidth=3, markersize=8, color='purple', alpha=0.8)
         
-        # Plot probability of cue answer from our logit calculation
-        cue_answer_probs = []
-        for d in sentence_data:
-            cue_answer_probs.append(d['probs'][cue_answer])
-        
-        ax3.plot(sentence_nums, cue_answer_probs, 's--', 
-                label=f'P({cue_answer}) from logits', 
-                linewidth=2, markersize=6, color='orange', alpha=0.7)
-        
-        ax3.set_xlabel('Sentence Number', fontsize=12)
-        ax3.set_ylabel('Probability', fontsize=12)
-        ax3.set_title(f'Problem {pn}: Cue_p vs Computed P({cue_answer})', 
+        ax2.set_xlabel('Normalized CoT Position (0 to 1)', fontsize=12)
+        ax2.set_ylabel('Probability', fontsize=12)
+        ax2.set_title(f'Problem {pn}: cue_p (Reference Data)', 
                      fontsize=13, fontweight='bold')
-        ax3.legend(loc='best', fontsize=10)
-        ax3.grid(True, alpha=0.3)
-        ax3.set_ylim(0, 1)
+        ax2.legend(loc='best', fontsize=10)
+        ax2.grid(True, alpha=0.3)
+        ax2.set_ylim(0, 1)
+        ax2.set_xlim(0, 1)
     else:
-        ax3 = axes[2]
-        ax3.text(0.5, 0.5, 'No cue_p data available for comparison', 
+        ax2 = axes[1]
+        ax2.text(0.5, 0.5, 'No cue_p data available', 
                 ha='center', va='center', fontsize=14)
-        ax3.set_xlim(0, 1)
-        ax3.set_ylim(0, 1)
+        ax2.set_xlim(0, 1)
+        ax2.set_ylim(0, 1)
     
     plt.tight_layout()
     
@@ -274,9 +307,159 @@ def plot_problem_logits(results, output_dir):
     plt.close()
 
 
+def plot_aggregate_trends(all_results, output_dir):
+    """
+    Create an aggregate plot showing average trends across all problems.
+    Shows how cued answer logits/probs increase while others decrease, alongside cue_p.
+    Uses normalized positions (0 to 1) to align CoTs of different lengths.
+    
+    Args:
+        all_results: List of results dicts from all problems
+        output_dir: Directory to save plots
+    """
+    # Collect data organized by normalized position (binned)
+    # We'll bin normalized positions into 20 buckets for aggregation
+    num_bins = 20
+    bin_edges = np.linspace(0, 1, num_bins + 1)
+    
+    data_by_bin = defaultdict(lambda: {
+        'cued_logits': [],
+        'cued_probs': [],
+        'other_logits': [],
+        'other_probs': [],
+        'cue_ps': []
+    })
+    
+    for result in all_results:
+        cue_answer = result['cue_answer']
+        
+        for sent_data in result['sentence_data']:
+            norm_pos = sent_data['normalized_position']
+            
+            # Assign to bin
+            bin_idx = min(int(norm_pos * num_bins), num_bins - 1)
+            
+            # Get cued answer logit/prob
+            cued_logit = sent_data['logits'][cue_answer]
+            cued_prob = sent_data['probs'][cue_answer]
+            
+            # Get other answers' logits/probs
+            other_answers = [ans for ans in ['A', 'B', 'C', 'D'] if ans != cue_answer]
+            other_logits = [sent_data['logits'][ans] for ans in other_answers]
+            other_probs = [sent_data['probs'][ans] for ans in other_answers]
+            
+            data_by_bin[bin_idx]['cued_logits'].append(cued_logit)
+            data_by_bin[bin_idx]['cued_probs'].append(cued_prob)
+            data_by_bin[bin_idx]['other_logits'].extend(other_logits)
+            data_by_bin[bin_idx]['other_probs'].extend(other_probs)
+            
+            if sent_data['cue_p'] is not None:
+                data_by_bin[bin_idx]['cue_ps'].append(sent_data['cue_p'])
+    
+    # Compute averages for each bin
+    bin_centers = []
+    avg_cued_logits = []
+    avg_cued_probs = []
+    avg_other_logits = []
+    avg_other_probs = []
+    avg_cue_ps = []
+    std_cued_probs = []
+    std_other_probs = []
+    std_cue_ps = []
+    
+    for bin_idx in sorted(data_by_bin.keys()):
+        data = data_by_bin[bin_idx]
+        
+        # Skip bins with no data
+        if not data['cued_logits']:
+            continue
+        
+        # Bin center
+        bin_centers.append((bin_edges[bin_idx] + bin_edges[bin_idx + 1]) / 2)
+        
+        avg_cued_logits.append(np.mean(data['cued_logits']))
+        avg_cued_probs.append(np.mean(data['cued_probs']))
+        avg_other_logits.append(np.mean(data['other_logits']))
+        avg_other_probs.append(np.mean(data['other_probs']))
+        
+        std_cued_probs.append(np.std(data['cued_probs']))
+        std_other_probs.append(np.std(data['other_probs']))
+        
+        if data['cue_ps']:
+            avg_cue_ps.append(np.mean(data['cue_ps']))
+            std_cue_ps.append(np.std(data['cue_ps']))
+        else:
+            avg_cue_ps.append(np.nan)
+            std_cue_ps.append(np.nan)
+    
+    # Create figure with 2 subplots
+    fig, axes = plt.subplots(2, 1, figsize=(14, 8))
+    
+    # Plot 1: Average logits
+    ax1 = axes[0]
+    ax1.plot(bin_centers, avg_cued_logits, 'o-', label='Cued Answer', 
+             linewidth=3, markersize=8, color='red', alpha=0.8)
+    ax1.plot(bin_centers, avg_other_logits, 's-', label='Other Answers (avg)', 
+             linewidth=3, markersize=8, color='blue', alpha=0.8)
+    
+    ax1.set_xlabel('Normalized CoT Position (0 to 1)', fontsize=12)
+    ax1.set_ylabel('Average Logit Value', fontsize=12)
+    ax1.set_title('Aggregate: Cued vs Other Answer Logits with Cumulative Transplantation\n'
+                 f'Averaged across {len(all_results)} problems',
+                 fontsize=14, fontweight='bold')
+    ax1.legend(loc='best', fontsize=11)
+    ax1.grid(True, alpha=0.3)
+    ax1.set_xlim(0, 1)
+    
+    # Plot 2: Cue_p only
+    ax2 = axes[1]
+    
+    # Filter out NaN values for cue_p
+    valid_indices = ~np.isnan(avg_cue_ps)
+    valid_bin_centers = np.array(bin_centers)[valid_indices]
+    valid_avg_cue_ps = np.array(avg_cue_ps)[valid_indices]
+    valid_std_cue_ps = np.array(std_cue_ps)[valid_indices]
+    
+    if len(valid_bin_centers) > 0:
+        # Plot cue_p from reference data only
+        ax2.plot(valid_bin_centers, valid_avg_cue_ps, 'o-', 
+                label='cue_p (reference data)', 
+                linewidth=3, markersize=8, color='purple', alpha=0.8)
+        ax2.fill_between(valid_bin_centers,
+                        valid_avg_cue_ps - valid_std_cue_ps,
+                        valid_avg_cue_ps + valid_std_cue_ps,
+                        color='purple', alpha=0.2)
+        
+        ax2.set_xlabel('Normalized CoT Position (0 to 1)', fontsize=12)
+        ax2.set_ylabel('Probability', fontsize=12)
+        ax2.set_title('Aggregate: cue_p (Reference Data)\n'
+                     'Shaded region shows ±1 standard deviation',
+                     fontsize=14, fontweight='bold')
+        ax2.legend(loc='best', fontsize=11)
+        ax2.grid(True, alpha=0.3)
+        ax2.set_ylim(0, 1)
+        ax2.set_xlim(0, 1)
+    else:
+        ax2.text(0.5, 0.5, 'No cue_p reference data available', 
+                ha='center', va='center', fontsize=14)
+        ax2.set_xlim(0, 1)
+        ax2.set_ylim(0, 1)
+    
+    plt.tight_layout()
+    
+    # Save figure
+    output_path = output_dir / 'aggregate_transplanted_trends.png'
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"\nAggregate plot saved to {output_path}")
+    plt.close()
+    
+    return fig
+
+
 def save_results_to_csv(all_results, output_path):
     """
     Save all results to a CSV file.
+    Records cumulative transplantation data: number of sentences transplanted and resulting logits.
     
     Args:
         all_results: List of results dicts
@@ -288,14 +471,17 @@ def save_results_to_csv(all_results, output_path):
         pn = result['pn']
         cue_answer = result['cue_answer']
         gt_answer = result['gt_answer']
+        num_total_sentences = result['num_sentences']
         
         for sent_data in result['sentence_data']:
             row = {
                 'pn': pn,
                 'cue_answer': cue_answer,
                 'gt_answer': gt_answer,
-                'sentence_num': sent_data['sentence_num'],
-                'sentence': sent_data['sentence'],
+                'num_sentences_transplanted': sent_data['num_sentences_transplanted'],
+                'normalized_position': sent_data['normalized_position'],
+                'total_sentences': num_total_sentences,
+                'last_sentence': sent_data['last_sentence'],
                 'logit_A': sent_data['logits']['A'],
                 'logit_B': sent_data['logits']['B'],
                 'logit_C': sent_data['logits']['C'],
@@ -346,16 +532,17 @@ def load_cue_p_data(csv_path):
 def main():
     """Main function."""
     # Configuration
-    THRESHOLD = 0.2  # Threshold for loading problems
-    MAX_PROBLEMS = 5  # Number of problems to analyze (None for all)
+    THRESHOLD = 0.3  # Threshold for loading problems
+    MAX_PROBLEMS = None  # Number of problems to analyze (None for all)
     MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
     
     # Output directory
-    output_dir = Path(__file__).parent / "logit_analysis_output"
+    output_dir = Path(__file__).parent / "logit_analysis_transplanted_output"
     output_dir.mkdir(exist_ok=True)
     
     print("="*80)
-    print("ANSWER LOGIT TRACKING ANALYSIS")
+    print("ANSWER LOGIT TRACKING ANALYSIS - CUMULATIVE TRANSPLANTATION")
+    print("Transplanting increasing prefixes of hint-influenced CoT")
     print("="*80)
     
     # Load model
@@ -417,12 +604,19 @@ def main():
             traceback.print_exc()
             continue
     
+    # Create aggregate plot
+    print("\n" + "="*80)
+    print("CREATING AGGREGATE PLOT")
+    print("="*80)
+    
+    plot_aggregate_trends(all_results, output_dir)
+    
     # Save results to CSV
     print("\n" + "="*80)
     print("SAVING RESULTS")
     print("="*80)
     
-    csv_path = output_dir / "answer_logits_by_sentence.csv"
+    csv_path = output_dir / "answer_logits_by_sentence_transplanted.csv"
     results_df = save_results_to_csv(all_results, csv_path)
     
     # Print summary statistics
@@ -431,13 +625,23 @@ def main():
     print("="*80)
     
     print(f"\nTotal problems analyzed: {len(all_results)}")
-    print(f"Total sentences analyzed: {len(results_df)}")
+    print(f"Total data points: {len(results_df)}")
     print(f"\nOutput directory: {output_dir}")
-    print(f"  - Plots: problem_<pn>_answer_logits_over_time.png")
-    print(f"  - CSV: answer_logits_by_sentence.csv")
+    print(f"  - Aggregate plot: aggregate_transplanted_trends.png")
+    print(f"  - Individual plots: problem_<pn>_answer_logits_over_time.png")
+    print(f"  - CSV: answer_logits_by_sentence_transplanted.csv")
+    print(f"\nNote: These results use CUMULATIVE TRANSPLANTATION:")
+    print(f"      - At position 0.2: Transplant first 20% of hint-influenced CoT")
+    print(f"      - At position 0.5: Transplant first 50% of hint-influenced CoT")
+    print(f"      - At position 1.0: Transplant entire hint-influenced CoT")
+    print(f"      This shows how answer preferences build up as more hint sentences are added")
+    print(f"\nThe aggregate plot shows average trends across all problems:")
+    print(f"  - How cued answer logits/probs increase with more transplanted sentences")
+    print(f"  - How other answers' logits/probs decrease")
+    print(f"  - Comparison with reference cue_p values (from original hint-influenced runs)")
     
     print("\n" + "="*80)
-    print("ANALYSIS COMPLETE!")
+    print("CUMULATIVE TRANSPLANTATION ANALYSIS COMPLETE!")
     print("="*80)
 
 
