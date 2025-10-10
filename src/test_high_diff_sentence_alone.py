@@ -21,7 +21,7 @@ import os
 
 load_dotenv()
 
-MODEL_NAME = os.environ.get("CLASSIFICATION_MODEL", "anthropic/claude-3.5-sonnet")
+MODEL_NAME = os.environ.get("CLASSIFICATION_MODEL", "anthropic/claude-4.5-sonnet")
 
 client = AsyncOpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -232,7 +232,7 @@ async def main():
     parser = argparse.ArgumentParser(description='Classify high diff sentences by bias mechanism')
     parser.add_argument('--csv-path', type=str, required=True)
     parser.add_argument('--json-path', type=str, required=True)
-    parser.add_argument('--min-diff', type=float, default=0.35,
+    parser.add_argument('--min-diff', type=float, default=0.3,
                        help='Minimum diff to consider (default: 0.35)')
     args = parser.parse_args()
 
