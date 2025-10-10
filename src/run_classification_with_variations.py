@@ -151,15 +151,22 @@ def run_classification_with_prompt(csv_path, json_path, problem_ids, prompt_name
             # Rate limiting
             time.sleep(1.5)
 
-            # Extract classification label
+            # Extract classification label and confidence
             classification_lines = classification.split('\n')
             label = "IDK"
+            confidence = None
             for line in classification_lines:
                 if line.startswith("CLASSIFICATION:"):
                     label = line.replace("CLASSIFICATION:", "").strip()
-                    break
+                elif line.startswith("CONFIDENCE:"):
+                    confidence_str = line.replace("CONFIDENCE:", "").strip()
+                    # Extract just the number
+                    try:
+                        confidence = int(''.join(filter(str.isdigit, confidence_str.split()[0])))
+                    except (ValueError, IndexError):
+                        confidence = None
 
-            print(f"  [{sentence_num}] {label}")
+            print(f"  [{sentence_num}] {label} (confidence: {confidence})")
 
             problem_results['sentences'].append({
                 'sentence_num': sentence_num,
@@ -168,6 +175,7 @@ def run_classification_with_prompt(csv_path, json_path, problem_ids, prompt_name
                 'cue_p': cue_p,
                 'cue_p_prev': cue_p_prev,
                 'classification_label': label,
+                'classification_confidence': confidence,
                 'classification_full': classification
             })
 
