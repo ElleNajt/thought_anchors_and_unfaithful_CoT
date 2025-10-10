@@ -405,6 +405,100 @@ def plot_detailed_mechanism_profiles(stats, output_dir):
     plt.close()
 
 
+def plot_steering_effect_by_mechanism(stats, output_dir):
+    """Plot average steering effect (diff) per mechanism with variance."""
+    # Calculate mean and std for each mechanism with at least 2 instances
+    mechanism_stats = {}
+    for mech in set(stats['primary_mechanisms']):
+        diffs = stats['mechanism_by_diff'][mech]
+        if len(diffs) >= 2:  # Need at least 2 for meaningful variance
+            mechanism_stats[mech] = {
+                'mean': np.mean(diffs),
+                'std': np.std(diffs),
+                'sem': np.std(diffs) / np.sqrt(len(diffs)),  # Standard error of mean
+                'n': len(diffs),
+                'diffs': diffs
+            }
+    
+    if not mechanism_stats:
+        print("⚠ Not enough data for steering effect plot")
+        return
+    
+    # Sort by mean diff (descending)
+    sorted_mechs = sorted(mechanism_stats.items(), key=lambda x: x[1]['mean'], reverse=True)
+    
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8))
+    
+    # Plot 1: Mean with error bars (standard error)
+    mechanisms = [m[0] for m in sorted_mechs]
+    means = [m[1]['mean'] for m in sorted_mechs]
+    sems = [m[1]['sem'] for m in sorted_mechs]
+    ns = [m[1]['n'] for m in sorted_mechs]
+    
+    # Define tier colors
+    tier1_mechanisms = [
+        'False Framing', 'False Categorization', 'Definitional Stretch',
+        'Separation Fallacy', 'Misreading', 'Vague Principle Invocation',
+        'False Memory/Confabulation', 'Recognition Signal'
+    ]
+    colors = ['#e74c3c' if m in tier1_mechanisms else '#3498db' for m in mechanisms]
+    
+    y_pos = np.arange(len(mechanisms))
+    bars = ax1.barh(y_pos, means, xerr=sems, color=colors, alpha=0.8, 
+                     edgecolor='black', linewidth=1.5, capsize=5, error_kw={'linewidth': 2})
+    
+    ax1.set_yticks(y_pos)
+    ax1.set_yticklabels(mechanisms, fontsize=9)
+    ax1.set_xlabel('Average Cue_p Diff (±SEM)', fontsize=11, fontweight='bold')
+    ax1.set_title('Average Steering Effect by Mechanism', fontsize=13, fontweight='bold')
+    ax1.invert_yaxis()
+    ax1.grid(axis='x', alpha=0.3)
+    
+    # Add mean value and sample size labels
+    for i, (mean, n) in enumerate(zip(means, ns)):
+        ax1.text(mean + 0.02, i, f'{mean:.3f} (n={n})', 
+                va='center', fontsize=8, fontweight='bold')
+    
+    # Add legend
+    tier1_patch = Rectangle((0, 0), 1, 1, fc='#e74c3c', alpha=0.8)
+    tier2_patch = Rectangle((0, 0), 1, 1, fc='#3498db', alpha=0.8)
+    ax1.legend([tier1_patch, tier2_patch], 
+               ['Tier 1: Context-Independent', 'Tier 2: Context-Dependent'],
+               loc='lower right', fontsize=9)
+    
+    # Plot 2: Box plot showing distributions
+    diffs_data = [m[1]['diffs'] for m in sorted_mechs]
+    
+    bp = ax2.boxplot(diffs_data, vert=False, patch_artist=True,
+                      boxprops=dict(facecolor='#95a5a6', alpha=0.7, linewidth=1.5),
+                      medianprops=dict(color='red', linewidth=2),
+                      whiskerprops=dict(linewidth=1.5),
+                      capprops=dict(linewidth=1.5))
+    
+    # Color boxes by tier
+    for patch, color in zip(bp['boxes'], colors):
+        patch.set_facecolor(color)
+        patch.set_alpha(0.7)
+    
+    ax2.set_yticks(y_pos + 1)  # boxplot uses 1-indexed positions
+    ax2.set_yticklabels(mechanisms, fontsize=9)
+    ax2.set_xlabel('Cue_p Diff Distribution', fontsize=11, fontweight='bold')
+    ax2.set_title('Steering Effect Variability', fontsize=13, fontweight='bold')
+    ax2.invert_yaxis()
+    ax2.grid(axis='x', alpha=0.3)
+    
+    # Add vertical line at overall mean
+    overall_mean = np.mean(stats['diffs'])
+    ax2.axvline(overall_mean, color='green', linestyle='--', linewidth=2, 
+                alpha=0.7, label=f'Overall mean: {overall_mean:.3f}')
+    ax2.legend(fontsize=9)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / 'steering_effect_by_mechanism.png', dpi=300, bbox_inches='tight')
+    print(f"✓ Saved steering_effect_by_mechanism.png")
+    plt.close()
+
+
 def print_summary_statistics(stats):
     """Print summary statistics to console."""
     print("\n" + "="*70)
@@ -495,6 +589,7 @@ def main():
     plot_mechanism_distribution(stats, output_dir)
     plot_confidence_analysis(stats, output_dir)
     plot_diff_analysis(stats, output_dir)
+    plot_steering_effect_by_mechanism(stats, output_dir)
     plot_cooccurrence_heatmap(stats, output_dir)
     plot_detailed_mechanism_profiles(stats, output_dir)
     
@@ -503,6 +598,7 @@ def main():
     print(f"  - mechanism_distribution.png")
     print(f"  - confidence_analysis.png")
     print(f"  - diff_analysis.png")
+    print(f"  - steering_effect_by_mechanism.png")
     print(f"  - mechanism_cooccurrence.png")
     print(f"  - mechanism_profiles.png")
 
