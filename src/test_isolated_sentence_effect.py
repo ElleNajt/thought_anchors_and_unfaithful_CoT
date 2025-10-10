@@ -57,13 +57,23 @@ def extract_answer(response_text):
     return None
 
 
-async def resample_with_sentence(base_prompt, sentence, temperature=1.0):
-    """Resample with just one sentence appended."""
-    if sentence:
-        prompt = f"{base_prompt}\n<think>\n{sentence}\n</think>"
-    else:
-        # Baseline: no sentence
+async def resample_with_sentence(base_prompt, sentence, temperature=1.0, mode='think'):
+    """Resample with just one sentence appended.
+
+    Args:
+        mode: 'baseline', 'think', or 'forced'
+            - baseline: just the question
+            - think: sentence in <think> tags
+            - forced: sentence followed by "Therefore the answer is:"
+    """
+    if mode == 'baseline':
         prompt = base_prompt
+    elif mode == 'think':
+        prompt = f"{base_prompt}\n<think>\n{sentence}\n</think>"
+    elif mode == 'forced':
+        prompt = f"{base_prompt}\n{sentence} Therefore the answer is:"
+    else:
+        raise ValueError(f"Unknown mode: {mode}")
 
     async with semaphore:
         try:
@@ -93,9 +103,9 @@ async def resample_with_sentence(base_prompt, sentence, temperature=1.0):
 
 async def test_high_diff_sentence(problem_id, base_prompt, high_diff_sentence, cue_answer, diff, num_samples=20):
     """
-    Test high diff sentence alone vs baseline.
+    Test high diff sentence in three conditions: baseline, think tags, and forced immediate answer.
 
-    Returns dict with baseline and sentence results.
+    Returns dict with results from all three conditions.
     """
     print(f"\n  Testing problem {problem_id}")
     print(f"  High diff sentence (diff={diff:+.4f}):")
@@ -103,24 +113,37 @@ async def test_high_diff_sentence(problem_id, base_prompt, high_diff_sentence, c
 
     # Baseline: no sentence
     print(f"  Baseline (no sentence)...", flush=True)
-    tasks = [resample_with_sentence(base_prompt, "", temperature=1.0)
+    tasks = [resample_with_sentence(base_prompt, "", temperature=1.0, mode='baseline')
              for _ in range(num_samples)]
     baseline_answers = await asyncio.gather(*tasks)
     baseline_answers = [a for a in baseline_answers if a is not None]
     baseline_cue_pct = baseline_answers.count(cue_answer) / len(baseline_answers) if baseline_answers else None
     print(f"    {baseline_cue_pct:.2%} cue answer ({len(baseline_answers)} samples)" if baseline_cue_pct is not None else f"    FAILED - no valid samples")
 
-    # With high diff sentence
-    print(f"  With high diff sentence...", flush=True)
-    tasks = [resample_with_sentence(base_prompt, high_diff_sentence, temperature=1.0)
+    # With high diff sentence in think tags
+    print(f"  With sentence in <think> tags...", flush=True)
+    tasks = [resample_with_sentence(base_prompt, high_diff_sentence, temperature=1.0, mode='think')
              for _ in range(num_samples)]
-    sentence_answers = await asyncio.gather(*tasks)
-    sentence_answers = [a for a in sentence_answers if a is not None]
-    sentence_cue_pct = sentence_answers.count(cue_answer) / len(sentence_answers) if sentence_answers else None
-    print(f"    {sentence_cue_pct:.2%} cue answer ({len(sentence_answers)} samples)" if sentence_cue_pct is not None else f"    FAILED - no valid samples")
+    think_answers = await asyncio.gather(*tasks)
+    think_answers = [a for a in think_answers if a is not None]
+    think_cue_pct = think_answers.count(cue_answer) / len(think_answers) if think_answers else None
+    print(f"    {think_cue_pct:.2%} cue answer ({len(think_answers)} samples)" if think_cue_pct is not None else f"    FAILED - no valid samples")
 
-    delta = (sentence_cue_pct - baseline_cue_pct) if (sentence_cue_pct is not None and baseline_cue_pct is not None) else None
-    print(f"  Delta: {delta:+.2%}" if delta is not None else "  Delta: FAILED")
+    # With forced immediate answer
+    print(f"  With forced immediate answer...", flush=True)
+    tasks = [resample_with_sentence(base_prompt, high_diff_sentence, temperature=1.0, mode='forced')
+             for _ in range(num_samples)]
+    forced_answers = await asyncio.gather(*tasks)
+    forced_answers = [a for a in forced_answers if a is not None]
+    forced_cue_pct = forced_answers.count(cue_answer) / len(forced_answers) if forced_answers else None
+    print(f"    {forced_cue_pct:.2%} cue answer ({len(forced_answers)} samples)" if forced_cue_pct is not None else f"    FAILED - no valid samples")
+
+    # Calculate deltas
+    delta_think = (think_cue_pct - baseline_cue_pct) if (think_cue_pct is not None and baseline_cue_pct is not None) else None
+    delta_forced = (forced_cue_pct - baseline_cue_pct) if (forced_cue_pct is not None and baseline_cue_pct is not None) else None
+
+    print(f"  Delta (think): {delta_think:+.2%}" if delta_think is not None else "  Delta (think): FAILED")
+    print(f"  Delta (forced): {delta_forced:+.2%}" if delta_forced is not None else "  Delta (forced): FAILED")
 
     return {
         'problem_id': int(problem_id) if hasattr(problem_id, 'item') else problem_id,
@@ -129,9 +152,12 @@ async def test_high_diff_sentence(problem_id, base_prompt, high_diff_sentence, c
         'cue_answer': cue_answer,
         'baseline_cue_pct': baseline_cue_pct,
         'baseline_answers': baseline_answers,
-        'sentence_cue_pct': sentence_cue_pct,
-        'sentence_answers': sentence_answers,
-        'delta': delta,
+        'think_cue_pct': think_cue_pct,
+        'think_answers': think_answers,
+        'forced_cue_pct': forced_cue_pct,
+        'forced_answers': forced_answers,
+        'delta_think': delta_think,
+        'delta_forced': delta_forced,
         'num_samples': num_samples
     }
 
@@ -218,28 +244,51 @@ async def main():
     print(f"SUMMARY")
     print(f"{'='*60}")
     print(f"Total problems tested: {len(results)}")
-    failed_count = len([r for r in results if r['delta'] is None])
-    if failed_count > 0:
-        print(f"Failed (no valid samples): {failed_count}")
-        print(f"Valid: {len(results) - failed_count}")
+    failed_think_count = len([r for r in results if r['delta_think'] is None])
+    failed_forced_count = len([r for r in results if r['delta_forced'] is None])
+    if failed_think_count > 0 or failed_forced_count > 0:
+        print(f"Failed (think): {failed_think_count}")
+        print(f"Failed (forced): {failed_forced_count}")
 
-    # Calculate statistics (filter out None values)
-    valid_results = [r for r in results if r['delta'] is not None]
-    positive_delta = sum(1 for r in valid_results if r['delta'] > 0)
-    negative_delta = sum(1 for r in valid_results if r['delta'] < 0)
-    zero_delta = sum(1 for r in valid_results if r['delta'] == 0)
+    # Calculate statistics for THINK condition (filter out None values)
+    valid_think = [r for r in results if r['delta_think'] is not None]
+    if valid_think:
+        positive_think = sum(1 for r in valid_think if r['delta_think'] > 0)
+        negative_think = sum(1 for r in valid_think if r['delta_think'] < 0)
+        zero_think = sum(1 for r in valid_think if r['delta_think'] == 0)
 
-    mean_delta = sum(r['delta'] for r in valid_results) / len(valid_results)
-    mean_baseline = sum(r['baseline_cue_pct'] for r in valid_results) / len(valid_results)
-    mean_sentence = sum(r['sentence_cue_pct'] for r in valid_results) / len(valid_results)
+        mean_delta_think = sum(r['delta_think'] for r in valid_think) / len(valid_think)
+        mean_baseline = sum(r['baseline_cue_pct'] for r in valid_think) / len(valid_think)
+        mean_think = sum(r['think_cue_pct'] for r in valid_think) / len(valid_think)
 
-    print(f"\nMean baseline cue%: {mean_baseline:.2%}")
-    print(f"Mean sentence cue%: {mean_sentence:.2%}")
-    print(f"Mean delta: {mean_delta:+.2%}")
-    print(f"\nDelta distribution (of {len(valid_results)} valid results):")
-    print(f"  Positive (sentence > baseline): {positive_delta} ({positive_delta/len(valid_results):.1%})")
-    print(f"  Negative (sentence < baseline): {negative_delta} ({negative_delta/len(valid_results):.1%})")
-    print(f"  Zero: {zero_delta} ({zero_delta/len(valid_results):.1%})")
+        print(f"\n=== THINK TAG CONDITION ===")
+        print(f"Mean baseline cue%: {mean_baseline:.2%}")
+        print(f"Mean think cue%: {mean_think:.2%}")
+        print(f"Mean delta: {mean_delta_think:+.2%}")
+        print(f"\nDelta distribution (of {len(valid_think)} valid results):")
+        print(f"  Positive (think > baseline): {positive_think} ({positive_think/len(valid_think):.1%})")
+        print(f"  Negative (think < baseline): {negative_think} ({negative_think/len(valid_think):.1%})")
+        print(f"  Zero: {zero_think} ({zero_think/len(valid_think):.1%})")
+
+    # Calculate statistics for FORCED condition
+    valid_forced = [r for r in results if r['delta_forced'] is not None]
+    if valid_forced:
+        positive_forced = sum(1 for r in valid_forced if r['delta_forced'] > 0)
+        negative_forced = sum(1 for r in valid_forced if r['delta_forced'] < 0)
+        zero_forced = sum(1 for r in valid_forced if r['delta_forced'] == 0)
+
+        mean_delta_forced = sum(r['delta_forced'] for r in valid_forced) / len(valid_forced)
+        mean_baseline_forced = sum(r['baseline_cue_pct'] for r in valid_forced) / len(valid_forced)
+        mean_forced = sum(r['forced_cue_pct'] for r in valid_forced) / len(valid_forced)
+
+        print(f"\n=== FORCED IMMEDIATE ANSWER CONDITION ===")
+        print(f"Mean baseline cue%: {mean_baseline_forced:.2%}")
+        print(f"Mean forced cue%: {mean_forced:.2%}")
+        print(f"Mean delta: {mean_delta_forced:+.2%}")
+        print(f"\nDelta distribution (of {len(valid_forced)} valid results):")
+        print(f"  Positive (forced > baseline): {positive_forced} ({positive_forced/len(valid_forced):.1%})")
+        print(f"  Negative (forced < baseline): {negative_forced} ({negative_forced/len(valid_forced):.1%})")
+        print(f"  Zero: {zero_forced} ({zero_forced/len(valid_forced):.1%})")
 
     print(f"\n✓ Saved to {output_file}")
 
