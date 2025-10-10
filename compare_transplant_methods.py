@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
 Compare two transplantation methods:
-1. Cumulative: Transplant full CoT from hint run up to sentence n
-2. Single-sentence: Transplant only the n-th sentence from hint run
+1. Cumulative: Transplant full hint CoT from position 0 to n
+2. Single-sentence: Replace sentence n in baseline CoT with hint-influenced version
 
 This script measures the change in cue_p (probability of hinted answer) for both methods
 and creates a scatterplot to visualize the comparison.
+
+The single-sentence method now uses baseline CoT context to avoid incoherent prompts.
 """
 
 import os
@@ -122,8 +124,11 @@ def build_cumulative_transplant(problem, num_sentences):
 
 def build_single_sentence_transplant(problem, sentence_idx):
     """
-    Build a transplanted prompt with only a single sentence from hint CoT:
-    [no-hint question] + [hint sentence at sentence_idx] + [answer prompt]
+    Build a transplanted prompt with baseline CoT but one hint sentence:
+    [no-hint question] + [baseline sentences 0 to sentence_idx-1] + [hint sentence at sentence_idx] + [answer prompt]
+    
+    This measures the INCREMENTAL effect of replacing sentence N in the baseline CoT 
+    with the hint-influenced version of sentence N.
     
     Returns:
         str: transplanted prompt
@@ -131,10 +136,19 @@ def build_single_sentence_transplant(problem, sentence_idx):
     hint_reasoning = problem['reasoning_text']
     hint_sentences = split_into_sentences(hint_reasoning)
     
+    # Get baseline (non-hint) reasoning
+    base_reasoning = problem.get('base_reasoning_text', '')
+    base_sentences = split_into_sentences(base_reasoning) if base_reasoning else []
+    
     question = problem['question']
     transplanted_text = question  # Already has <think>\n at the end
     
-    # Add only the specific sentence
+    # Add baseline sentences up to (but not including) sentence_idx
+    for idx in range(sentence_idx):
+        if idx < len(base_sentences):
+            transplanted_text += base_sentences[idx] + " "
+    
+    # Add the hint-influenced sentence at position sentence_idx
     if sentence_idx < len(hint_sentences):
         transplanted_text += hint_sentences[sentence_idx] + " "
     
@@ -149,8 +163,10 @@ def analyze_problem_comparison(problem, model, tokenizer, device):
     Analyze a single problem: compare cumulative vs single-sentence transplantation.
     
     For each sentence position:
-    - Measure cue_p with cumulative transplant (sentences 0 to n)
-    - Measure cue_p with single sentence transplant (just sentence n)
+    - Cumulative: Measure cue_p with hint sentences 0 to n transplanted
+    - Single-sentence: Measure cue_p with baseline sentences 0 to n-1, then hint sentence n
+    
+    This compares building up hint influence vs replacing individual sentences.
     
     Returns:
         dict with comparison data for each sentence
@@ -216,8 +232,11 @@ def plot_comparison_scatter(all_results, output_dir):
     Create a scatterplot comparing cumulative vs single-sentence delta_cue_p.
     
     Each point represents one sentence from one problem.
-    X-axis: delta_cue_p for cumulative transplantation
-    Y-axis: delta_cue_p for single-sentence transplantation
+    X-axis: delta_cue_p for cumulative transplantation (hint sentences 0 to n)
+    Y-axis: delta_cue_p for single-sentence transplantation (baseline + hint sentence n)
+    
+    Points above diagonal: single sentence replacement has larger effect
+    Points below diagonal: cumulative transplantation has larger effect
     """
     # Collect all data points
     cumulative_deltas = []
@@ -262,8 +281,8 @@ def plot_comparison_scatter(all_results, output_dir):
     cbar.set_label('Normalized Position in CoT (0=start, 1=end)', fontsize=11)
     
     # Labels and title
-    ax.set_xlabel('Δ cue_p: Cumulative Transplantation\n(sentences 0 to n)', fontsize=13)
-    ax.set_ylabel('Δ cue_p: Single-Sentence Transplantation\n(only sentence n)', fontsize=13)
+    ax.set_xlabel('Δ cue_p: Cumulative Transplantation\n(hint sentences 0 to n)', fontsize=13)
+    ax.set_ylabel('Δ cue_p: Single-Sentence Replacement\n(baseline CoT + hint sentence n)', fontsize=13)
     ax.set_title('Comparison of Transplantation Methods\n'
                  f'Total data points: {len(cumulative_deltas)} sentences from {len(all_results)} problems',
                  fontsize=14, fontweight='bold')
@@ -324,14 +343,14 @@ def plot_comparison_by_position(all_results, output_dir):
     # Plot
     fig, ax = plt.subplots(figsize=(12, 7))
     
-    ax.plot(bin_centers, avg_cumulative, 'o-', label='Cumulative Transplant', 
+    ax.plot(bin_centers, avg_cumulative, 'o-', label='Cumulative (hint 0→n)', 
             linewidth=3, markersize=8, color='blue', alpha=0.8)
     ax.fill_between(bin_centers,
                      np.array(avg_cumulative) - np.array(std_cumulative),
                      np.array(avg_cumulative) + np.array(std_cumulative),
                      color='blue', alpha=0.2)
     
-    ax.plot(bin_centers, avg_single, 's-', label='Single-Sentence Transplant', 
+    ax.plot(bin_centers, avg_single, 's-', label='Single-sentence (baseline + hint n)', 
             linewidth=3, markersize=8, color='red', alpha=0.8)
     ax.fill_between(bin_centers,
                      np.array(avg_single) - np.array(std_single),
@@ -560,9 +579,12 @@ def main():
     print(f"  - Position plot: transplant_method_comparison_by_position.png")
     print(f"  - CSV: transplant_method_comparison.csv")
     print("\nKey insights:")
-    print("  - Points above the diagonal: single-sentence has larger effect")
-    print("  - Points below the diagonal: cumulative has larger effect")
+    print("  - Points above the diagonal: single sentence replacement has larger effect")
+    print("  - Points below the diagonal: cumulative transplantation has larger effect")
     print("  - Color indicates position in CoT (darker = later)")
+    print("\nMethod comparison:")
+    print("  - Cumulative: Transplant hint sentences 0 to n (measures build-up of hint influence)")
+    print("  - Single-sentence: Replace sentence n in baseline with hint version (measures incremental effect)")
 
 
 if __name__ == "__main__":
