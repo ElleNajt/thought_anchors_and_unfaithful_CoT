@@ -2,9 +2,9 @@
 Inspect classification results by mechanism.
 
 Usage:
-    python inspect_classifications.py --json-path <path> --mechanism "False Framing"
-    python inspect_classifications.py --json-path <path> --list-mechanisms
-    python inspect_classifications.py --json-path <path> --mechanism "False Framing" --output classifications.md
+    python inspect_classifications.py --json-path sentence_classifications/high_diff_sentence_classifications.json --mechanism "False Framing"
+    python inspect_classifications.py --json-path sentence_classifications/high_diff_sentence_classifications.json --list-mechanisms
+    python inspect_classifications.py --json-path sentence_classifications/high_diff_sentence_classifications.json --mechanism "False Framing" --output classifications.md
 """
 
 import json

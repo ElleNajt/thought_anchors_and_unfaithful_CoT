@@ -10,7 +10,7 @@ This script analyzes the classification results to understand:
 - Co-occurrence patterns
 
 Usage:
-    python plot_classification_analysis.py --json-path CoT_Faithfulness_demo/high_diff_sentence_classifications.json
+    python plot_classification_analysis.py --json-path sentence_classifications/high_diff_sentence_classifications.json
 """
 
 import json
@@ -255,7 +255,7 @@ def plot_diff_analysis(stats, output_dir):
     tier_data = [tier_diffs[t] for t in sorted(tier_diffs.keys())]
     tier_labels = [f'Tier {t}' for t in sorted(tier_diffs.keys())]
     
-    bp = ax2.boxplot(tier_data, labels=tier_labels, patch_artist=True,
+    bp = ax2.boxplot(tier_data, tick_labels=tier_labels, patch_artist=True,
                       boxprops=dict(facecolor='#3498db', alpha=0.7),
                       medianprops=dict(color='red', linewidth=2))
     ax2.set_ylabel('Cue_p Diff', fontsize=11, fontweight='bold')

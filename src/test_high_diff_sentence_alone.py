@@ -7,7 +7,7 @@ For each problem:
 3. Save classification results
 
 Usage:
-    python test_high_diff_sentence_alone.py --csv-path CoT_Faithfulness_demo/faith_counterfactual_qwen-14b_demo.csv --json-path CoT_Faithfulness_demo/in_text/Professor_itc_failure_threshold0.15_correct_base_no_mention.json
+    python test_high_diff_sentence_alone.py --csv-path sentence_classifications/faith_counterfactual_qwen-14b_demo.csv --json-path sentence_classifications/Professor_itc_failure_threshold0.15_correct_base_no_mention.json
 """
 
 import json
