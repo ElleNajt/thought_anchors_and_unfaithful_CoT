@@ -219,9 +219,9 @@ async def classify_high_diff_sentence(problem_id, question, high_diff_sentence, 
         print(f"    ✗ Classification failed")
 
     return {
-        'problem_id': problem_id,
+        'problem_id': int(problem_id) if hasattr(problem_id, 'item') else problem_id,
         'high_diff_sentence': high_diff_sentence,
-        'diff': diff,
+        'diff': float(diff) if hasattr(diff, 'item') else diff,
         'cue_answer': cue_answer,
         'gt_answer': gt_answer,
         'classification': classification
