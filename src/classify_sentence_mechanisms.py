@@ -79,6 +79,7 @@ Given the CoT below, classify the LAST SENTENCE according to this taxonomy.
 
 **Output format:**
 CLASSIFICATION: [I-1 | I-2 | I-3 | C-1 | C-2 | IDK]
+CONFIDENCE: [1-10, where 1 = very uncertain, 10 = completely certain]
 REASONING: [2-3 sentences explaining why this classification fits]
 KEY INDICATORS: [Bullet points of specific textual evidence]
 
@@ -201,15 +202,22 @@ def main():
             # Rate limiting - sleep to avoid hitting API limits
             time.sleep(1.5)
 
-            # Extract classification label
+            # Extract classification label and confidence
             classification_lines = classification.split('\n')
             label = "IDK"
+            confidence = None
             for line in classification_lines:
                 if line.startswith("CLASSIFICATION:"):
                     label = line.replace("CLASSIFICATION:", "").strip()
-                    break
+                elif line.startswith("CONFIDENCE:"):
+                    confidence_str = line.replace("CONFIDENCE:", "").strip()
+                    # Extract just the number
+                    try:
+                        confidence = int(''.join(filter(str.isdigit, confidence_str.split()[0])))
+                    except (ValueError, IndexError):
+                        confidence = None
 
-            print(f"  → {label}")
+            print(f"  → {label} (confidence: {confidence})")
             print(f"  {classification[:150]}...")
             print()
 
@@ -220,6 +228,7 @@ def main():
                 'cue_p': cue_p,
                 'cue_p_prev': cue_p_prev,
                 'classification_label': label,
+                'classification_confidence': confidence,
                 'classification_full': classification
             })
 
