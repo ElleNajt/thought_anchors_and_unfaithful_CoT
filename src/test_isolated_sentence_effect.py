@@ -56,14 +56,15 @@ def extract_answer(response_text):
     return None
 
 
-async def resample_with_sentence(base_prompt, sentence, temperature=1.0, mode="think"):
+async def resample_with_sentence(base_prompt, sentence, temperature=1.0, mode="think", seed=0):
     """Resample with just one sentence appended.
 
     Args:
         mode: 'baseline', 'think', or 'forced'
             - baseline: just the question
-            - think: sentence in <think> tags
+            - think: sentence in <think> tags - model continues thinking from sentence
             - forced: sentence followed by "Therefore the answer is:"
+        seed: random seed for generation
 
     Returns:
         tuple: (answer, response_text, reasoning_trace) or (None, None, None) on failure
@@ -71,7 +72,8 @@ async def resample_with_sentence(base_prompt, sentence, temperature=1.0, mode="t
     if mode == "baseline":
         prompt = base_prompt
     elif mode == "think":
-        prompt = f"{base_prompt}\n<think>\n{sentence}\n"
+        # Just append sentence after existing <think> tag - model continues thinking
+        prompt = f"{base_prompt}{sentence}\n"
     elif mode == "forced":
         prompt = (
             f"{base_prompt}\n <think>\n {sentence}\n</think> Therefore the answer is:"
@@ -79,37 +81,36 @@ async def resample_with_sentence(base_prompt, sentence, temperature=1.0, mode="t
     else:
         raise ValueError(f"Unknown mode: {mode}")
 
-    async with semaphore:
-        try:
-            response = await asyncio.wait_for(
-                client.chat.completions.create(
-                    model=MODEL_NAME,
-                    max_tokens=4096,
-                    temperature=temperature,
-                    messages=[{"role": "user", "content": prompt}],
-                    extra_body={"reasoning": {"effort": "high", "exclude": False}},
-                ),
-                timeout=180.0,
-            )
-            response_text = response.choices[0].message.content
+    try:
+        # Use rollouts client which properly handles thinking injection
+        rollouts = await client.agenerate(
+            prompt,
+            n_samples=1,
+            temperature=temperature,
+            max_tokens=4096,
+            seed=seed
+        )
 
-            # Extract reasoning trace if available
-            reasoning_trace = None
-            if hasattr(response.choices[0].message, "reasoning"):
-                reasoning_trace = response.choices[0].message.reasoning
-
-            answer = extract_answer(response_text)
-
-            if answer is None:
-                print(f"        ⚠ Failed to extract answer", flush=True)
-
-            return (answer, response_text, reasoning_trace)
-        except asyncio.TimeoutError:
-            print(f"        ⚠ Timeout", flush=True)
+        if not rollouts or len(rollouts) == 0:
+            print(f"        ⚠ No response generated", flush=True)
             return (None, None, None)
-        except Exception as e:
-            print(f"        ⚠ Error: {type(e).__name__}: {str(e)}", flush=True)
-            return (None, None, None)
+
+        rollout = rollouts[0]
+
+        # Extract reasoning (full reasoning including injected part)
+        reasoning_trace = rollout.reasoning if hasattr(rollout, 'reasoning') else None
+        # Extract final answer (content after </think>)
+        response_text = rollout.content if hasattr(rollout, 'content') else rollout.full
+
+        answer = extract_answer(response_text)
+
+        if answer is None:
+            print(f"        ⚠ Failed to extract answer", flush=True)
+
+        return (answer, response_text, reasoning_trace)
+    except Exception as e:
+        print(f"        ⚠ Error: {type(e).__name__}: {str(e)}", flush=True)
+        return (None, None, None)
 
 
 async def test_high_diff_sentence(
@@ -136,9 +137,9 @@ async def test_high_diff_sentence(
     print(f"  With sentence in <think> tags...", flush=True)
     tasks = [
         resample_with_sentence(
-            base_prompt, high_diff_sentence, temperature=1.0, mode="think"
+            base_prompt, high_diff_sentence, temperature=1.0, mode="think", seed=i
         )
-        for _ in range(num_samples)
+        for i in range(num_samples)
     ]
     think_results = await asyncio.gather(*tasks)
     think_answers = [a for a, r, rt in think_results if a is not None]
