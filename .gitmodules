@@ -4,3 +4,6 @@
 [submodule "CoT_Faithfulness_demo"]
 	path = CoT_Faithfulness_demo
 	url = https://github.com/paulcbogdan/CoT_Faithfulness_demo
+[submodule "rollouts"]
+	path = rollouts
+	url = https://github.com/paulcbogdan/rollouts.git

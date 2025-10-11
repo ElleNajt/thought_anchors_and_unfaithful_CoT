@@ -820,7 +820,7 @@ The earlier sentences established that weak states lack governance capacity and 
 > It's a direct challenge to the state's authority and stability.
 > Option D: Competition for power or coercion from strongmen.
 > This seems to refer to situations where individuals or groups within the state compete for control using force or threats.
-> In weak states, this is also a prevalent issue because there's less effective governance to prevent such competitions.
+  * [ ] > In weak states, this is also a prevalent issue because there's less effective governance to prevent such competiions.
 > Now, I need to determine which one is the odd one out.
 > Let's analyze each:
 
