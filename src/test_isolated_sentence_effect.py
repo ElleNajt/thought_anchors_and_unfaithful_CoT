@@ -18,20 +18,18 @@ from pathlib import Path
 
 import pandas as pd
 from dotenv import load_dotenv
-from openai import AsyncOpenAI
+from rollouts import RolloutsClient
 
 load_dotenv()
 
 MODEL_NAME = os.environ.get("MODEL_NAME", "deepseek/deepseek-r1")
 
-client = AsyncOpenAI(
-    base_url="https://openrouter.ai/api/v1",
+client = RolloutsClient(
+    model=MODEL_NAME,
     api_key=os.environ.get("OPENROUTER_API_KEY"),
+    use_cache=True,
+    temperature=1.0
 )
-
-# Rate limiting
-MAX_CONCURRENT = 50
-semaphore = asyncio.Semaphore(MAX_CONCURRENT)
 
 
 def extract_answer(response_text):
